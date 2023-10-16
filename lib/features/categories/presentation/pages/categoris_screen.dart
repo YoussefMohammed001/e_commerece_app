@@ -23,7 +23,7 @@ class CategoriesScreen extends StatelessWidget {
                   fontSize: 18.sp,
                   fontWeight: FontWeight.bold,
                   color: Colors.white),))),
-          CategoriesItem(),
+          CategoriesList(),
 
         ],
       ),

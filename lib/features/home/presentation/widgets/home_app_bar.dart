@@ -1,5 +1,4 @@
 import 'package:e_commerece_app/core/styles/colors.dart';
-import 'package:e_commerece_app/core/widgets/app_image.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -13,19 +12,9 @@ final int cart;
     return Container(
       color: AppColors.primary,
       child: Padding(
-        padding: EdgeInsets.all(8.sp),
+        padding: EdgeInsets.all(15.sp),
         child: Row(
           children: [
-            AppImage(
-              imageUrl:
-              'https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fHBlcnNvbnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60',
-              width: 27.sp,
-              height: 27.sp,
-              topLeftRadius: 25.sp,
-              topRightRadius: 25.sp,
-              bottomLeftRadius: 25.sp,
-              bottomRightRadius: 25.sp,
-            ),
             SizedBox(width: 2.w,),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,

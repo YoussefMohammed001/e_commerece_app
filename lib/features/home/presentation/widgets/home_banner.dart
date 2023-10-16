@@ -1,30 +1,46 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:e_commerece_app/core/utils/request_state.dart';
 import 'package:e_commerece_app/core/widgets/app_image.dart';
+import 'package:e_commerece_app/features/home/domain/entities/banners.dart';
+import 'package:e_commerece_app/features/home/presentation/manager/home_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
+// ignore: must_be_immutable
 class HomeBanner extends StatelessWidget {
-  const HomeBanner({super.key});
+  HomeBanner({super.key});
+
+  List<Banners> banners = [];
 
   @override
   Widget build(BuildContext context) {
-    return   CarouselSlider.builder(
-      options: CarouselOptions(
-        autoPlayInterval: const Duration(seconds: 2),
-        autoPlay: true,
-        animateToClosest: true,
+    return BlocBuilder<HomeBloc, HomeState>(
+      builder: (context, state) {
+        if(state.bannersRequestState == RequestState.loading){
+          return SizedBox();
+        } else if(state.bannersRequestState == RequestState.success){
+            banners = state.banners;
+            print('=====================>' + banners.toString());
+          return CarouselSlider.builder(
 
+            options: CarouselOptions(
+              autoPlayInterval: const Duration(seconds: 2),
+              autoPlay: true,
 
-      ),
-      itemCount: 10,
-      itemBuilder: (BuildContext context, int index, int realIndex) {
-        return AppImage(
-            imageUrl:
-            "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8c2hvcHBpbmd8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60",
-            width: double.infinity,
-            height: 20.h);
+            ),
+            itemCount:banners.length,
+            itemBuilder: (BuildContext context, int index, int realIndex) {
+              return AppImage(
+                  imageUrl: banners[index].imageUrl,
+                  width: double.infinity,
+                  height: 20.h);
+            },
+          );
+        } else{
+          return SizedBox();
+        }
       },
     );
-
   }
 }
