@@ -18,121 +18,130 @@ class ProductItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onItemTap,
-      child: Container(
-        color: Colors.white,
-        margin: EdgeInsets.all(5.sp),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Expanded(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  AppImage(
+    return Padding(
+      padding:  EdgeInsets.all(5.sp),
+      child: InkWell(
+        onTap: onItemTap,
+        child: Container(
+width: 30.w,
+padding: EdgeInsets.all(10.sp),
 
-                    height: 30.h,
-                    width: 30.w,
-                    imageUrl: productImage,
+          decoration: BoxDecoration(
+            border: Border.all(color: Colors.grey.shade300),
+            borderRadius: BorderRadius.circular(10.sp),
+          ),
+          margin: EdgeInsets.all(5.sp),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    AppImage(
+
+                      height: 30.h,
+                      width: 30.w,
+                      imageUrl: productImage,
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 1.h,
+              ),
+              Text(
+                productName,
+                textAlign: TextAlign.center,
+                maxLines: 2,
+                style:  TextStyle(
+                  fontSize: 15.sp,
+                  fontWeight: FontWeight.bold,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  '$productPrice EGP', maxLines: 1,
+                                  style: TextStyle(
+                                      color: AppColors.primary, fontSize: 15.sp,fontWeight: FontWeight.bold),
+                                ),
+
+                                     IconButton(
+                                      onPressed: onFavTap, icon: Icon(isInFav ? Icons.favorite
+                                        : Icons.favorite_border_outlined, color: AppColors.primary,),
+
+
+                                    ),
+
+                              ],
+                            ),
+
+
+                            SizedBox(
+                              width: 2.w,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Visibility(
+                                  visible: productPrice != productOldPrice,
+                                  child: Text(
+                                    '$productOldPrice EGP', maxLines: 1,
+                                    style: TextStyle(
+                                      decoration: TextDecoration.lineThrough,
+                                      color: Colors.grey,
+                                      fontSize: 13.sp,
+                                    ),
+                                  ),
+                                ),
+                                Visibility(
+                                  visible: productOldPrice != productPrice,
+                                  child: Container(
+                                      margin: EdgeInsets.all(5.sp),
+                                      padding: EdgeInsets.all(10.sp),
+                                      decoration: BoxDecoration(borderRadius:
+                                      BorderRadius.circular(6.sp),color: AppColors.primary.withOpacity(0.5)),
+
+                                      child: Text(' $productDiscount %',
+                                        style: const TextStyle(color: Colors.white),)),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        width: 1.h,
+                      ),
+
+
+                    ],
                   ),
                 ],
               ),
-            ),
-            SizedBox(
-              height: 1.h,
-            ),
-            Text(
-              productName,
-              textAlign: TextAlign.center,
-              maxLines: 2,
-              style: const TextStyle(
-                fontSize: 15,
-                fontWeight: FontWeight.bold,
-                overflow: TextOverflow.ellipsis,
-              ),
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+              SizedBox(
+                height: 1.h,
+                width: 2.h,
+              )
+            ],
 
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                '$productPrice EGP', maxLines: 1,
-                                style: TextStyle(
-                                    color: AppColors.primary, fontSize: 18.sp,fontWeight: FontWeight.bold),
-                              ),
-
-                                   IconButton(
-                                    onPressed: onFavTap, icon: Icon(isInFav ? Icons.favorite
-                                      : Icons.favorite_border_outlined, color: AppColors.primary,),
-
-
-                                  ),
-
-                            ],
-                          ),
-
-
-                          SizedBox(
-                            width: 2.w,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Visibility(
-                                visible: productPrice != productOldPrice,
-                                child: Text(
-                                  '$productOldPrice EGP', maxLines: 1,
-                                  style: TextStyle(
-                                    decoration: TextDecoration.lineThrough,
-                                    color: Colors.grey,
-                                    fontSize: 15.sp,
-                                  ),
-                                ),
-                              ),
-                              Visibility(
-                                visible: productOldPrice != productPrice,
-                                child: Container(
-                                    margin: EdgeInsets.all(5.sp),
-                                    padding: EdgeInsets.all(10.sp),
-                                    decoration: BoxDecoration(borderRadius:
-                                    BorderRadius.circular(6.sp),color: AppColors.primary.withOpacity(0.5)),
-
-                                    child: Text(' $productDiscount %',
-                                      style: const TextStyle(color: Colors.white),)),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      width: 1.h,
-                    ),
-
-
-                  ],
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 1.h,
-              width: 2.h,
-            )
-          ],
-
+          ),
         ),
       ),
     );

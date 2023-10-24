@@ -41,11 +41,13 @@ class AppImage extends StatelessWidget {
         imageUrl: imageUrl,
         progressIndicatorBuilder: (context, url, downloadProgress) {
           return Image.asset(
+            width: 0.5.w,
+            height:1.h ,
             "assets/images/loading.gif",
-            fit: BoxFit.fill,
           );
         },
         errorWidget: (context, url, error) => Padding(
+
           padding: EdgeInsets.all(15.sp),
           child: const Icon(
             Icons.error,

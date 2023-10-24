@@ -1,8 +1,9 @@
+import 'package:e_commerece_app/core/utils/navigators.dart';
 import 'package:e_commerece_app/core/utils/request_state.dart';
 import 'package:e_commerece_app/core/widgets/product_item.dart';
 import 'package:e_commerece_app/features/home/domain/entities/products.dart';
 import 'package:e_commerece_app/features/home/presentation/manager/home_bloc.dart';
-import 'package:flutter/foundation.dart';
+import 'package:e_commerece_app/features/product_details/presentation/pages/product_details.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -38,10 +39,8 @@ class _HomeProductsState extends State<HomeProducts> {
                productOldPrice: products[index].oldPrice.toString(),
                productDiscount: products[index].discount.toString(),
                onItemTap: () {
-                 if (kDebugMode) {
-                   print(index);
-                 }
-                ///
+                 push(context, ProductDetailsScreen(id: products[index].id.toInt(),));
+
                },
                onFavTap: () {
                  ///
