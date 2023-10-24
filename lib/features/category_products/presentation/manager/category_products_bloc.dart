@@ -1,7 +1,9 @@
+// ignore: depend_on_referenced_packages
 import 'package:bloc/bloc.dart';
 import 'package:e_commerece_app/core/utils/request_state.dart';
 import 'package:e_commerece_app/features/category_products/domain/entities/category_product.dart';
 import 'package:e_commerece_app/features/category_products/domain/use_cases/category_products_usecase.dart';
+// ignore: depend_on_referenced_packages
 import 'package:meta/meta.dart';
 
 part 'category_products_event.dart';
