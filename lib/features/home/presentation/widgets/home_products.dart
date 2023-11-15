@@ -1,9 +1,11 @@
+import 'package:e_commerece_app/core/enitites/product_details_entities.dart';
+import 'package:e_commerece_app/core/services/services_locator.dart';
 import 'package:e_commerece_app/core/utils/navigators.dart';
 import 'package:e_commerece_app/core/utils/request_state.dart';
 import 'package:e_commerece_app/core/widgets/product_item.dart';
-import 'package:e_commerece_app/features/home/domain/entities/products.dart';
 import 'package:e_commerece_app/features/home/presentation/manager/home_bloc.dart';
 import 'package:e_commerece_app/features/product_details/presentation/pages/product_details.dart';
+import 'package:e_commerece_app/features/saved_items/presentation/manager/favourite_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -16,7 +18,7 @@ class HomeProducts extends StatefulWidget {
 }
 
 class _HomeProductsState extends State<HomeProducts> {
-  List<Products> products = [];
+  List<ProductDetailsEntities> products = [];
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HomeBloc,HomeState>(builder: (context, state) {
@@ -43,13 +45,13 @@ class _HomeProductsState extends State<HomeProducts> {
 
                },
                onFavTap: () {
-                 ///
+                 FavouriteBloc(sl()).add(EditFavEvent(state.products[index].id.toString()));
                  state.products[index].inFavorites = !state.products[index].inFavorites;
                  setState(() {
-
                  });
+
                },
-               isInFav: products[index].inFavorites,
+               isInFav: products[index].inFavorites, id: products[index].id.toInt(), index: index,
              );
            },
            itemCount: products.length,

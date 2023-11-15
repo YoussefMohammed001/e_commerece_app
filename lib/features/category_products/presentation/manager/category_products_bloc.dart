@@ -5,7 +5,6 @@ import 'package:e_commerece_app/features/category_products/domain/entities/categ
 import 'package:e_commerece_app/features/category_products/domain/use_cases/category_products_usecase.dart';
 // ignore: depend_on_referenced_packages
 import 'package:meta/meta.dart';
-
 part 'category_products_event.dart';
 part 'category_products_state.dart';
 
@@ -13,7 +12,7 @@ class CategoryProductsBloc extends Bloc<CategoryProductsEvent, CategoryProductsS
   final CategoryProductsUseCase categoryProductsUseCase;
 
 
-  CategoryProductsBloc(this.categoryProductsUseCase) : super(CategoryProductsState()) {
+  CategoryProductsBloc(this.categoryProductsUseCase) : super( CategoryProductsState()) {
     // ignore: invalid_use_of_visible_for_testing_member
     emit(
 state.copyWith(

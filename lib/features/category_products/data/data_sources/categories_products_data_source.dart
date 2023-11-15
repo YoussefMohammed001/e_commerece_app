@@ -13,12 +13,12 @@ class CategoryProductsApi extends BaseCategoryProductsApi{
   @override
   Future<List<CategoryProductsModel>> getCategories({required String id}) async {
 
-    final response = await AppDio.get(endPoint: "products?id=1");
+    final response = await AppDio.get(endPoint: "categories/$id");
 safePrint(response);
 if(response!.data['status'] == true){
   return List<CategoryProductsModel>
-      .from((response.data['data']['data'] as List).map((e)
-  => CategoryProductsModel.fromJson(e)));
+      .from((response.data['data']['data'] as List).map((e) =>
+      CategoryProductsModel.fromJson(e)));
 } else{
   throw"";
 

@@ -2,7 +2,8 @@ import 'package:equatable/equatable.dart';
 
 // ignore: must_be_immutable
 class ProductDetailsEntities extends Equatable {
-  ProductDetailsEntities({
+  ProductDetailsEntities(
+      {
     num? id,
     num? price,
     num? oldPrice,
@@ -12,7 +13,11 @@ class ProductDetailsEntities extends Equatable {
     String? description,
     List<dynamic>? images,
     bool? inFavorites,
-    bool? inCart,}) {
+    bool? inCart,
+      }
+      
+      )
+  {
     _id = id;
     _price = price;
     _oldPrice = oldPrice;

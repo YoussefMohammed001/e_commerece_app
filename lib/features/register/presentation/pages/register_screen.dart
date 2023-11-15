@@ -152,7 +152,7 @@ class RegisterScreen extends StatelessWidget {
                                 if(value.length <= 6){
                                   return "Password must be more than 6 digits";
                                 }
-                                if(passController != confirmPassController){
+                                if(passController.text != confirmPassController.text){
                                   return "password doesn't match";
                                 }
                                 return null;

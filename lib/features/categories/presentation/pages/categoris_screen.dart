@@ -16,7 +16,7 @@ class CategoriesScreen extends StatelessWidget {
       child: Column(
         children: [
           Container(
-              padding: EdgeInsets.all(15.sp),
+              padding: EdgeInsets.symmetric(vertical:20.sp,horizontal: 15.sp),
               width: double.infinity,
               color: AppColors.primary,
               child: Center(child: Text("Categories", style: TextStyle(

@@ -6,6 +6,7 @@ class HomeBannersUseCase{
   final BaseHomeRepository baseHomeRepository;
   HomeBannersUseCase(this.baseHomeRepository);
 
+
   Future<Either<String , List<Banners>>>  execute({required int pageNumber}) async {
     return await baseHomeRepository.getHomeBanners(pageNumber: pageNumber);
   }

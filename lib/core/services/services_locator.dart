@@ -24,6 +24,10 @@ import 'package:e_commerece_app/features/register/data/data_sources/remote_data_
 import 'package:e_commerece_app/features/register/data/repositories/register_repo.dart';
 import 'package:e_commerece_app/features/register/domain/repositories/base_register_repo.dart';
 import 'package:e_commerece_app/features/register/domain/use_cases/register_use_case.dart';
+import 'package:e_commerece_app/features/saved_items/data/data_sources/fav_data_source.dart';
+import 'package:e_commerece_app/features/saved_items/data/repositories/fav_repo.dart';
+import 'package:e_commerece_app/features/saved_items/domain/repositories/base_favourite_repo.dart';
+import 'package:e_commerece_app/features/saved_items/domain/use_cases/fav_use_case.dart';
 import 'package:get_it/get_it.dart';
 
 final sl = GetIt.instance;
@@ -39,6 +43,7 @@ sl.registerLazySingleton(() => LoginUseCase(sl()));
 sl.registerLazySingleton(() => ProductDetailsUseCase(sl()));
 sl.registerLazySingleton(() => CategoryProductsUseCase(sl()));
 sl.registerLazySingleton(() => RegisterUseCase(sl()));
+sl.registerLazySingleton(() => FavUseCase(sl()));
 
 
     ///Repository
@@ -48,6 +53,7 @@ sl.registerLazySingleton<BaseLoginRepository>(() => LoginRepository(sl()));
 sl.registerLazySingleton<BaseProductDetailsRepository>(() => ProductDetailsRepo(sl()));
 sl.registerLazySingleton<BaseCategoryProductsRepo>(() => CategoryProductsRepo(sl()));
 sl.registerLazySingleton<BaseRegisterRepo>(() => RegisterRepo(sl()));
+sl.registerLazySingleton<BaseFavRepo>(() => FavRepo(sl()));
 
 
     ///Data SOURCE
@@ -57,6 +63,7 @@ sl.registerLazySingleton<BaseLoginRemoteDataSource>(() => LoginRemoteDataSource(
 sl.registerLazySingleton<BaseProductDetailsApi>(() => ProductDetailsApi());
 sl.registerLazySingleton<BaseCategoryProductsApi>(() => CategoryProductsApi());
 sl.registerLazySingleton<BaseRegisterApi>(() => RegisterApi());
+sl.registerLazySingleton<BaseFavApi>(() => FavDataSource());
 
 
 

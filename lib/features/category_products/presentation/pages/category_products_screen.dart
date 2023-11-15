@@ -6,6 +6,7 @@ import 'package:e_commerece_app/core/widgets/product_item.dart';
 import 'package:e_commerece_app/features/category_products/domain/entities/category_product.dart';
 import 'package:e_commerece_app/features/category_products/presentation/manager/category_products_bloc.dart';
 import 'package:e_commerece_app/features/product_details/presentation/pages/product_details.dart';
+import 'package:e_commerece_app/features/saved_items/presentation/manager/favourite_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -25,9 +26,16 @@ class _CategoriesProductsScreenState extends State<CategoriesProductsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
+    return MultiBlocProvider(
+  providers: [
+    BlocProvider(
       create: (context) => CategoryProductsBloc(sl())..add(CategoryProductsEvent(id: widget.id)),
-      child: Scaffold(
+),
+    BlocProvider(
+      create: (context) => FavouriteBloc(sl()),
+    ),
+  ],
+  child: Scaffold(
         body: Column(
           children: [
 
@@ -101,7 +109,7 @@ class _CategoriesProductsScreenState extends State<CategoriesProductsScreen> {
 
                                 });
                               },
-                              isInFav: products[index].inFavorites,
+                              isInFav: products[index].inFavorites, id: products[index].id.toInt(), index: index,
                             );
                           },
                           itemCount: products.length,
@@ -124,6 +132,6 @@ class _CategoriesProductsScreenState extends State<CategoriesProductsScreen> {
           ],
         ),
       ),
-    );
+);
   }
 }

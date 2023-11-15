@@ -4,6 +4,7 @@ import 'package:e_commerece_app/features/home/presentation/widgets/home_app_bar.
 import 'package:e_commerece_app/features/home/presentation/widgets/home_banner.dart';
 import 'package:e_commerece_app/features/home/presentation/widgets/home_categories_widget.dart';
 import 'package:e_commerece_app/features/home/presentation/widgets/home_products.dart';
+import 'package:e_commerece_app/features/saved_items/presentation/manager/favourite_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -12,8 +13,16 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => HomeBloc(sl(), sl(), sl())..add(HomeCategoriesEvent())..add(HomeBannersEvent())..add(HomeProductsEvent()),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) =>
+          HomeBloc(sl(), sl(), sl())
+            ..add(HomeCategoriesEvent())..add(HomeBannersEvent())..add(
+              HomeProductsEvent()),
+        ),
+
+      ],
       child: Column(
 
         children: [
@@ -25,14 +34,14 @@ class HomeScreen extends StatelessWidget {
           ),
           Expanded(
             child: SingleChildScrollView(
-     child: Column(
-             children: [
+              child: Column(
+                children: [
 
-               HomeCategoriesWidget(),
-               HomeBanner(),
-               HomeProducts(),
-             ],
-     ),
+                  HomeCategoriesWidget(),
+                  HomeBanner(),
+                  HomeProducts(),
+                ],
+              ),
 
             ),
           ),

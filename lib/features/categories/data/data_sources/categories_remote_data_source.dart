@@ -12,7 +12,7 @@ class  CategoriesRemoteDataSource extends BaseCategoriesRemoteDataSource{
   Future<List<CategoriesModel>> getCategories({required int pageNumber}) async {
     final response = await AppDio.get(endPoint: EndPoints.categories,);
     if(response!.data['status'] == true){
-      print(response);
+      print(response.data['data']['data']);
       return List<CategoriesModel>
           .from((response.data['data']['data'] as List).map((e)
       => CategoriesModel.fromJson(e)

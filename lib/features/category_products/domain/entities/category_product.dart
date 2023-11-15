@@ -37,7 +37,7 @@ class CategoryProductsEntities extends Equatable{
   bool? _inFavorites;
   bool? _inCart;
 
-  num get id => _id ?? 0;
+  num get id => _id ?? 02121;
 
   num get price => _price ?? 0;
 

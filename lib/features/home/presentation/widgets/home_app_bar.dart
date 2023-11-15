@@ -12,7 +12,7 @@ final int cart;
     return Container(
       color: AppColors.primary,
       child: Padding(
-        padding: EdgeInsets.all(15.sp),
+        padding: EdgeInsets.symmetric(vertical:20.sp,horizontal: 15.sp),
         child: Row(
           children: [
             SizedBox(width: 2.w,),

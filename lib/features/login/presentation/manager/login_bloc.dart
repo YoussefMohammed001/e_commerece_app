@@ -11,7 +11,7 @@ import 'package:meta/meta.dart';
 part 'login_event.dart';
 part 'login_state.dart';
 
-class LoginBloc extends Bloc<LoginEvent, LoginState> {
+class LoginBloc extends Bloc<BaseLoginEvent, LoginState> {
   final LoginUseCase loginUseCase;
   LoginBloc(this.loginUseCase) : super(LoginState()) {
     on<EventLogin>(login);
@@ -26,6 +26,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     result.fold((left) {
 
       emit(state.copyWith(
+        message: left,
         requestState: RequestState.failure,
        ));
     },

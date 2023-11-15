@@ -1,9 +1,9 @@
 import 'package:bloc/bloc.dart';
+import 'package:e_commerece_app/core/enitites/product_details_entities.dart';
 import 'package:e_commerece_app/core/utils/request_state.dart';
 import 'package:e_commerece_app/core/utils/safe_print.dart';
 import 'package:e_commerece_app/features/home/domain/entities/banners.dart';
 import 'package:e_commerece_app/features/home/domain/entities/categories.dart';
-import 'package:e_commerece_app/features/home/domain/entities/products.dart';
 import 'package:e_commerece_app/features/home/domain/use_cases/home_banners_use_case.dart';
 import 'package:e_commerece_app/features/home/domain/use_cases/home_categories_use_case.dart';
 import 'package:e_commerece_app/features/home/domain/use_cases/home_products_use_case.dart';

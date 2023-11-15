@@ -1,6 +1,7 @@
 import 'package:e_commerece_app/core/styles/colors.dart';
 import 'package:e_commerece_app/core/utils/safe_print.dart';
 import 'package:e_commerece_app/features/main_screen/manager/main_cubit.dart';
+import 'package:e_commerece_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -24,12 +25,7 @@ class _MainScreenState extends State<MainScreen> {
         builder: (context, state) {
           safePrint("Main");
           return Scaffold(
-            backgroundColor: Colors.white,
-            appBar: AppBar(
-              elevation: 0,
-              backgroundColor: AppColors.primary,
-              toolbarHeight: 0,
-            ),
+
             //floating action button position to center
             bottomNavigationBar: bottomNavBar(),
             body: cubit.screens[cubit.index],
@@ -54,16 +50,16 @@ class _MainScreenState extends State<MainScreen> {
         setState(() {});
       },
       currentIndex: cubit.index,
-      items:  const [
+      items:   <BottomNavigationBarItem>[
         BottomNavigationBarItem(
-          label:"Home",
-            icon: Icon(Icons.home_filled)
+          label:S().home,
+            icon: const Icon(Icons.home_filled)
         ),
-         BottomNavigationBarItem(
-          label:"Categories",
-            icon: Icon(Icons.category_outlined)
+         const BottomNavigationBarItem(
+          label:"Search",
+            icon: Icon(Icons.search)
         ),
-         BottomNavigationBarItem(
+         const BottomNavigationBarItem(
           label:"Profile",
             icon: Icon(Icons.person_outline)
         ),

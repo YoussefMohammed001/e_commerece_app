@@ -7,5 +7,6 @@ class EndPoints{
   static const String productsDetails = 'products/';
   static const String login = 'login';
   static const String register = 'register';
+  static const String fav = 'favorites';
 
 }

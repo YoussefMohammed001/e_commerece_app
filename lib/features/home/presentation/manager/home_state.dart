@@ -9,7 +9,7 @@ class HomeState{
   final RequestState bannersRequestState;
   final String bannersMessage;
 
-  final List<Products> products;
+  final List<ProductDetailsEntities> products;
   final RequestState productsRequestState;
   final String productsMessage;
 
@@ -32,7 +32,7 @@ class HomeState{
     final List<Banners>? banners,
     final RequestState? bannersRequestState,
     final String? bannersMessage,
-    final List<Products>? products,
+    final List<ProductDetailsEntities>? products,
     final RequestState? productsRequestState,
     final String? productsMessage,
   }) {

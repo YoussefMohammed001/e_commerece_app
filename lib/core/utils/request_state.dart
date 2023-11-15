@@ -1,7 +1,8 @@
 enum RequestState{
   loading,
   success,
-  failure, initial,
+  failure,
+  initial,
 
 
 }

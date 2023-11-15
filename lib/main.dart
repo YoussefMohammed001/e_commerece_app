@@ -6,8 +6,10 @@ import 'package:e_commerece_app/core/styles/colors.dart';
 import 'package:e_commerece_app/core/utils/safe_print.dart';
 import 'package:e_commerece_app/features/login/presentation/pages/login_screen.dart';
 import 'package:e_commerece_app/features/main_screen/main_screen.dart';
+import 'package:e_commerece_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 Future<void> main() async {
@@ -29,7 +31,20 @@ class MyApp extends StatelessWidget {
     return ResponsiveSizer(builder: (BuildContext , Orientation , ScreenType ) {
        return
       MaterialApp(
+
+
+        key: ValueKey(MyShared.getCurrentLanguage()),
         debugShowCheckedModeBanner: false,
+        // ignore: deprecated_member_use
+        useInheritedMediaQuery: true,
+        locale: Locale(MyShared.getCurrentLanguage()),
+        supportedLocales: S.delegate.supportedLocales,
+        localizationsDelegates: const [
+          S.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+        ],
         title: 'Flutter Demo',
         theme: ThemeData(
 
@@ -38,9 +53,11 @@ class MyApp extends StatelessWidget {
         ),
         home:  MyShared.getString(key: MySharedKeys.apiToken).isEmpty ? LoginScreen() : MainScreen(),
         builder: EasyLoading.init(),
+
       );
 
     },);
+
 
   }
 }

@@ -1,8 +1,11 @@
 import 'package:e_commerece_app/core/shared/my_shared.dart';
 import 'package:e_commerece_app/core/shared/my_shared_keys.dart';
 import 'package:e_commerece_app/core/styles/colors.dart';
+import 'package:e_commerece_app/core/utils/navigators.dart';
+import 'package:e_commerece_app/features/profile/presentation/pages/settings_screen.dart';
 import 'package:e_commerece_app/features/profile/presentation/widgets/log_out_iitem.dart';
 import 'package:e_commerece_app/features/profile/presentation/widgets/profile_item.dart';
+import 'package:e_commerece_app/features/saved_items/presentation/pages/fav_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -14,7 +17,7 @@ class ProfileScreen extends StatelessWidget {
     return Column(
       children: [
         Container(
-            padding: EdgeInsets.all(15.sp),
+            padding: EdgeInsets.symmetric(vertical:20.sp,horizontal: 15.sp),
             width: double.infinity,
             color: AppColors.primary,
             child: Center(
@@ -72,21 +75,27 @@ class ProfileScreen extends StatelessWidget {
               SizedBox(
                 height: 1.5.h,
               ),
-              const ProfileItem(
+               ProfileItem(
                 icon: Icons.edit_outlined,
-                text: 'Edit Profile',
+                text: 'Edit Profile', onPress: () {  },
               ),
-              const ProfileItem(
+               ProfileItem(
                 icon: Icons.settings,
-                text: 'Settings',
+                text: 'Settings', onPress: () {
+                  push(context, NewsSettingsScreen());
+               },
               ),
-              const ProfileItem(
+               ProfileItem(
                 icon: Icons.favorite_outline,
-                text: 'Saved Items',
+                text: 'Saved Items', onPress: () {
+
+                 push(context, FavScreen());
+
+               },
               ),
-              const ProfileItem(
+               ProfileItem(
                 icon: Icons.shopping_cart_checkout_sharp,
-                text: 'Orders',
+                text: 'Orders', onPress: () {  },
               ),
               SizedBox(
                 height: 3.h,

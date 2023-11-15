@@ -1,7 +1,8 @@
-import 'package:e_commerece_app/features/home/domain/entities/products.dart';
 
 // ignore: must_be_immutable
-class HomeProductsModel extends Products {
+import 'package:e_commerece_app/core/enitites/product_details_entities.dart';
+
+class HomeProductsModel extends ProductDetailsEntities {
   HomeProductsModel(
       {required super.id,
 
