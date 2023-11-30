@@ -1,4 +1,4 @@
-import 'package:e_commerece_app/features/login/domain/entities/login_entities.dart';
+import 'package:e_commerece_app/core/enitites/UserDataEntities.dart';
 
 class LoginRequestModel {
   LoginRequestModel({
@@ -27,7 +27,7 @@ class LoginRequestModel {
   String get message => _message ?? "";
 }
 
-class LoginModel extends LoginEntities {
+class LoginModel extends UserDataEntities {
   LoginModel(
       {required super.email,
       required super.mobile,

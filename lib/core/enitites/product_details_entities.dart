@@ -5,6 +5,7 @@ class ProductDetailsEntities extends Equatable {
   ProductDetailsEntities(
       {
     num? id,
+        num? quantity,
     num? price,
     num? oldPrice,
     num? discount,
@@ -28,8 +29,9 @@ class ProductDetailsEntities extends Equatable {
     _images = images;
     _inFavorites = inFavorites;
     _inCart = inCart;
+    _quantity = quantity;
   }
-
+  num? _quantity;
   num? _id;
   num? _price;
   num? _oldPrice;
@@ -40,6 +42,8 @@ class ProductDetailsEntities extends Equatable {
   List<dynamic>? _images;
   bool? _inFavorites;
   bool? _inCart;
+
+  num get quantity => _quantity ?? 0;
 
   num get id => _id ?? 0;
 
@@ -61,6 +65,10 @@ class ProductDetailsEntities extends Equatable {
 
   bool get inCart => _inCart ?? false;
 
+
+  set inCart(bool value) {
+    _inCart = value;
+  }
 
   set inFavorites(bool value) {
     _inFavorites = value;

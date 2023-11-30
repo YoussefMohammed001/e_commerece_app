@@ -1,6 +1,6 @@
+import 'package:e_commerece_app/core/enitites/UserDataEntities.dart';
 import 'package:e_commerece_app/core/utils/safe_print.dart';
 import 'package:e_commerece_app/features/login/data/data_sources/login_remote_data_source.dart';
-import 'package:e_commerece_app/features/login/domain/entities/login_entities.dart';
 import 'package:e_commerece_app/features/login/domain/repositories/base_login_repository.dart';
 import 'package:either_dart/src/either.dart';
 
@@ -10,7 +10,7 @@ class LoginRepository extends BaseLoginRepository{
   LoginRepository(this.baseLoginRemoteDataSource);
 
   @override
-  Future<Either<String, LoginEntities>> login({required String email,required String password}) async {
+  Future<Either<String, UserDataEntities>> login({required String email,required String password}) async {
    final result = await baseLoginRemoteDataSource.login(email: email, password: password);
    safePrint("result=========================> ${result.data}");
    try{

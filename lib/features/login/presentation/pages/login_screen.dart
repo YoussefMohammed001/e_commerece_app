@@ -2,7 +2,6 @@ import 'package:e_commerece_app/core/services/services_locator.dart';
 import 'package:e_commerece_app/core/styles/colors.dart';
 import 'package:e_commerece_app/core/utils/navigators.dart';
 import 'package:e_commerece_app/core/utils/request_state.dart';
-import 'package:e_commerece_app/core/utils/safe_print.dart';
 import 'package:e_commerece_app/core/utils/svg.dart';
 import 'package:e_commerece_app/core/widgets/app_button.dart';
 import 'package:e_commerece_app/core/widgets/app_text_form_field.dart';

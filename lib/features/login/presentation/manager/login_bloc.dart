@@ -1,10 +1,10 @@
 // ignore: depend_on_referenced_packages
 import 'package:bloc/bloc.dart';
+import 'package:e_commerece_app/core/enitites/UserDataEntities.dart';
 import 'package:e_commerece_app/core/utils/easy_loading.dart';
 import 'package:e_commerece_app/core/utils/request_state.dart';
 import 'package:e_commerece_app/core/utils/safe_print.dart';
 import 'package:e_commerece_app/features/login/data/data_sources/login_local.dart';
-import 'package:e_commerece_app/features/login/domain/entities/login_entities.dart';
 import 'package:e_commerece_app/features/login/domain/use_cases/login_use_case.dart';
 // ignore: depend_on_referenced_packages
 import 'package:meta/meta.dart';

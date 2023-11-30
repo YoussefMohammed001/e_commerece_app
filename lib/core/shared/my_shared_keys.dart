@@ -21,5 +21,5 @@ enum MySharedKeys {
   timeFrom,
   gender,
   dateOfBirth,
-  userImage,
+  userImage, cartId, theme,
 }

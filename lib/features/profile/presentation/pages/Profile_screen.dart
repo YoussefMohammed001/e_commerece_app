@@ -2,7 +2,9 @@ import 'package:e_commerece_app/core/shared/my_shared.dart';
 import 'package:e_commerece_app/core/shared/my_shared_keys.dart';
 import 'package:e_commerece_app/core/styles/colors.dart';
 import 'package:e_commerece_app/core/utils/navigators.dart';
+import 'package:e_commerece_app/features/orders/presentation/pages/orders_screen.dart';
 import 'package:e_commerece_app/features/profile/presentation/pages/settings_screen.dart';
+import 'package:e_commerece_app/features/profile/presentation/pages/update_profile_screen.dart';
 import 'package:e_commerece_app/features/profile/presentation/widgets/log_out_iitem.dart';
 import 'package:e_commerece_app/features/profile/presentation/widgets/profile_item.dart';
 import 'package:e_commerece_app/features/saved_items/presentation/pages/fav_screen.dart';
@@ -38,7 +40,6 @@ class ProfileScreen extends StatelessWidget {
               Text(
                 MyShared.getString(key: MySharedKeys.username),
                 style: TextStyle(
-                  color: Colors.black,
                   fontSize: 17.sp,
                   fontWeight: FontWeight.bold,
                 ),
@@ -46,38 +47,18 @@ class ProfileScreen extends StatelessWidget {
               Text(
                 MyShared.getString(key: MySharedKeys.email),
                 style: TextStyle(
-                  color: Colors.black,
                   fontSize: 14.sp,
                 ),
               ),
               SizedBox(
                 height: 18.sp,
               ),
-              Container(
-                padding: EdgeInsets.only(
-                  bottom: 0.1.sp, // Space between underline and text
-                ),
-                decoration: BoxDecoration(
-                    border: Border(
-                        bottom: BorderSide(
-                  color: AppColors.primary,
-                  width: 6.sp, // Underline thickness
-                ))),
-                child: Text(
-                  "Edit Profile",
-                  style: TextStyle(
-                    color: AppColors.primary,
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 1.5.h,
-              ),
+
                ProfileItem(
                 icon: Icons.edit_outlined,
-                text: 'Edit Profile', onPress: () {  },
+                text: 'Edit Profile', onPress: () {
+                  push(context, UpdateProfileScreen());
+               },
               ),
                ProfileItem(
                 icon: Icons.settings,
@@ -95,7 +76,10 @@ class ProfileScreen extends StatelessWidget {
               ),
                ProfileItem(
                 icon: Icons.shopping_cart_checkout_sharp,
-                text: 'Orders', onPress: () {  },
+                text: 'Orders', onPress: () {
+                  push(context, OrdersScreen());
+
+               },
               ),
               SizedBox(
                 height: 3.h,

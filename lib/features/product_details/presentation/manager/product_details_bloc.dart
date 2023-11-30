@@ -33,12 +33,14 @@ on<ProductDetailsEvent>(_getProduct);
              (r) {
            safePrint("product details ==============>$r");
 
+
            emit(
              state.copyWith(
                productDetailsEntities: r,
                requestState: RequestState.success,
              ),
            );
+           safePrint("details============> ${r.inCart}");
          }
      );
 

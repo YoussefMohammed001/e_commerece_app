@@ -1,7 +1,7 @@
 part of 'login_bloc.dart';
 
 class LoginState {
-final LoginEntities? loginEntities;
+final UserDataEntities? loginEntities;
 final RequestState requestState;
 final String message;
 
@@ -13,7 +13,7 @@ LoginState({
 });
 
 LoginState copyWith({
-    final LoginEntities? loginEntities,
+    final UserDataEntities? loginEntities,
     final RequestState? requestState,
     final String? message,
   }) {

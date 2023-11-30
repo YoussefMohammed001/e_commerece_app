@@ -2,8 +2,8 @@ import 'package:e_commerece_app/core/api/my_dio.dart';
 import 'package:e_commerece_app/core/services/services_locator.dart';
 import 'package:e_commerece_app/core/shared/my_shared.dart';
 import 'package:e_commerece_app/core/shared/my_shared_keys.dart';
-import 'package:e_commerece_app/core/styles/colors.dart';
 import 'package:e_commerece_app/core/utils/safe_print.dart';
+import 'package:e_commerece_app/features/cart/data/data_sources/address_api.dart';
 import 'package:e_commerece_app/features/login/presentation/pages/login_screen.dart';
 import 'package:e_commerece_app/features/main_screen/main_screen.dart';
 import 'package:e_commerece_app/generated/l10n.dart';
@@ -17,6 +17,7 @@ Future<void> main() async {
   AppDio.init();
  await  MyShared.init();
   ServicesLocator().init();
+  AddressApi().getAddress();
   safePrint("token============>${MyShared.getString(key: MySharedKeys.apiToken)}");
   runApp(const MyApp());
 }
@@ -32,25 +33,32 @@ class MyApp extends StatelessWidget {
        return
       MaterialApp(
 
-
         key: ValueKey(MyShared.getCurrentLanguage()),
         debugShowCheckedModeBanner: false,
         // ignore: deprecated_member_use
         useInheritedMediaQuery: true,
+
         locale: Locale(MyShared.getCurrentLanguage()),
         supportedLocales: S.delegate.supportedLocales,
         localizationsDelegates: const [
-          S.delegate,
           GlobalMaterialLocalizations.delegate,
           GlobalCupertinoLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
         ],
         title: 'Flutter Demo',
-        theme: ThemeData(
 
-          colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primary),
+
+        theme: ThemeData(
           useMaterial3: true,
+          brightness: Brightness.light,
+          /* light theme settings */
         ),
+        darkTheme: ThemeData(
+          brightness: Brightness.dark,
+          /* dark theme settings */
+        ),
+        themeMode:ThemeMode.light ,
+
         home:  MyShared.getString(key: MySharedKeys.apiToken).isEmpty ? LoginScreen() : MainScreen(),
         builder: EasyLoading.init(),
 
@@ -59,6 +67,7 @@ class MyApp extends StatelessWidget {
     },);
 
 
+    
   }
 }
 

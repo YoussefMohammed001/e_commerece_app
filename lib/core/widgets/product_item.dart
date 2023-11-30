@@ -1,8 +1,5 @@
 import 'package:e_commerece_app/core/services/services_locator.dart';
 import 'package:e_commerece_app/core/styles/colors.dart';
-import 'package:e_commerece_app/core/utils/easy_loading.dart';
-import 'package:e_commerece_app/core/utils/request_state.dart';
-import 'package:e_commerece_app/core/utils/safe_print.dart';
 import 'package:e_commerece_app/core/widgets/app_image.dart';
 import 'package:e_commerece_app/features/saved_items/presentation/manager/favourite_bloc.dart';
 import 'package:flutter/material.dart';
@@ -147,7 +144,7 @@ class ProductItem extends StatelessWidget {
                                         padding: EdgeInsets.all(10.sp),
                                         decoration: BoxDecoration(
                                             borderRadius:
-                                            BorderRadius.circular(6.sp),
+                                            BorderRadius.circular(13.sp),
                                             color: AppColors.primary
                                                 .withOpacity(0.5)),
                                         child: Text(

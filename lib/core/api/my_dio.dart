@@ -52,6 +52,17 @@ class AppDio {
     };
     return await _dio.post(endPoint, data: data);
   }
+  static Future<Response?> put({
+    required String endPoint,
+    Map<String, dynamic>? data,
+  }) async {
+    _dio.options.headers = {
+      "lang": MyShared.getCurrentLanguage(),
+      //"Accept": "application/json",
+      "Authorization": MyShared.getString(key: MySharedKeys.apiToken),
+    };
+    return await _dio.put(endPoint, data: data);
+  }
 
   static Future<Response?> postFile({
     required String endPoint,

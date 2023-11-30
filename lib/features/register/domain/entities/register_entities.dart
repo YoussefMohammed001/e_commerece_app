@@ -1,3 +1,4 @@
+import 'package:e_commerece_app/core/enitites/UserDataEntities.dart';
 import 'package:equatable/equatable.dart';
 
 
@@ -5,12 +6,12 @@ import 'package:equatable/equatable.dart';
 class  BaseRegisterEntities extends Equatable{
    String? _message;
    bool? _status;
-   RegisterEntities? _registerEntities;
+   UserDataEntities? _registerEntities;
 
    BaseRegisterEntities({
      String? message,
      bool? status,
-     RegisterEntities? registerEntities,
+     UserDataEntities? registerEntities,
 }){
    _message = message;
    _status = status;
@@ -24,40 +25,7 @@ class  BaseRegisterEntities extends Equatable{
 
    bool get status => _status ?? false; 
 
-   RegisterEntities get registerEntities => _registerEntities ?? RegisterEntities(email: "", mobile: "", name: "", id: 0, image: "", token: "");
+   UserDataEntities get registerEntities => _registerEntities ?? UserDataEntities(email: "", mobile: "", name: "", id: 0, image: "", token: "");
 }
 
 
-class RegisterEntities extends Equatable{
-
-  final String email;
-  final String mobile;
-  final String name;
-  final int id;
-  final String image;
-  final String token;
-
-  RegisterEntities(
-      {required this.email,
-        required this.mobile,
-        required this.name,
-        required this.id,
-        required this.image,
-        required this.token,
-      });
-
-  @override
-  List<Object?> get props => [
-    id,
-    email,
-    name,
-    mobile,
-    image,
-    token,
-
-  ];
-
-
-
-
-}

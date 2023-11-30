@@ -24,9 +24,9 @@ class RegisterScreen extends StatelessWidget {
   TextEditingController nameController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
 
-  final cubit = RegisterBloc(sl());
-  final _formKey = GlobalKey<FormState>();
 
+  final _formKey = GlobalKey<FormState>();
+  final cubit = RegisterBloc(sl());
   @override
   Widget build(BuildContext context) {
     return BlocProvider(

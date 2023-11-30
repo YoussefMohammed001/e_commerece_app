@@ -1,9 +1,14 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:e_commerece_app/core/services/services_locator.dart';
+import 'package:e_commerece_app/core/shared/my_shared.dart';
+import 'package:e_commerece_app/core/shared/my_shared_keys.dart';
 import 'package:e_commerece_app/core/styles/colors.dart';
 import 'package:e_commerece_app/core/utils/request_state.dart';
+import 'package:e_commerece_app/core/utils/safe_print.dart';
 import 'package:e_commerece_app/core/widgets/app_button.dart';
 import 'package:e_commerece_app/core/widgets/app_image.dart';
+import 'package:e_commerece_app/features/cart/data/models/request_data.dart';
+import 'package:e_commerece_app/features/cart/presentation/manager/cart/cart_bloc.dart';
 import 'package:e_commerece_app/features/product_details/presentation/manager/product_details_bloc.dart';
 import 'package:e_commerece_app/features/product_details/presentation/widgets/details_app_bar.dart';
 import 'package:e_commerece_app/features/saved_items/presentation/manager/favourite_bloc.dart';
@@ -21,6 +26,7 @@ class ProductDetailsScreen extends StatefulWidget {
 }
 
 class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
+  int quantity = 1;
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -45,14 +51,105 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
             return Scaffold(
                 floatingActionButtonLocation:
                     FloatingActionButtonLocation.centerFloat,
-                bottomNavigationBar: AppButton(
+                bottomNavigationBar: state.productDetailsEntities!.inCart == false ? AppButton(
                   bgColor: AppColors.primary,
                   padding: EdgeInsets.all(12.sp),
                   margin: EdgeInsets.all(15.sp),
                   borderRadius: BorderRadius.circular(13.sp),
-                  onPressed: () {},
+                  onPressed: () {
+                    safePrint("added");
+                    CartBloc(sl(),sl()).add(PostCartEvent(CarRequestData(id: state.productDetailsEntities!.id.toInt(), quantity: 0)));
+                    state.productDetailsEntities!.inCart =  !state.productDetailsEntities!.inCart;
+                    setState(() {
+
+                    });
+                    },
                   label: "Add To Cart",
-                ),
+                ) :
+                  CartBloc(sl(),sl()).state.postRequestState == RequestState.loading ? CircularProgressIndicator()
+                  :
+                  Row(
+                    mainAxisAlignment:
+                    MainAxisAlignment.spaceBetween,
+                    children: [
+                      IconButton(onPressed: (){
+                        CartBloc(sl(),sl()).add(PostCartEvent(CarRequestData(id: state.productDetailsEntities!.id.toInt(), quantity: 0)));
+
+                        setState(() {
+
+                        });
+                      }, icon: const Icon(Icons.delete),color: Colors.red,),
+
+                      InkWell(
+                        onTap: () {
+                          CartBloc(sl(),sl()).add(PutCartEvent(
+                              CarRequestData(
+                                  id: int.parse(MyShared.getString(key: MySharedKeys.cartId)),
+                                  quantity: quantity+1
+                              )));
+                          setState(() {
+
+                          });
+                        },
+                        child: Container(
+                            padding: EdgeInsets.all(8.sp),
+                            decoration: BoxDecoration(
+                              color: AppColors.primary
+                                  .withOpacity(0.5),
+                              borderRadius:
+                              BorderRadius.circular(13.sp),
+                            ),
+                            child: const Icon(
+                              Icons.add,
+                              color: Colors.white,
+                            )),
+                      ),
+                      SizedBox(
+                        width: 2.w,
+                      ),
+                      BlocProvider(
+  create: (context) => CartBloc(sl(),sl()),
+  child: BlocBuilder<CartBloc, CartState>(
+  builder: (context, state) {
+
+    return Text(quantity.toString());
+
+  },
+),
+),
+                      SizedBox(
+                        width: 2.w,
+                      ),
+                      InkWell(
+                        onTap: (){
+                          if(quantity > 1){
+
+                            CartBloc(sl(),sl()).add(PutCartEvent(
+                                CarRequestData(
+                                    id: int.parse(MyShared.getString(key: MySharedKeys.cartId)),
+                                    quantity: quantity-1
+                                )));
+                            setState(() {
+
+                            });
+                          }
+                        },
+                        child: Container(
+                            padding: EdgeInsets.all(8.sp),
+                            decoration: BoxDecoration(
+                              color: AppColors.primary
+                                  .withOpacity(0.5),
+                              borderRadius:
+                              BorderRadius.circular(13.sp),
+                            ),
+                            child: Icon(
+                              Icons.remove,
+                              color: Colors.white,
+                            )),
+                      ),
+                    ],
+                  ),
+
                 body: SingleChildScrollView(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,

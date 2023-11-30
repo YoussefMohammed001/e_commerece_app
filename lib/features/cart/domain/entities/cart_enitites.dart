@@ -1,27 +1,59 @@
 import 'package:e_commerece_app/core/enitites/product_details_entities.dart';
 
 class CartEntities{
-  final num total;
+   num? _total;
+final List<CartItems> cartItems;
+  CartEntities({ num? total, required this.cartItems,}) {
+    _total = total;
+  }
 
-  CartEntities(this.total);
+   num get total => _total ?? 0;
+
+  set total(num value) {
+    _total = value;
+  }
 }
 
-class CartProducts{
+class UpdateDeleteCartEntities{
+   num? _total;
+final CartItems cartItems;
 
-  num? _quantity;
- List<ProductDetailsEntities>? _productDetailsEntities;
+  UpdateDeleteCartEntities({ num? total, required this.cartItems,}){
+    _total = total;
+  }
 
-  CartProducts({ num? quantity,  List<ProductDetailsEntities>? productDetailsEntities}){
+   num get total => _total ?? 0;
+
+  set total(num value) {
+    _total = value;
+  }
+}
+
+
+
+class CartItems{
+int? _id;
+int? _quantity;
+ProductDetailsEntities? _productDetailsEntities;
+
+  CartItems({ int? quantity,int? id,  ProductDetailsEntities? productDetailsEntities}){
     _quantity = quantity;
+     _id = id;
     _productDetailsEntities = productDetailsEntities;
   }
 
-  List<ProductDetailsEntities> get productDetailsEntities =>
-      _productDetailsEntities ?? [];
+  ProductDetailsEntities get productDetailsEntities =>
+      _productDetailsEntities ?? ProductDetailsEntities();
 
-  num get quantity => _quantity ?? 0;
+int get id => _id ?? 0;
 
-  set quantity(num value) {
+int get quantity => _quantity ?? 0;
+
+set id(int value) {
+    _id = value;
+  }
+
+  set quantity(int value) {
     _quantity = value;
   }
 }

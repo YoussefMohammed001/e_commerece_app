@@ -13,6 +13,7 @@ class NewsSettingsScreen extends StatefulWidget {
 }
 
 class _NewsSettingsScreenState extends State<NewsSettingsScreen> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,10 +32,41 @@ class _NewsSettingsScreenState extends State<NewsSettingsScreen> {
           //   title: 'Notifications',
           // ),
           settingItem(
-              onTap: () {},
+              onTap: () {
+setState(() {
+
+});
+
+                if(MyShared.getString(key: MySharedKeys.theme) == 'Dark'){
+                  setState(()  {
+                    MyShared.putString(key: MySharedKeys.theme, value: 'Light');
+
+                  });
+                  setState(() {
+
+                  });
+
+                } else{
+
+
+                  setState(()  {
+
+                    MyShared.putString(key: MySharedKeys.theme, value: 'Dark');
+
+                  });
+                  setState(() {
+
+                  });
+                }
+                setState(() {
+
+                });
+
+
+              },
               icon: Icons.color_lens_rounded,
               title: 'Theme',
-              value: 'Light'),
+              value: MyShared.getString(key: MySharedKeys.theme)),
           settingItem(
               onTap: () async {
              await   MyShared.putString(key: MySharedKeys.currentLanguage, value: 'en').then((value) {

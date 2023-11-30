@@ -1,4 +1,6 @@
 import 'package:e_commerece_app/core/styles/colors.dart';
+import 'package:e_commerece_app/core/utils/navigators.dart';
+import 'package:e_commerece_app/features/cart/presentation/pages/cart_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -72,7 +74,12 @@ final int cart;
      Stack(
               alignment: AlignmentDirectional.bottomEnd,
               children: [
-                cart > 0 ? Icon(Icons.shopping_cart_outlined,color: Colors.white,size: 23.sp,): Icon(Icons.shopping_cart_outlined,color: Colors.white,),
+
+            InkWell(
+                onTap: (){
+                  push(context, CartScreen());
+                },
+                child: Icon(Icons.shopping_cart_outlined,color: Colors.white,)),
                 Visibility(
                   visible: cart> 0,
                   child: Stack(

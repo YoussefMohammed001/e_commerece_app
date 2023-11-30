@@ -1,8 +1,11 @@
 import 'package:e_commerece_app/core/enitites/product_details_entities.dart';
 
+// ignore: must_be_immutable
 class ProductDetailsModel extends ProductDetailsEntities{
   ProductDetailsModel(
       {
+        required super.quantity,
+            required super.image,
         required super.id,
         required super.images,
         required super.price,
@@ -25,7 +28,7 @@ class ProductDetailsModel extends ProductDetailsEntities{
         name: json['name'],
         description: json['description'],
         inFavorites: json['in_favorites'],
-        inCart: json['in_cart'],
+        inCart: json['in_cart'], image: json['image'], quantity: json['quantity'],
       );
 
 

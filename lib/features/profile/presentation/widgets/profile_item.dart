@@ -16,7 +16,7 @@ final VoidCallback onPress;
         margin: EdgeInsets.all(12.sp),
         padding: EdgeInsets.all(18.sp),
         decoration: BoxDecoration(
-          color: Colors.amber[100],
+          color: AppColors.primary.withOpacity(0.1),
           borderRadius: BorderRadius.circular(15.sp),
         ),
         child: Row(
@@ -28,7 +28,7 @@ final VoidCallback onPress;
             Container(
               padding: EdgeInsets.all(8.sp),
                 decoration: BoxDecoration(
-                  color: Colors.amber[200],
+                  color: AppColors.primary.withOpacity(0.3),
                   borderRadius: BorderRadius.circular(30.sp),
                 ),
                 child: Icon(Icons.navigate_next_rounded,color: AppColors.primary,)),
