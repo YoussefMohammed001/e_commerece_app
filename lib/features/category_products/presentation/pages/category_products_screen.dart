@@ -71,7 +71,9 @@ class _CategoriesProductsScreenState extends State<CategoriesProductsScreen> {
                     ),
                   ),
                   IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                  //      push(context, CartScreen());
+                      },
 
 
                       icon: const Icon(
@@ -103,13 +105,14 @@ class _CategoriesProductsScreenState extends State<CategoriesProductsScreen> {
 
                               },
                               onFavTap: () {
-                                ///
-                                state.categoryProducts[index].inFavorites = !state.categoryProducts[index].inFavorites;
+                                FavouriteBloc(sl()).add(EditFavEvent(products[index].id.toString()));
+                                products[index].inFavorites = !products[index].inFavorites;
                                 setState(() {
-
                                 });
+
                               },
-                              isInFav: products[index].inFavorites, id: products[index].id.toInt(), index: index,
+                              isInFav: products[index].inFavorites,
+                              id: products[index].id.toInt(), index: index,
                             );
                           },
                           itemCount: products.length,

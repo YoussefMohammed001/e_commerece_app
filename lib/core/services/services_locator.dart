@@ -1,10 +1,7 @@
-import 'package:e_commerece_app/features/cart/data/data_sources/address_api.dart';
+
 import 'package:e_commerece_app/features/cart/data/data_sources/cart_api.dart';
-import 'package:e_commerece_app/features/cart/data/repositories/address_repo.dart';
 import 'package:e_commerece_app/features/cart/data/repositories/cart_repo.dart';
-import 'package:e_commerece_app/features/cart/domain/repositories/base_address_repo.dart';
 import 'package:e_commerece_app/features/cart/domain/repositories/base_cart_repo.dart';
-import 'package:e_commerece_app/features/cart/domain/use_cases/address_use_case.dart';
 import 'package:e_commerece_app/features/cart/domain/use_cases/cart_use_case.dart';
 import 'package:e_commerece_app/features/categories/data/data_sources/categories_remote_data_source.dart';
 import 'package:e_commerece_app/features/categories/data/repositories/categories_repository.dart';
@@ -24,10 +21,6 @@ import 'package:e_commerece_app/features/login/data/data_sources/login_remote_da
 import 'package:e_commerece_app/features/login/data/repositories/login_repository.dart';
 import 'package:e_commerece_app/features/login/domain/repositories/base_login_repository.dart';
 import 'package:e_commerece_app/features/login/domain/use_cases/login_use_case.dart';
-import 'package:e_commerece_app/features/orders/data/data_sources/orders_api.dart';
-import 'package:e_commerece_app/features/orders/data/repositories/orders_repo.dart';
-import 'package:e_commerece_app/features/orders/domain/repositories/base_orders_repo.dart';
-import 'package:e_commerece_app/features/orders/domain/use_cases/order_use_case.dart';
 import 'package:e_commerece_app/features/product_details/data/data_sources/product_details_api.dart';
 import 'package:e_commerece_app/features/product_details/data/repositories/product_details_repo.dart';
 import 'package:e_commerece_app/features/product_details/domain/repositories/base_product_details_repository.dart';
@@ -64,11 +57,9 @@ sl.registerLazySingleton(() => ProductDetailsUseCase(sl()));
 sl.registerLazySingleton(() => CategoryProductsUseCase(sl()));
 sl.registerLazySingleton(() => RegisterUseCase(sl()));
 sl.registerLazySingleton(() => FavUseCase(sl()));
-sl.registerLazySingleton(() => CartUseCase(sl()));
 sl.registerLazySingleton(() => UpdateProfileUseCase(sl()));
 sl.registerLazySingleton(() => SearchUseCase(sl()));
-sl.registerLazySingleton(() => AddressUseCase(sl()));
-sl.registerLazySingleton(() => OrderUseCase(sl()));
+sl.registerLazySingleton(() => CartUseCase(sl()));
 
 
     ///Repository
@@ -79,11 +70,9 @@ sl.registerLazySingleton<BaseProductDetailsRepository>(() => ProductDetailsRepo(
 sl.registerLazySingleton<BaseCategoryProductsRepo>(() => CategoryProductsRepo(sl()));
 sl.registerLazySingleton<BaseRegisterRepo>(() => RegisterRepo(sl()));
 sl.registerLazySingleton<BaseFavRepo>(() => FavRepo(sl()));
-sl.registerLazySingleton<BaseCartRepo>(() => CartRepo(sl()));
 sl.registerLazySingleton<BaseProfileRepo>(() => ProfileRepo(sl()));
 sl.registerLazySingleton<BaseSearchRepo>(() => SearchRepo(sl()));
-sl.registerLazySingleton<BaseAddressRepo>(() => AddressRepo(sl()));
-sl.registerLazySingleton<BaseOrdersRepo>(() => OrdersRepo(sl()));
+sl.registerLazySingleton<BaseCartRepo>(() => CartRepo(sl()));
 
 
     ///Data SOURCE
@@ -94,11 +83,10 @@ sl.registerLazySingleton<BaseProductDetailsApi>(() => ProductDetailsApi());
 sl.registerLazySingleton<BaseCategoryProductsApi>(() => CategoryProductsApi());
 sl.registerLazySingleton<BaseRegisterApi>(() => RegisterApi());
 sl.registerLazySingleton<BaseFavApi>(() => FavDataSource());
-sl.registerLazySingleton<BaseCartApi>(() => CartApi());
 sl.registerLazySingleton<BaseProfileApi>(() => UpdateProfileApi());
 sl.registerLazySingleton<BaseSearchApi>(() => SearchApi());
-sl.registerLazySingleton<BaseAddressApi>(() => AddressApi());
-sl.registerLazySingleton<BaseOrdersApi>(() => OrdersApi());
+sl.registerLazySingleton<BaseCartApi>(() => CartApi());
+
 
 
 

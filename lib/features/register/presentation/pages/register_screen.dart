@@ -24,7 +24,6 @@ class RegisterScreen extends StatelessWidget {
   TextEditingController nameController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
 
-
   final _formKey = GlobalKey<FormState>();
   final cubit = RegisterBloc(sl());
   @override
@@ -34,6 +33,20 @@ class RegisterScreen extends StatelessWidget {
       child: BlocListener<RegisterBloc, RegisterState>(
         listener: (context, state) {
          if(state.requestState == RequestState.success){
+           pushReplacement(context, LoginScreen());
+           final snackBar = SnackBar(
+             backgroundColor: Colors.green,
+             content:  Center(child: Column(
+               children: [
+                 Text(state.message,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15.sp),),
+                 Text("Use your email & password to login",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15.sp),),
+
+               ],
+             )),
+
+
+           );
+           ScaffoldMessenger.of(context).showSnackBar(snackBar);
          }
          if(state.requestState == RequestState.failure){
            final snackBar = SnackBar(
@@ -135,7 +148,7 @@ class RegisterScreen extends StatelessWidget {
                                 return null;
                               },
                               labelText: 'Password',
-                              textInputAction: TextInputAction.done,
+                              textInputAction: TextInputAction.next,
                               keyboardType: TextInputType.visiblePassword,
                               controller: passController,
                               prefixIcon: Icons.lock_outline,

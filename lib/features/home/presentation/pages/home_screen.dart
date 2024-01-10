@@ -1,12 +1,13 @@
 import 'package:e_commerece_app/core/services/services_locator.dart';
+import 'package:e_commerece_app/core/styles/colors.dart';
 import 'package:e_commerece_app/features/home/presentation/manager/home_bloc.dart';
 import 'package:e_commerece_app/features/home/presentation/widgets/home_app_bar.dart';
 import 'package:e_commerece_app/features/home/presentation/widgets/home_banner.dart';
 import 'package:e_commerece_app/features/home/presentation/widgets/home_categories_widget.dart';
 import 'package:e_commerece_app/features/home/presentation/widgets/home_products.dart';
-import 'package:e_commerece_app/features/saved_items/presentation/manager/favourite_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -24,9 +25,9 @@ class HomeScreen extends StatelessWidget {
 
       ],
       child: Column(
-
+crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          HomeAppBar(
+          const HomeAppBar(
             title: 'Youssef',
 
             notifications: 3,
@@ -35,10 +36,12 @@ class HomeScreen extends StatelessWidget {
           Expanded(
             child: SingleChildScrollView(
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
 
                   HomeCategoriesWidget(),
                   HomeBanner(),
+                  SizedBox(height: 2.h,),
                   HomeProducts(),
                 ],
               ),

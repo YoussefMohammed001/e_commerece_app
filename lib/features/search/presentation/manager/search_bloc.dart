@@ -10,6 +10,9 @@ class SearchBloc extends Bloc<BaseSearchEvent, SearchState> {
   final SearchUseCase searchUseCase;
 
   SearchBloc(this.searchUseCase) : super(SearchState()) {
+    emit(state.copyWith(
+        requestState: RequestState.loading,
+      ));
     on<SearchEvent>((event, emit) async {
       final result = await searchUseCase.call(title: event.title);
       result.fold(

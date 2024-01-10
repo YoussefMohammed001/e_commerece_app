@@ -6,6 +6,7 @@ import 'package:e_commerece_app/core/widgets/app_image.dart';
 import 'package:e_commerece_app/features/category_products/presentation/pages/category_products_screen.dart';
 import 'package:e_commerece_app/features/home/domain/entities/categories.dart';
 import 'package:e_commerece_app/features/home/presentation/manager/home_bloc.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -22,7 +23,7 @@ class HomeCategoriesWidget extends StatelessWidget {
           categories = state.categories;
           safePrint("success===>>$categories");
           return Container(
-            height: 10.h,
+            height: 14.h,
             child: ListView.builder(
               padding: const EdgeInsets.all(0),
               scrollDirection: Axis.horizontal,
@@ -30,6 +31,8 @@ class HomeCategoriesWidget extends StatelessWidget {
               itemBuilder: (context, index) {
                 return InkWell(
                   onTap: () {
+
+                    // Navigator.push(context, MaterialPageRoute(builder: (context) => Screen(),))
                     push(
                         context,
                         CategoriesProductsScreen(
@@ -39,30 +42,23 @@ class HomeCategoriesWidget extends StatelessWidget {
                   },
                   child: Padding(
                     padding: EdgeInsets.all(8.sp),
-                    child: Stack(
-                      alignment: AlignmentDirectional.center,
+                    child: Column(
                       children: [
                         AppImage(
                           imageUrl: categories[index].imageUrl,
-                          height: 37.h,
+                          height: 10.h,
                           topLeftRadius: 13.sp,
                           topRightRadius: 13.sp,
                           bottomLeftRadius: 13.sp,
                           bottomRightRadius: 13.sp,
-                          width: 26.w,
-                        ),
-                        Container(
-                          width: 26.w,
-                          height: 37.sp,
-                          decoration: BoxDecoration(
-                              color: Colors.black54.withOpacity(0.5),
-                              borderRadius: BorderRadius.circular(13.sp)),
+                          width: 20.w,
+
                         ),
                         Text(
                           categories[index].name,
                           style: TextStyle(
                               color: AppColors.primary,
-                              fontSize: 13.sp,
+                              fontSize: 15.sp,
                               fontWeight: FontWeight.bold),
                         )
                       ],

@@ -30,7 +30,7 @@ class LoginScreen extends StatelessWidget {
         child: BlocListener<LoginBloc, LoginState>(
           listener: (context, state) {
             if (state.requestState == RequestState.success) {
-              pushReplacement(context, const MainScreen());
+              pushAndRemoveUntil(context, const MainScreen());
             }
             if (state.requestState == RequestState.failure) {
 

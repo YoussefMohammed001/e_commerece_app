@@ -15,8 +15,8 @@ class AppDio {
         // will not throw errors
         validateStatus: (status) => true,
         receiveDataWhenStatusError: true,
-        // connectTimeout: 90 * 1000, // 60 seconds
-        // receiveTimeout: 90 * 1000 // 60 seconds
+         connectTimeout: Duration(seconds: 60), // 60 seconds
+         receiveTimeout:Duration(seconds: 60) // 60 seconds
     );
 
     _dio = Dio(baseOptions);

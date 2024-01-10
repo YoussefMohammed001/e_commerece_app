@@ -8,8 +8,8 @@ part 'main_state.dart';
 class MainCubit extends Cubit<MainState> {
   MainCubit() : super(MainInitial());
 
-  int index = 0;
 
+  int index = 0;
   List<Widget> screens = [
   const  HomeScreen(),
      SearchScreen(),

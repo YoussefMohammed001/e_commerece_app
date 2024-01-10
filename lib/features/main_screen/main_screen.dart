@@ -1,5 +1,6 @@
 import 'package:e_commerece_app/core/styles/colors.dart';
 import 'package:e_commerece_app/core/utils/safe_print.dart';
+import 'package:e_commerece_app/core/utils/svg.dart';
 import 'package:e_commerece_app/features/main_screen/manager/main_cubit.dart';
 import 'package:e_commerece_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +14,7 @@ class MainScreen extends StatefulWidget {
 }
 
 
+
 class _MainScreenState extends State<MainScreen> {
   MainCubit cubit = MainCubit();
 
@@ -24,11 +26,17 @@ class _MainScreenState extends State<MainScreen> {
       child: BlocBuilder<MainCubit, MainState>(
         builder: (context, state) {
           safePrint("Main");
-          return Scaffold(
+          return Container(
+            color: AppColors.primary,
+            child: SafeArea(
 
-            //floating action button position to center
-            bottomNavigationBar: bottomNavBar(),
-            body: cubit.screens[cubit.index],
+              child: Scaffold(
+
+                //floating action button position to center
+                bottomNavigationBar: bottomNavBar(),
+                body: cubit.screens[cubit.index],
+              ),
+            ),
           );
         },
       ),
@@ -53,15 +61,15 @@ class _MainScreenState extends State<MainScreen> {
       items:   <BottomNavigationBarItem>[
         BottomNavigationBarItem(
           label:S().home,
-            icon: const Icon(Icons.home_filled)
+            icon: const AppSVG( assetName: 'home',)
         ),
          const BottomNavigationBarItem(
           label:"Search",
-            icon: Icon(Icons.search)
+            icon: AppSVG( assetName: 'search',)
         ),
-         const BottomNavigationBarItem(
+          const BottomNavigationBarItem(
           label:"Profile",
-            icon: Icon(Icons.person_outline)
+            icon: AppSVG( assetName: 'profile',)
         ),
 
 

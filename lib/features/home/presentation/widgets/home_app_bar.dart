@@ -1,26 +1,35 @@
+import 'package:e_commerece_app/core/shared/my_shared.dart';
+import 'package:e_commerece_app/core/shared/my_shared_keys.dart';
 import 'package:e_commerece_app/core/styles/colors.dart';
 import 'package:e_commerece_app/core/utils/navigators.dart';
+import 'package:e_commerece_app/core/utils/svg.dart';
 import 'package:e_commerece_app/features/cart/presentation/pages/cart_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class HomeAppBar extends StatelessWidget {
-  const HomeAppBar({super.key, required this.title, required this.notifications, required this.cart});
-final String title;
-final int notifications;
-final int cart;
+  const HomeAppBar(
+      {super.key, required this.title, required this.notifications, required this.cart});
+
+  final String title;
+  final int notifications;
+  final int cart;
+
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: EdgeInsets.only(bottom: 18.sp),
       color: AppColors.primary,
       child: Padding(
-        padding: EdgeInsets.symmetric(vertical:20.sp,horizontal: 15.sp),
+        padding: EdgeInsets.symmetric(horizontal: 15.sp),
         child: Row(
           children: [
             SizedBox(width: 2.w,),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+
+
                 Container(
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -34,8 +43,8 @@ final int cart;
                         ),
                       ),
                       Text(
-                        "Youssef",
-                        style: TextStyle(fontSize: 18.sp,    color: Colors.white,),
+                        MyShared.getString(key: MySharedKeys.username),
+                        style: TextStyle(fontSize: 18.sp, color: Colors.white,),
                       ),
                     ],
                   ),
@@ -46,17 +55,31 @@ final int cart;
                       color: Colors.white,
                       fontWeight: FontWeight.bold, fontSize: 13.sp),
                 ),
+
+
               ],
             ),
-            
-            Spacer(),
-            
+
+            const Spacer(),
+
+            // Stack(
+            //   alignment: AlignmentDirectional.bottomEnd,
+            //   children: [
+            //     const AppSVG(assetName: 'notifications',)
+            //   ],
+            // ),
+            // SizedBox(width: 3.w,),
             Stack(
               alignment: AlignmentDirectional.bottomEnd,
               children: [
-               notifications > 0 ? Icon(Icons.notifications_active_outlined,color: Colors.white,size: 23.sp,): Icon(Icons.notifications_none,color: Colors.white,),
+
+                InkWell(
+                    onTap: () {
+                      push(context, CartScreen());
+                    },
+                    child: const AppSVG(assetName: 'cart',)),
                 Visibility(
-                  visible: notifications> 0,
+                  visible: cart > 0,
                   child: Stack(
                     alignment: AlignmentDirectional.center,
                     children: [
@@ -64,41 +87,14 @@ final int cart;
                         radius: 11.sp,
                         backgroundColor: Colors.white,
                       ),
-                      Text(notifications.toString(),style: TextStyle(color:AppColors.primary,fontWeight: FontWeight.bold),),
+                      Text(cart.toString(), style: const TextStyle(
+                          color: AppColors.primary,
+                          fontWeight: FontWeight.bold),),
                     ],
                   ),
                 )
               ],
             ),
-            SizedBox(width: 3.w,),
-     Stack(
-              alignment: AlignmentDirectional.bottomEnd,
-              children: [
-
-            InkWell(
-                onTap: (){
-                  push(context, CartScreen());
-                },
-                child: Icon(Icons.shopping_cart_outlined,color: Colors.white,)),
-                Visibility(
-                  visible: cart> 0,
-                  child: Stack(
-                    alignment: AlignmentDirectional.center,
-                    children: [
-                      CircleAvatar(
-                        radius: 11.sp,
-                        backgroundColor: Colors.white,
-                      ),
-                      Text(cart.toString(),style: TextStyle(color:AppColors.primary,fontWeight: FontWeight.bold),),
-                    ],
-                  ),
-                )
-              ],
-            ),
-
-
-
-
 
 
           ],

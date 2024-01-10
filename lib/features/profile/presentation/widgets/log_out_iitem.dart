@@ -12,7 +12,8 @@ class LogOutItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return   InkWell(
       onTap: (){
-        MyShared.clear().then((value) => pushReplacement(context, LoginScreen()));
+
+        MyShared.clear().then((value) => pushAndRemoveUntil(context, LoginScreen()));
       },
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,

@@ -3,7 +3,6 @@ import 'package:e_commerece_app/core/services/services_locator.dart';
 import 'package:e_commerece_app/core/shared/my_shared.dart';
 import 'package:e_commerece_app/core/shared/my_shared_keys.dart';
 import 'package:e_commerece_app/core/utils/safe_print.dart';
-import 'package:e_commerece_app/features/cart/data/data_sources/address_api.dart';
 import 'package:e_commerece_app/features/login/presentation/pages/login_screen.dart';
 import 'package:e_commerece_app/features/main_screen/main_screen.dart';
 import 'package:e_commerece_app/generated/l10n.dart';
@@ -17,7 +16,6 @@ Future<void> main() async {
   AppDio.init();
  await  MyShared.init();
   ServicesLocator().init();
-  AddressApi().getAddress();
   safePrint("token============>${MyShared.getString(key: MySharedKeys.apiToken)}");
   runApp(const MyApp());
 }
@@ -46,8 +44,6 @@ class MyApp extends StatelessWidget {
           GlobalWidgetsLocalizations.delegate,
         ],
         title: 'Flutter Demo',
-
-
         theme: ThemeData(
           useMaterial3: true,
           brightness: Brightness.light,
@@ -59,7 +55,7 @@ class MyApp extends StatelessWidget {
         ),
         themeMode:ThemeMode.light ,
 
-        home:  MyShared.getString(key: MySharedKeys.apiToken).isEmpty ? LoginScreen() : MainScreen(),
+        home:  MyShared.getString(key: MySharedKeys.apiToken).isEmpty ? LoginScreen() : const MainScreen(),
         builder: EasyLoading.init(),
 
       );

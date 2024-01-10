@@ -1,6 +1,5 @@
 import 'package:e_commerece_app/core/styles/colors.dart';
 import 'package:e_commerece_app/core/utils/navigators.dart';
-import 'package:e_commerece_app/features/cart/presentation/pages/cart_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -36,7 +35,7 @@ final String product;
           ),
           IconButton(
               onPressed: () {
-                push(context, CartScreen());
+               // pushAndRemoveUntil(context, CartScreen());
               },
 
               icon: const Icon(
