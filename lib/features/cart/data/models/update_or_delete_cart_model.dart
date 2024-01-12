@@ -4,7 +4,7 @@ class UpdateOrDeleteCartModel extends UpdateOrDeleteCartEntities {
   UpdateOrDeleteCartModel({required super.total, required super.cartItems});
 
   factory UpdateOrDeleteCartModel.fromJson(Map<String, dynamic> json) => UpdateOrDeleteCartModel(
-    total: json['sub_total'],
+    total: json['total'],
     cartItems:CartModel.fromJson(json['cart']),
 
 

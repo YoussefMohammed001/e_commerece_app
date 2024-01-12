@@ -1,5 +1,6 @@
 import 'package:e_commerece_app/core/api/end_points.dart';
 import 'package:e_commerece_app/core/api/my_dio.dart';
+import 'package:e_commerece_app/core/utils/safe_print.dart';
 import 'package:e_commerece_app/features/cart/data/models/cart_data_request.dart';
 import 'package:e_commerece_app/features/cart/data/models/get_cart_model.dart';
 import 'package:e_commerece_app/features/cart/data/models/update_or_delete_cart_model.dart';
@@ -31,6 +32,7 @@ class CartApi extends BaseCartApi{
   Future<GetCartModel> getCartApi() async {
     final response = await AppDio.get(endPoint: EndPoints.cart,);
     if(response!.data['status'] == true){
+      safePrint(response.data['data']['total'].toString());
       return  GetCartModel.fromJson(response.data['data']);
     } else{
       return  GetCartModel.fromJson(response.data['data']);

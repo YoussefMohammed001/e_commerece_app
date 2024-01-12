@@ -24,15 +24,14 @@ class CartBloc extends Bloc<BaseCartEvent, CartState> {
         safePrint("=========> left: $left");
 
         emit(state.copyWith(
-        getCartRequestState: RequestState.failure,
-
-      ));
+        getCartRequestState: RequestState.failure,));
       }, (right) {
-        safePrint("=========> right: $right");
         emit(state.copyWith(
             getCartRequestState: RequestState.success,
             getCartDataEntities: right
         ));
+        safePrint("=========> right: ${right.total}");
+
       });
 
     });

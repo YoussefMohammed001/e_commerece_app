@@ -1,3 +1,4 @@
+import 'package:e_commerece_app/core/utils/safe_print.dart';
 import 'package:e_commerece_app/features/cart/data/data_sources/cart_api.dart';
 import 'package:e_commerece_app/features/cart/data/models/cart_data_request.dart';
 import 'package:e_commerece_app/features/cart/domain/entities/get_cart_entities.dart';
@@ -28,6 +29,7 @@ class CartRepo extends BaseCartRepo{
   Future<Either<String, GetCartDataEntities>> getCart() async {
     final result = await baseCartApi.getCartApi();
     try{
+      safePrint("repo=>${result.total}");
       return Right(result);
     } catch (e){
       return const Left("error");
