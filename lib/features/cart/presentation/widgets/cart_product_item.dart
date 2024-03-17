@@ -96,7 +96,7 @@ class CartItem extends StatelessWidget {
                                               borderRadius:
                                               BorderRadius.circular(10.sp)),
                                           child: Text(
-                                            " $discount%s ",
+                                            " $discount% ",
                                             style: TextStyle(
                                                 color: AppColors.primary,
                                                 fontSize: 15.sp),

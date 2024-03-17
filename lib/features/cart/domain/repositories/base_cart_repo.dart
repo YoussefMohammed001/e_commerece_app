@@ -7,6 +7,7 @@ abstract class BaseCartRepo{
 
   Future<Either<String,String>> addToCart({required CartDataRequest cartDataRequest});
   Future<Either<String,GetCartDataEntities>> getCart();
-  Future<Either<String,UpdateOrDeleteCartEntities>> updateOrDeleteCart({required CartDataRequest cartDataRequest});
+  Future<Either<String,UpdateOrDeleteCartEntities>> updateCart({required CartDataRequest cartDataRequest});
+  Future<Either<String,UpdateOrDeleteCartEntities>> deleteCart({required CartDataRequest cartDataRequest});
 
 }

@@ -38,8 +38,19 @@ class CartRepo extends BaseCartRepo{
   }
 
   @override
-  Future<Either<String, UpdateOrDeleteCartEntities>> updateOrDeleteCart({required CartDataRequest cartDataRequest}) async {
+  Future<Either<String, UpdateOrDeleteCartEntities>> updateCart({required CartDataRequest cartDataRequest}) async {
     final result = await baseCartApi.updateCartApi(cartDataRequest: cartDataRequest);
+    try{
+      return Right(result);
+    } catch (e){
+      return const Left("error");
+    }
+
+  }
+
+  @override
+  Future<Either<String, UpdateOrDeleteCartEntities>> deleteCart({required CartDataRequest cartDataRequest}) async {
+    final result = await baseCartApi.deleteCartApi(cartDataRequest: cartDataRequest);
     try{
       return Right(result);
     } catch (e){

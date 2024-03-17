@@ -16,8 +16,13 @@ Future<Either<String,String>> addCart({required CartDataRequest cartDataRequest}
     return await  baseCartRepo.addToCart(cartDataRequest: cartDataRequest);
 }
 
-Future<Either<String,UpdateOrDeleteCartEntities>> updateOrDeleteCart({required CartDataRequest cartDataRequest}) async {
-    return await  baseCartRepo.updateOrDeleteCart(cartDataRequest: cartDataRequest);
+Future<Either<String,UpdateOrDeleteCartEntities>> updateCart({required CartDataRequest cartDataRequest}) async {
+    return await  baseCartRepo.updateCart(cartDataRequest: cartDataRequest);
+}
+
+
+Future<Either<String,UpdateOrDeleteCartEntities>> deleteCart({required CartDataRequest cartDataRequest}) async {
+    return await  baseCartRepo.deleteCart(cartDataRequest: cartDataRequest);
 }
 
 

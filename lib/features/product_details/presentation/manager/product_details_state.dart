@@ -5,19 +5,23 @@ final ProductDetailsEntities? productDetailsEntities;
 final RequestState requestState;
 final String message;
 
+
 ProductDetailsState(
     {
-    this.productDetailsEntities,
+
+      this.productDetailsEntities,
     this.requestState = RequestState.initial,
     this.message = "",
   });
 
 ProductDetailsState copyWith({
-    final ProductDetailsEntities? productDetailsEntities,
+
+  final ProductDetailsEntities? productDetailsEntities,
     final RequestState? requestState,
     final String? message,
   }) {
     return ProductDetailsState(
+
       productDetailsEntities:
           productDetailsEntities ?? this.productDetailsEntities,
       requestState: requestState ?? this.requestState,

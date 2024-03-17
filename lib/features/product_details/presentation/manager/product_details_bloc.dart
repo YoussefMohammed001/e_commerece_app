@@ -1,20 +1,23 @@
 import 'dart:async';
-
 import 'package:bloc/bloc.dart';
 import 'package:e_commerece_app/core/utils/request_state.dart';
 import 'package:e_commerece_app/core/utils/safe_print.dart';
 import 'package:e_commerece_app/core/enitites/product_details_entities.dart';
+import 'package:e_commerece_app/features/cart/domain/use_cases/cart_use_case.dart';
 import 'package:e_commerece_app/features/product_details/domain/use_cases/product_details_use_case.dart';
-import 'package:meta/meta.dart';
 part 'product_details_event.dart';
 part 'product_details_state.dart';
 
 class ProductDetailsBloc extends Bloc<ProductDetailsEvent, ProductDetailsState> {
 final ProductDetailsUseCase productDetailsUseCase;
+final CartUseCase cartUseCase;
 
-
-ProductDetailsBloc(this.productDetailsUseCase) : super(ProductDetailsState()){
+ProductDetailsBloc(this.productDetailsUseCase, this.cartUseCase) : super(ProductDetailsState()){
 on<ProductDetailsEvent>(_getProduct);
+
+
+
+
 }
 
   Future<void> _getProduct(ProductDetailsEvent event,Emitter<ProductDetailsState> emit)async {

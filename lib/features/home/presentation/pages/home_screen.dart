@@ -1,5 +1,4 @@
 import 'package:e_commerece_app/core/services/services_locator.dart';
-import 'package:e_commerece_app/core/styles/colors.dart';
 import 'package:e_commerece_app/features/home/presentation/manager/home_bloc.dart';
 import 'package:e_commerece_app/features/home/presentation/widgets/home_app_bar.dart';
 import 'package:e_commerece_app/features/home/presentation/widgets/home_banner.dart';
@@ -29,7 +28,6 @@ crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const HomeAppBar(
             title: 'Youssef',
-
             notifications: 3,
             cart: 0,
           ),
@@ -38,7 +36,6 @@ crossAxisAlignment: CrossAxisAlignment.start,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-
                   HomeCategoriesWidget(),
                   HomeBanner(),
                   SizedBox(height: 2.h,),

@@ -1,6 +1,5 @@
 part of 'product_details_bloc.dart';
 
-@immutable
 abstract class BaseProductDetailsEvent {}
 
 
@@ -9,3 +8,4 @@ class ProductDetailsEvent extends BaseProductDetailsEvent{
 
   ProductDetailsEvent(this.id);
 }
+

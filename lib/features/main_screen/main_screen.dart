@@ -52,7 +52,6 @@ class _MainScreenState extends State<MainScreen> {
       showSelectedLabels: true,
       showUnselectedLabels: false,
 
-
       onTap: (value) {
         cubit.index = value;
         setState(() {});
@@ -64,19 +63,14 @@ class _MainScreenState extends State<MainScreen> {
             icon: const AppSVG( assetName: 'home',)
         ),
          const BottomNavigationBarItem(
-          label:"Search",
-            icon: AppSVG( assetName: 'search',)
+          label:"Cart",
+            icon: AppSVG( assetName: 'cart',)
         ),
           const BottomNavigationBarItem(
           label:"Profile",
             icon: AppSVG( assetName: 'profile',)
         ),
-
-
-
     ],
-
-
     );
   }
 }

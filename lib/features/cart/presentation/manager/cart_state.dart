@@ -2,6 +2,10 @@ part of 'cart_bloc.dart';
 
 
 class  CartState {
+  final String addToCartMessage;
+  final RequestState addToCartRequestState;
+
+
   final String getCartMessage;
   final RequestState getCartRequestState;
   final GetCartDataEntities? getCartDataEntities;
@@ -17,7 +21,10 @@ class  CartState {
   final UpdateOrDeleteCartEntities? deleteCartEntities;
 
   const CartState(
-      {this.getCartMessage = "",
+      {
+        this.addToCartMessage = "",
+        this.addToCartRequestState = RequestState.initial,
+        this.getCartMessage = "",
       this.getCartRequestState = RequestState.initial,
       this.getCartDataEntities,
       this.updateMessage = "",
@@ -28,6 +35,8 @@ class  CartState {
       this.deleteCartEntities});
 
   CartState copyWith({
+    final String? addToCartMessage,
+    final RequestState? addToCartRequestState,
     final String? getCartMessage,
     final RequestState? getCartRequestState,
     final GetCartDataEntities? getCartDataEntities,
@@ -39,6 +48,8 @@ class  CartState {
     final UpdateOrDeleteCartEntities? deleteCartEntities,
   }) {
     return CartState(
+      addToCartMessage: addToCartMessage ?? this.addToCartMessage,
+      addToCartRequestState:  addToCartRequestState ?? this.addToCartRequestState,
       getCartMessage: getCartMessage ?? this.getCartMessage,
       getCartRequestState: getCartRequestState ?? this.getCartRequestState,
       getCartDataEntities: getCartDataEntities ?? this.getCartDataEntities,

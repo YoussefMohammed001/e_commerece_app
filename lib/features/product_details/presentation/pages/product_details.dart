@@ -1,10 +1,12 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:e_commerece_app/core/services/services_locator.dart';
 import 'package:e_commerece_app/core/styles/colors.dart';
+import 'package:e_commerece_app/core/utils/navigators.dart';
 import 'package:e_commerece_app/core/utils/request_state.dart';
-import 'package:e_commerece_app/core/utils/safe_print.dart';
 import 'package:e_commerece_app/core/widgets/app_button.dart';
 import 'package:e_commerece_app/core/widgets/app_image.dart';
+import 'package:e_commerece_app/features/cart/data/models/cart_data_request.dart';
+import 'package:e_commerece_app/features/cart/presentation/manager/cart_bloc.dart';
 import 'package:e_commerece_app/features/product_details/presentation/manager/product_details_bloc.dart';
 import 'package:e_commerece_app/features/product_details/presentation/widgets/details_app_bar.dart';
 import 'package:e_commerece_app/features/saved_items/presentation/manager/favourite_bloc.dart';
@@ -14,6 +16,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:readmore/readmore.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
+
   const ProductDetailsScreen({super.key, required this.id});
   final int id;
 
@@ -27,15 +30,23 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+        BlocProvider(create:  (context) =>
+        CartBloc(sl()),
+        ),
         BlocProvider(
           create: (context) =>
-              ProductDetailsBloc(sl())..add(ProductDetailsEvent(widget.id)),
+              ProductDetailsBloc(sl(),sl())..add(ProductDetailsEvent(widget.id)),
         ),
         BlocProvider(
           create: (context) => FavouriteBloc(sl()),
         ),
+
       ],
-      child: BlocBuilder<ProductDetailsBloc, ProductDetailsState>(
+      child: BlocListener<CartBloc, CartState>(
+  listener: (context, state) {
+
+   },
+  child: BlocBuilder<ProductDetailsBloc, ProductDetailsState>(
         builder: (context, state) {
           if (state.requestState == RequestState.loading) {
             return Container(
@@ -56,21 +67,31 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                     floatingActionButtonLocation:
                         FloatingActionButtonLocation.centerFloat,
                     bottomNavigationBar:
-                      AppButton(
-                        bgColor: AppColors.red,
+                    context.read<CartBloc>().state.addToCartRequestState == RequestState.loading  ?
+                        const CircularProgressIndicator()
+                        :
+
+                    AppButton(
+                        bgColor:state.productDetailsEntities!.inCart == false ?AppColors.primary : AppColors.red,
                         padding: EdgeInsets.all(12.sp),
                         margin: EdgeInsets.all(15.sp),
                         borderRadius: BorderRadius.circular(13.sp),
                         onPressed: () {
-                          safePrint("removed");
-                       // CartBloc(sl(),).add(PostCartEvent(CarRequestData(id: state.productDetailsEntities!.id.toInt(), quantity: 0)));
-                       //    state.productDetailsEntities!.inCart =  !state.productDetailsEntities!.inCart;
-                       //    setState(() {
-                       //
-                       //    });
+                          showDialog(context: context, builder:
+                          (context) {
+                            return CircularProgressIndicator();
+                          },);
+                          Future.delayed(Duration(seconds: 4));
+                          CartBloc(sl()).add(PostCartEvent(CartDataRequest(id: state.productDetailsEntities!.id.toInt(), quantity: 0)));
+                          pop(context);
+                          setState(() {
+                            state.productDetailsEntities!.inCart =  !state.productDetailsEntities!.inCart;
+
+                          });
                         },
-                        label: "Remove from cart",
+                        label: state.productDetailsEntities!.inCart == false ? "Add To Cart" : "Remove From Cart",
                       ),
+
 
                     body: SingleChildScrollView(
                       child: Column(
@@ -226,6 +247,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
           }
         },
       ),
+),
     );
   }
 }
