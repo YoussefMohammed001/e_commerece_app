@@ -3,23 +3,33 @@ import 'package:e_commerece_app/core/api/end_points.dart';
 import 'package:e_commerece_app/core/shared/my_shared.dart';
 import 'package:e_commerece_app/core/shared/my_shared_keys.dart';
 import 'package:e_commerece_app/core/utils/internet_checker.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 
 class AppDio {
   static late Dio _dio;
 
   static void init() {
+
     BaseOptions baseOptions = BaseOptions(
+
         baseUrl: EndPoints.baseUrl,
         followRedirects: false,
         // will not throw errors
         validateStatus: (status) => true,
         receiveDataWhenStatusError: true,
-         connectTimeout: Duration(seconds: 60), // 60 seconds
-         receiveTimeout:Duration(seconds: 60) // 60 seconds
+         connectTimeout: const Duration(seconds: 60), // 60 seconds
+         receiveTimeout:const Duration(seconds: 60) // 60 seconds
     );
-
     _dio = Dio(baseOptions);
+    _dio.interceptors.add(PrettyDioLogger(
+        requestHeader: true,
+        requestBody: true,
+        responseBody: true,
+        responseHeader: false,
+        error: true,
+        compact: true,
+        maxWidth: 90));
   }
 
   static Future<Response?> get({

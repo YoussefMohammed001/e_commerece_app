@@ -7,12 +7,13 @@ import 'package:e_commerece_app/core/widgets/app_button.dart';
 import 'package:e_commerece_app/features/cart/data/models/cart_data_request.dart';
 import 'package:e_commerece_app/features/cart/presentation/manager/cart_bloc.dart';
 import 'package:e_commerece_app/features/cart/presentation/widgets/cart_product_item.dart';
+import 'package:e_commerece_app/features/orders/presentation/pages/confirm_order_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class CartScreen extends StatefulWidget {
-  CartScreen({super.key});
+ const CartScreen({super.key});
 
   @override
   State<CartScreen> createState() => _CartScreenState();
@@ -189,7 +190,7 @@ class _CartScreenState extends State<CartScreen> {
                         margin: EdgeInsets.all(15.sp
                         ),
                         onPressed: (){
-
+                        push(context, const ConfirmOrderScreen());
                     }, label: "Check Out"),
                   ),
 

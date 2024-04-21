@@ -12,7 +12,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class HomeProducts extends StatefulWidget {
-   HomeProducts({super.key});
+   const HomeProducts({super.key});
 
 
   @override
@@ -39,24 +39,27 @@ class _HomeProductsState extends State<HomeProducts> {
                gridDelegate:
                const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
                itemBuilder: (context, index) {
-                 return ProductItem(
-                   productName: products[index].name,
-                   productImage: products[index].image.toString(),
-                   productPrice: products[index].price.toString(),
-                   productOldPrice: products[index].oldPrice.toString(),
-                   productDiscount: products[index].discount.toString(),
-                   onItemTap: () {
-                     push(context, ProductDetailsScreen(id: products[index].id.toInt(),));
+                 return Hero(
+                   tag: products[index].image.toString(),
+                   child: ProductItem(
+                     productName: products[index].name,
+                     productImage: products[index].image.toString(),
+                     productPrice: products[index].price.toString(),
+                     productOldPrice: products[index].oldPrice.toString(),
+                     productDiscount: products[index].discount.toString(),
+                     onItemTap: () {
+                       push(context, ProductDetailsScreen(id: products[index].id.toInt(), image: products[index].image.toString(),));
 
-                   },
-                   onFavTap: () {
-                     FavouriteBloc(sl()).add(EditFavEvent(state.products[index].id.toString()));
-                     state.products[index].inFavorites = !state.products[index].inFavorites;
-                     setState(() {
-                     });
+                     },
+                     onFavTap: () {
+                       FavouriteBloc(sl()).add(EditFavEvent(state.products[index].id.toString()));
+                       state.products[index].inFavorites = !state.products[index].inFavorites;
+                       setState(() {
+                       });
 
-                   },
-                   isInFav: products[index].inFavorites, id: products[index].id.toInt(), index: index,
+                     },
+                     isInFav: products[index].inFavorites, id: products[index].id.toInt(), index: index,
+                   ),
                  );
                },
                itemCount: products.length,

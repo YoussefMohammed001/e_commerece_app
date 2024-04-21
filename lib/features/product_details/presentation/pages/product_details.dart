@@ -17,9 +17,9 @@ import 'package:readmore/readmore.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
 
-  const ProductDetailsScreen({super.key, required this.id});
+  const ProductDetailsScreen({super.key, required this.id,  this.image = ""});
   final int id;
-
+final String image;
   @override
   State<ProductDetailsScreen> createState() => _ProductDetailsScreenState();
 }
@@ -28,11 +28,11 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   int quantity = 1;
   @override
   Widget build(BuildContext context) {
+
     return MultiBlocProvider(
       providers: [
         BlocProvider(create:  (context) =>
-        CartBloc(sl()),
-        ),
+        CartBloc(sl()),),
         BlocProvider(
           create: (context) =>
               ProductDetailsBloc(sl(),sl())..add(ProductDetailsEvent(widget.id)),
@@ -42,204 +42,581 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
         ),
 
       ],
-      child: BlocListener<CartBloc, CartState>(
-  listener: (context, state) {
-
-   },
-  child: BlocBuilder<ProductDetailsBloc, ProductDetailsState>(
+      child: BlocBuilder<ProductDetailsBloc, ProductDetailsState>(
         builder: (context, state) {
           if (state.requestState == RequestState.loading) {
-            return Container(
-              color: AppColors.primary,
-              child: const SafeArea(
-                child: Scaffold(
-                    body: Center(
-                        child: CircularProgressIndicator(
-                  color: AppColors.primary,
-                ))),
+            return Hero(
+              tag:widget.image,
+              child: Container(
+                color: AppColors.primary,
+                child: const SafeArea(
+                  child: Scaffold(
+                      body: Center(
+                          child: CircularProgressIndicator(
+                    color: AppColors.primary,
+                  ))),
+                ),
               ),
             );
           } else if (state.requestState == RequestState.success) {
-            return Container(
-              color: AppColors.primary,
-              child: SafeArea(
-                child: Scaffold(
-                    floatingActionButtonLocation:
-                        FloatingActionButtonLocation.centerFloat,
-                    bottomNavigationBar:
-                    context.read<CartBloc>().state.addToCartRequestState == RequestState.loading  ?
-                        const CircularProgressIndicator()
-                        :
-
-                    AppButton(
-                        bgColor:state.productDetailsEntities!.inCart == false ?AppColors.primary : AppColors.red,
-                        padding: EdgeInsets.all(12.sp),
-                        margin: EdgeInsets.all(15.sp),
-                        borderRadius: BorderRadius.circular(13.sp),
-                        onPressed: () {
-                          showDialog(context: context, builder:
-                          (context) {
-                            return CircularProgressIndicator();
-                          },);
-                          Future.delayed(Duration(seconds: 4));
-                          CartBloc(sl()).add(PostCartEvent(CartDataRequest(id: state.productDetailsEntities!.id.toInt(), quantity: 0)));
-                          pop(context);
-                          setState(() {
-                            state.productDetailsEntities!.inCart =  !state.productDetailsEntities!.inCart;
-
-                          });
-                        },
-                        label: state.productDetailsEntities!.inCart == false ? "Add To Cart" : "Remove From Cart",
-                      ),
-
-
-                    body: SingleChildScrollView(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          DetailsAppBar(
+            return Hero(
+              tag:widget.image,
+              child: Container(
+                color: AppColors.primary,
+                child: SafeArea(
+                  child: Scaffold(
+                    body: CustomScrollView(
+                      slivers: [
+                        SliverAppBar(
+                          pinned: true,
+                          title:            DetailsAppBar(
                               product: state.productDetailsEntities!.name),
-                          CarouselSlider.builder(
-                              itemCount:
-                                  state.productDetailsEntities!.images.length,
-                              itemBuilder: (context, index, realIndex) {
-                                return AppImage(
-                                    imageUrl:
-                                        state.productDetailsEntities!.images[index],
-                                    width: double.infinity,
-                                    height: 50);
-                              },
-                              options: CarouselOptions(
-                                enlargeCenterPage: true,
-                              )),
-                          Padding(
-                            padding: EdgeInsets.all(8.sp),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Expanded(
-                                      child: Text(
-                                        state.productDetailsEntities!.name,
-                                        style: TextStyle(
-                                          color: AppColors.primary,
-                                          fontSize: 17.sp,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ),
-                              IconButton(
-                                        onPressed: () {
-                                          FavouriteBloc(sl()).add(EditFavEvent(state
-                                              .productDetailsEntities!.id
-                                              .toString()));
+                          // bottom: PreferredSize(
+                          //   preferredSize: Size.fromHeight(20.h),
+                          //   child:            DetailsAppBar(
+                          //       product: state.productDetailsEntities!.name),
+                          //
+                          //
+                          //
+                          //
+                          // ),
 
-                                          state.productDetailsEntities!
-                                                  .inFavorites =
-                                              !state.productDetailsEntities!
-                                                  .inFavorites;
-                                          setState(() {});
-                                        },
-                                        icon: FavouriteBloc(sl())
-                                                    .state
-                                                    .changeFavRequest ==
-                                                RequestState.loading
-                                            ? const CircularProgressIndicator()
-                                            : Icon(
-                                                state.productDetailsEntities!
-                                                            .inFavorites ==
-                                                        true
-                                                    ? Icons.favorite
-                                                    : Icons.favorite_outline,
-                                                color: AppColors.primary,
-                                              ))
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: 2.h,
-                                ),
-                                Row(
+                          toolbarHeight: 7.h,
+                          leading:SizedBox(),
+                          leadingWidth: 0,
+                           backgroundColor: AppColors.primary.withOpacity(0.2),
+                          expandedHeight: 20.h,
+                          flexibleSpace: FlexibleSpaceBar(
+                            background:                   CarouselSlider.builder(
+                                      itemCount:
+                                          state.productDetailsEntities!.images.length,
+                                      itemBuilder: (context, index, realIndex) {
+                                        return AppImage(
+                                            imageUrl:
+                                                state.productDetailsEntities!.images[index],
+                                            width: double.infinity,
+                                            height: 23.h);
+                                      },
+                                      options: CarouselOptions(
+                                        enlargeCenterPage: true,
+
+                                      )),
+                          ),
+                        ),
+                        SliverToBoxAdapter(
+
+                          child:
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.all(8.sp),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Expanded(
+                                          child: Text(
+                                            state.productDetailsEntities!.name,
+                                            style: TextStyle(
+                                              color: AppColors.primary,
+                                              fontSize: 17.sp,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ),
+                                  IconButton(
+                                            onPressed: () {
+                                              FavouriteBloc(sl()).add(EditFavEvent(state
+                                                  .productDetailsEntities!.id
+                                                  .toString()));
+
+                                              state.productDetailsEntities!
+                                                      .inFavorites =
+                                                  !state.productDetailsEntities!
+                                                      .inFavorites;
+                                              setState(() {});
+                                            },
+                                            icon: FavouriteBloc(sl())
+                                                        .state
+                                                        .changeFavRequest ==
+                                                    RequestState.loading
+                                                ? const CircularProgressIndicator()
+                                                : Icon(
+                                                    state.productDetailsEntities!
+                                                                .inFavorites ==
+                                                            true
+                                                        ? Icons.favorite
+                                                        : Icons.favorite_outline,
+                                                    color: AppColors.primary,
+                                                  ))
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: 2.h,
+                                    ),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          state.productDetailsEntities!.price
+                                              .toString(),
+                                          style: TextStyle(
+                                            color: AppColors.primary,
+                                            fontSize: 18.sp,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: 3.w,
+                                        ),
+                                        Visibility(
+                                          visible: state.productDetailsEntities!.price
+                                                  .toString() !=
+                                              state.productDetailsEntities!.oldPrice
+                                                  .toString(),
+                                          child: Row(
+                                            children: [
+                                              Text(
+                                                state.productDetailsEntities!.oldPrice
+                                                    .toString(),
+                                                style: TextStyle(
+                                                    color: Colors.grey[400],
+                                                    fontSize: 15.sp,
+                                                    fontWeight: FontWeight.bold,
+                                                    decoration:
+                                                        TextDecoration.lineThrough),
+                                              ),
+                                              Container(
+                                                  margin: EdgeInsets.all(9.sp),
+                                                  padding: EdgeInsets.all(10.sp),
+                                                  decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(10.sp),
+                                                      color: AppColors.primary
+                                                          .withOpacity(0.5)),
+                                                  child: Text(
+                                                    "${state.productDetailsEntities!.discount}%",
+                                                    style:
+                                                        const TextStyle(color: Colors.white),
+                                                  )),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: 2.h,
+                                    ),
                                     Text(
-                                      state.productDetailsEntities!.price
-                                          .toString(),
+                                      "Description",
                                       style: TextStyle(
                                         color: AppColors.primary,
-                                        fontSize: 18.sp,
+                                        fontSize: 17.sp,
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
-                                    SizedBox(
-                                      width: 3.w,
-                                    ),
-                                    Visibility(
-                                      visible: state.productDetailsEntities!.price
-                                              .toString() !=
-                                          state.productDetailsEntities!.oldPrice
-                                              .toString(),
-                                      child: Row(
-                                        children: [
-                                          Text(
-                                            state.productDetailsEntities!.oldPrice
-                                                .toString(),
-                                            style: TextStyle(
-                                                color: Colors.grey[400],
-                                                fontSize: 15.sp,
-                                                fontWeight: FontWeight.bold,
-                                                decoration:
-                                                    TextDecoration.lineThrough),
-                                          ),
-                                          Container(
-                                              margin: EdgeInsets.all(9.sp),
-                                              padding: EdgeInsets.all(10.sp),
-                                              decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(10.sp),
-                                                  color: AppColors.primary
-                                                      .withOpacity(0.5)),
-                                              child: Text(
-                                                "${state.productDetailsEntities!.discount}%",
-                                                style:
-                                                    const TextStyle(color: Colors.white),
-                                              )),
-                                        ],
-                                      ),
-                                    ),
+                                    ReadMoreText(
+                                      "${state.productDetailsEntities!.description}",
+                                      colorClickableText: AppColors.primary,
+                                      trimCollapsedText: ' Show more',
+                                      trimExpandedText: ' Show less',
+                                      moreStyle: const TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.bold,
+                                          color: AppColors.primary),
+                                      lessStyle: const TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.bold,
+                                          color: AppColors.primary),
+                                    )
                                   ],
                                 ),
-                                SizedBox(
-                                  height: 2.h,
+                              ),
+                              Padding(
+                                padding: EdgeInsets.all(8.sp),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Expanded(
+                                          child: Text(
+                                            state.productDetailsEntities!.name,
+                                            style: TextStyle(
+                                              color: AppColors.primary,
+                                              fontSize: 17.sp,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ),
+                                  IconButton(
+                                            onPressed: () {
+                                              FavouriteBloc(sl()).add(EditFavEvent(state
+                                                  .productDetailsEntities!.id
+                                                  .toString()));
+
+                                              state.productDetailsEntities!
+                                                      .inFavorites =
+                                                  !state.productDetailsEntities!
+                                                      .inFavorites;
+                                              setState(() {});
+                                            },
+                                            icon: FavouriteBloc(sl())
+                                                        .state
+                                                        .changeFavRequest ==
+                                                    RequestState.loading
+                                                ? const CircularProgressIndicator()
+                                                : Icon(
+                                                    state.productDetailsEntities!
+                                                                .inFavorites ==
+                                                            true
+                                                        ? Icons.favorite
+                                                        : Icons.favorite_outline,
+                                                    color: AppColors.primary,
+                                                  ))
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: 2.h,
+                                    ),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          state.productDetailsEntities!.price
+                                              .toString(),
+                                          style: TextStyle(
+                                            color: AppColors.primary,
+                                            fontSize: 18.sp,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: 3.w,
+                                        ),
+                                        Visibility(
+                                          visible: state.productDetailsEntities!.price
+                                                  .toString() !=
+                                              state.productDetailsEntities!.oldPrice
+                                                  .toString(),
+                                          child: Row(
+                                            children: [
+                                              Text(
+                                                state.productDetailsEntities!.oldPrice
+                                                    .toString(),
+                                                style: TextStyle(
+                                                    color: Colors.grey[400],
+                                                    fontSize: 15.sp,
+                                                    fontWeight: FontWeight.bold,
+                                                    decoration:
+                                                        TextDecoration.lineThrough),
+                                              ),
+                                              Container(
+                                                  margin: EdgeInsets.all(9.sp),
+                                                  padding: EdgeInsets.all(10.sp),
+                                                  decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(10.sp),
+                                                      color: AppColors.primary
+                                                          .withOpacity(0.5)),
+                                                  child: Text(
+                                                    "${state.productDetailsEntities!.discount}%",
+                                                    style:
+                                                        const TextStyle(color: Colors.white),
+                                                  )),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: 2.h,
+                                    ),
+                                    Text(
+                                      "Description",
+                                      style: TextStyle(
+                                        color: AppColors.primary,
+                                        fontSize: 17.sp,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    ReadMoreText(
+                                      "${state.productDetailsEntities!.description}",
+                                      colorClickableText: AppColors.primary,
+                                      trimCollapsedText: ' Show more',
+                                      trimExpandedText: ' Show less',
+                                      moreStyle: const TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.bold,
+                                          color: AppColors.primary),
+                                      lessStyle: const TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.bold,
+                                          color: AppColors.primary),
+                                    )
+                                  ],
                                 ),
-                                Text(
-                                  "Description",
-                                  style: TextStyle(
-                                    color: AppColors.primary,
-                                    fontSize: 17.sp,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                              ),     Padding(
+                                padding: EdgeInsets.all(8.sp),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Expanded(
+                                          child: Text(
+                                            state.productDetailsEntities!.name,
+                                            style: TextStyle(
+                                              color: AppColors.primary,
+                                              fontSize: 17.sp,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ),
+                                  IconButton(
+                                            onPressed: () {
+                                              FavouriteBloc(sl()).add(EditFavEvent(state
+                                                  .productDetailsEntities!.id
+                                                  .toString()));
+
+                                              state.productDetailsEntities!
+                                                      .inFavorites =
+                                                  !state.productDetailsEntities!
+                                                      .inFavorites;
+                                              setState(() {});
+                                            },
+                                            icon: FavouriteBloc(sl())
+                                                        .state
+                                                        .changeFavRequest ==
+                                                    RequestState.loading
+                                                ? const CircularProgressIndicator()
+                                                : Icon(
+                                                    state.productDetailsEntities!
+                                                                .inFavorites ==
+                                                            true
+                                                        ? Icons.favorite
+                                                        : Icons.favorite_outline,
+                                                    color: AppColors.primary,
+                                                  ))
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: 2.h,
+                                    ),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          state.productDetailsEntities!.price
+                                              .toString(),
+                                          style: TextStyle(
+                                            color: AppColors.primary,
+                                            fontSize: 18.sp,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: 3.w,
+                                        ),
+                                        Visibility(
+                                          visible: state.productDetailsEntities!.price
+                                                  .toString() !=
+                                              state.productDetailsEntities!.oldPrice
+                                                  .toString(),
+                                          child: Row(
+                                            children: [
+                                              Text(
+                                                state.productDetailsEntities!.oldPrice
+                                                    .toString(),
+                                                style: TextStyle(
+                                                    color: Colors.grey[400],
+                                                    fontSize: 15.sp,
+                                                    fontWeight: FontWeight.bold,
+                                                    decoration:
+                                                        TextDecoration.lineThrough),
+                                              ),
+                                              Container(
+                                                  margin: EdgeInsets.all(9.sp),
+                                                  padding: EdgeInsets.all(10.sp),
+                                                  decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(10.sp),
+                                                      color: AppColors.primary
+                                                          .withOpacity(0.5)),
+                                                  child: Text(
+                                                    "${state.productDetailsEntities!.discount}%",
+                                                    style:
+                                                        const TextStyle(color: Colors.white),
+                                                  )),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: 2.h,
+                                    ),
+                                    Text(
+                                      "Description",
+                                      style: TextStyle(
+                                        color: AppColors.primary,
+                                        fontSize: 17.sp,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    ReadMoreText(
+                                      "${state.productDetailsEntities!.description}",
+                                      colorClickableText: AppColors.primary,
+                                      trimCollapsedText: ' Show more',
+                                      trimExpandedText: ' Show less',
+                                      moreStyle: const TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.bold,
+                                          color: AppColors.primary),
+                                      lessStyle: const TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.bold,
+                                          color: AppColors.primary),
+                                    )
+                                  ],
                                 ),
-                                ReadMoreText(
-                                  "${state.productDetailsEntities!.description}",
-                                  colorClickableText: AppColors.primary,
-                                  trimCollapsedText: ' Show more',
-                                  trimExpandedText: ' Show less',
-                                  moreStyle: const TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: AppColors.primary),
-                                  lessStyle: const TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: AppColors.primary),
-                                )
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    )),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.all(8.sp),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Expanded(
+                                          child: Text(
+                                            state.productDetailsEntities!.name,
+                                            style: TextStyle(
+                                              color: AppColors.primary,
+                                              fontSize: 17.sp,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ),
+                                  IconButton(
+                                            onPressed: () {
+                                              FavouriteBloc(sl()).add(EditFavEvent(state
+                                                  .productDetailsEntities!.id
+                                                  .toString()));
+
+                                              state.productDetailsEntities!
+                                                      .inFavorites =
+                                                  !state.productDetailsEntities!
+                                                      .inFavorites;
+                                              setState(() {});
+                                            },
+                                            icon: FavouriteBloc(sl())
+                                                        .state
+                                                        .changeFavRequest ==
+                                                    RequestState.loading
+                                                ? const CircularProgressIndicator()
+                                                : Icon(
+                                                    state.productDetailsEntities!
+                                                                .inFavorites ==
+                                                            true
+                                                        ? Icons.favorite
+                                                        : Icons.favorite_outline,
+                                                    color: AppColors.primary,
+                                                  ))
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: 2.h,
+                                    ),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          state.productDetailsEntities!.price
+                                              .toString(),
+                                          style: TextStyle(
+                                            color: AppColors.primary,
+                                            fontSize: 18.sp,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: 3.w,
+                                        ),
+                                        Visibility(
+                                          visible: state.productDetailsEntities!.price
+                                                  .toString() !=
+                                              state.productDetailsEntities!.oldPrice
+                                                  .toString(),
+                                          child: Row(
+                                            children: [
+                                              Text(
+                                                state.productDetailsEntities!.oldPrice
+                                                    .toString(),
+                                                style: TextStyle(
+                                                    color: Colors.grey[400],
+                                                    fontSize: 15.sp,
+                                                    fontWeight: FontWeight.bold,
+                                                    decoration:
+                                                        TextDecoration.lineThrough),
+                                              ),
+                                              Container(
+                                                  margin: EdgeInsets.all(9.sp),
+                                                  padding: EdgeInsets.all(10.sp),
+                                                  decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(10.sp),
+                                                      color: AppColors.primary
+                                                          .withOpacity(0.5)),
+                                                  child: Text(
+                                                    "${state.productDetailsEntities!.discount}%",
+                                                    style:
+                                                        const TextStyle(color: Colors.white),
+                                                  )),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: 2.h,
+                                    ),
+                                    Text(
+                                      "Description",
+                                      style: TextStyle(
+                                        color: AppColors.primary,
+                                        fontSize: 17.sp,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    ReadMoreText(
+                                      "${state.productDetailsEntities!.description}",
+                                      colorClickableText: AppColors.primary,
+                                      trimCollapsedText: ' Show more',
+                                      trimExpandedText: ' Show less',
+                                      moreStyle: const TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.bold,
+                                          color: AppColors.primary),
+                                      lessStyle: const TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.bold,
+                                          color: AppColors.primary),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ],
+                          )
+                          ,
+                        ),
+                      ],
+                    ),
+
+                  ),
+                ),
               ),
             );
           } else {
@@ -247,7 +624,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
           }
         },
       ),
-),
+
     );
   }
 }
