@@ -98,15 +98,9 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-     - family: "Inter-Regular"
+     - family: inter_regular
        fonts:
-         - asset: assets/fonts/
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
-  #
-  # For details regarding fonts from package dependencies,
-  # see https://flutter.dev/custom-fonts/#from-packages
+         - asset: assets/fonts/Inter-Regular.ttf
+
 flutter_intl:
   enabled: true
