@@ -61,34 +61,35 @@ class RegisterScreen extends StatelessWidget {
             return SafeArea(
               child: Scaffold(
                 body: Padding(
-                  padding:  EdgeInsets.symmetric(horizontal: 17.sp,vertical: 13.sp),
+                  padding:  EdgeInsets.symmetric(horizontal: 17.sp,vertical:4.h),
 
                   child: SingleChildScrollView(
                     child: Column(
                       crossAxisAlignment:CrossAxisAlignment.start,
                       children: [
-                        Text("Welcome Back",
+
+                        SizedBox(
+                          height: 2.h,
+                        ),
+                        Text("Create Account",
                           style: TextStyle(
-                            color: AppColors.primary,
-                            fontSize: 25.sp,
+                            color: AppColors.dark,
+                            fontSize: 22.sp,
                             fontWeight: FontWeight.bold,
               
                           ),
                         ),
-                        SizedBox(height: 3.h,),
-                        Text("Register now to see our new products",
+                        Text("Hello User, You have \na greatful journey ",
                           style: TextStyle(
-                            color: AppColors.primary,
-                            fontSize: 21.sp,
-                            fontWeight: FontWeight.bold,
-              
+                            color: AppColors.grey,
+                            fontSize: 20.sp,
                           ),
                         ),
-                        SizedBox(height: 2.h,),
+                        SizedBox(height: 5.h,),
                         Form(
                           key: _formKey,
                           child: Padding(
-                            padding: EdgeInsets.all(13.sp),
+                            padding: EdgeInsets.all(0.sp),
                             child: Column(
                               children: [
                                 AppTextFormField(
@@ -100,15 +101,15 @@ class RegisterScreen extends StatelessWidget {
                                     return null;
               
                                   },
-                                  labelText: 'Ahmed Mohamed',
+                                  labelText: 'Full Name',
                                   textInputAction: TextInputAction.next,
                                   keyboardType: TextInputType.name,
                                   controller: nameController,
                                   prefixIcon: Icons.person_outline,
-                                  isPass: false, label: 'UserName',
+                                  isPass: false,
                                 ),
                                 SizedBox(
-                                  height: 2.h,
+                                  height: 4.h,
                                 ),
                                 AppTextFormField(
                                   validators: (value) {
@@ -117,15 +118,15 @@ class RegisterScreen extends StatelessWidget {
                                     }
                                     return null;
                                   },
-                                  labelText: 'example@email.com',
+                                  labelText: 'Email Address',
                                   textInputAction: TextInputAction.next,
                                   keyboardType: TextInputType.emailAddress,
                                   controller: emailController,
                                   prefixIcon: Icons.email_outlined,
-                                  isPass: false, label: "Email",
+                                  isPass: false,
                                 ),
                                 SizedBox(
-                                  height: 2.h,
+                                  height:4.h,
                                 ),
                                 AppTextFormField(
                                   validators: (value) {
@@ -137,15 +138,15 @@ class RegisterScreen extends StatelessWidget {
                                     }
                                     return null;
                                   },
-                                  labelText: '+201211920545',
+                                  labelText: 'Mobile Number',
                                   textInputAction: TextInputAction.next,
                                   keyboardType: TextInputType.number,
                                   controller: phoneController,
                                   prefixIcon: Icons.phone_outlined,
-                                  isPass: false, label: 'Mobile Number',
+                                  isPass: false,
                                 ),
                                 SizedBox(
-                                  height: 2.h,
+                                  height: 4.h,
                                 ),
                                 AppTextFormField(
                                   validators: (value) {
@@ -162,10 +163,10 @@ class RegisterScreen extends StatelessWidget {
                                   keyboardType: TextInputType.visiblePassword,
                                   controller: passController,
                                   prefixIcon: Icons.lock_outline,
-                                  isPass: true, label: 'Password',
+                                  isPass: true,
                                 ),
                                 SizedBox(
-                                  height: 2.h,
+                                  height: 4.h,
                                 ),
                                 AppTextFormField(
                                   validators: (value) {
@@ -180,12 +181,12 @@ class RegisterScreen extends StatelessWidget {
                                     }
                                     return null;
                                   },
-                                  labelText: 'Re-Password',
+                                  labelText: 'Confirm Password',
                                   textInputAction: TextInputAction.done,
                                   keyboardType: TextInputType.visiblePassword,
                                   controller: confirmPassController,
                                   prefixIcon: Icons.lock_outline,
-                                  isPass: true, label: 'Re-Password',
+                                  isPass: true,
                                 ),
                                 state.requestState == RequestState.loading
                                     ? Container(
@@ -196,8 +197,9 @@ class RegisterScreen extends StatelessWidget {
                                       color: AppColors.primary,
                                     ))
                                     : AppButton(
-                                  borderRadius: BorderRadius.circular(18.sp),
-                                  margin: EdgeInsets.symmetric(vertical: 14.sp),
+                                  padding: EdgeInsets.symmetric(horizontal: 5.sp,vertical: 13.sp),
+                                  borderRadius: BorderRadius.circular(14.sp),
+                                  margin: EdgeInsets.symmetric(vertical: 20.sp),
                                   onPressed: () {
                                  if(_formKey.currentState!.validate()){
                                    cubit.add(RegisterEvent(
@@ -211,10 +213,13 @@ class RegisterScreen extends StatelessWidget {
                                    ));
                                  }
                                   },
-                                  label: "Register",
+                                  label: "Sign Up",
                                   bgColor: AppColors.primary,
                                 ),
-                             SizedBox(height: 5.h,),
+                                SizedBox(height: 10.h,),
+
+                                Divider(height: 1.h,color: AppColors.grey,thickness: 0.1.h,),
+                                SizedBox(height: 1.h,),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
