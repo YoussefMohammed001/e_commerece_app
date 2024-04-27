@@ -197,7 +197,7 @@ class RegisterScreen extends StatelessWidget {
                                       color: AppColors.primary,
                                     ))
                                     : AppButton(
-                                  padding: EdgeInsets.symmetric(horizontal: 5.sp,vertical: 12.sp),
+                                  padding: EdgeInsets.symmetric(horizontal: 5.sp,vertical: 13.sp),
                                   borderRadius: BorderRadius.circular(14.sp),
                                   margin: EdgeInsets.symmetric(vertical: 20.sp),
                                   onPressed: () {
@@ -213,7 +213,7 @@ class RegisterScreen extends StatelessWidget {
                                    ));
                                  }
                                   },
-                                  label: "Register",
+                                  label: "Sign Up",
                                   bgColor: AppColors.primary,
                                 ),
                                 SizedBox(height: 10.h,),
