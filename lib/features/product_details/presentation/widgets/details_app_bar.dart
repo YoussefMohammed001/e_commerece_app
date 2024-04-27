@@ -1,14 +1,14 @@
 import 'dart:async';
-
 import 'package:e_commerece_app/core/styles/colors.dart';
 import 'package:e_commerece_app/core/utils/navigators.dart';
-import 'package:e_commerece_app/features/cart/presentation/pages/cart_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class DetailsAppBar extends StatefulWidget {
-  const DetailsAppBar({super.key, required this.product});
+  const DetailsAppBar({super.key, required this.product, required this.isFav, required this.onFav});
 final String product;
+final bool isFav;
+final VoidCallback onFav;
 
   @override
   State<DetailsAppBar> createState() => _DetailsAppBarState();
@@ -25,6 +25,14 @@ late Timer timer;
   }
 double dimension = 5;
 
+
+
+
+
+
+
+
+
 @override
   void initState() {
     super.initState();
@@ -35,6 +43,11 @@ double dimension = 5;
       });
     });
   }
+
+
+
+
+
   @override
   Widget build(BuildContext context) {
     return       Row(
@@ -56,16 +69,14 @@ double dimension = 5;
           height:dimension.h,
           width: dimension.h,
           child: CircleAvatar(
-            child: IconButton(
-                onPressed: () {
-               pushAndRemoveUntil(context, const CartScreen());
-                },
-
-                icon: const Icon(
-                  Icons.shopping_cart_outlined,
-
+            child:     IconButton(
+                onPressed: widget.onFav,
+                icon: Icon(
+                 widget.isFav
+                      ? Icons.favorite
+                      : Icons.favorite_outline,
                   color: AppColors.primary,
-                )),
+                ))
           ),
         ),
       ],

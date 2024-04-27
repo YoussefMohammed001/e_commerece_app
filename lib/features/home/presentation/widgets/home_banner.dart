@@ -29,16 +29,21 @@ class HomeBanner extends StatelessWidget {
             options: CarouselOptions(
               viewportFraction: 1,
               autoPlayInterval: const Duration(seconds: 2),
-              autoPlay: true,
-              
+
             ),
             itemCount:banners.length,
             itemBuilder: (BuildContext context, int index, int realIndex) {
-              return AppImage(
-
-                  imageUrl: banners[index].imageUrl,
-                  width: double.infinity,
-                  height: 20.h);
+              return Container(
+                margin: EdgeInsets.symmetric(horizontal:20.sp,vertical: 25.sp),
+                child: AppImage(
+                  bottomLeftRadius: 18.sp,
+                    bottomRightRadius: 18.sp,
+                    topLeftRadius: 18.sp,
+                    topRightRadius: 18.sp,
+                    imageUrl: banners[index].imageUrl,
+                    width: double.infinity,
+                    height: 20.h),
+              );
             },
           );
         } else{

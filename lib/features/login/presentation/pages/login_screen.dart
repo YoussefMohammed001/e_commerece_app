@@ -90,7 +90,7 @@ class LoginScreen extends StatelessWidget {
                                       keyboardType: TextInputType.emailAddress,
                                       controller: emailController,
                                       prefixIcon: Icons.email_outlined,
-                                      isPass: false,
+                                      isPass: false, label: 'Email',
                                     ),
                                     SizedBox(
                                       height: 2.h,
@@ -107,7 +107,7 @@ class LoginScreen extends StatelessWidget {
                                       keyboardType: TextInputType.visiblePassword,
                                       controller: passController,
                                       prefixIcon: Icons.lock_outline,
-                                      isPass: true,
+                                      isPass: true, label: 'Password',
                                     ),
                                     SizedBox(
                                       height: 2.h,

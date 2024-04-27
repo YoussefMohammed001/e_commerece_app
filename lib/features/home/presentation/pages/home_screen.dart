@@ -1,4 +1,5 @@
 import 'package:e_commerece_app/core/services/services_locator.dart';
+import 'package:e_commerece_app/core/styles/colors.dart';
 import 'package:e_commerece_app/features/home/presentation/manager/home_bloc.dart';
 import 'package:e_commerece_app/features/home/presentation/widgets/home_app_bar.dart';
 import 'package:e_commerece_app/features/home/presentation/widgets/home_banner.dart';
@@ -23,30 +24,42 @@ class HomeScreen extends StatelessWidget {
         ),
 
       ],
-      child: Column(
-crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const HomeAppBar(
-            title: 'Youssef',
-            notifications: 3,
-            cart: 0,
-          ),
-          Expanded(
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  HomeCategoriesWidget(),
-                  HomeBanner(),
-                  SizedBox(height: 2.h,),
-                  HomeProducts(),
-                ],
-              ),
-
+      child: CustomScrollView(
+        slivers: [
+           SliverAppBar(
+             leading:SizedBox(),
+             leadingWidth: 0,
+             stretch: true,
+             toolbarHeight: 7.h,
+             backgroundColor: AppColors.primary.withOpacity(0.2),
+            title:    const HomeAppBar(
+              title: 'Youssef',
+              notifications: 3,
+              cart: 0,
             ),
+
+
+
           ),
+
+          SliverToBoxAdapter(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    HomeBanner(),
+                    HomeCategoriesWidget(),
+                    SizedBox(height: 2.h,),
+                    const HomeProducts(),
+                  ],
+                ),
+              ],
+            ),
+          )
         ],
-      ),
+      )
     );
   }
 }

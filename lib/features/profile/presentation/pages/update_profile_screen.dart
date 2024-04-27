@@ -56,7 +56,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                         keyboardType: TextInputType.name,
                         controller: nameController,
                         prefixIcon: Icons.person_outline,
-                        isPass: false,
+                        isPass: false, label: 'Name',
                       ),
                       SizedBox(
                         height: 2.h,
@@ -73,7 +73,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                         keyboardType: TextInputType.emailAddress,
                         controller: emailController,
                         prefixIcon: Icons.email_outlined,
-                        isPass: false,
+                        isPass: false, label: 'Email',
                       ),
                       SizedBox(
                         height: 2.h,
@@ -93,7 +93,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                         keyboardType: TextInputType.number,
                         controller: phoneController,
                         prefixIcon: Icons.phone_outlined,
-                        isPass: false,
+                        isPass: false, label: 'Mobile Number',
                       ),
                       SizedBox(
                         height: 2.h,

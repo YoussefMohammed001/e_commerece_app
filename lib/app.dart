@@ -11,47 +11,38 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    // ignore: avoid_types_as_parameter_names, non_constant_identifier_names
-    return ResponsiveSizer(builder: (BuildContext , Orientation , ScreenType ) {
-      return
-        MaterialApp(
+    return ResponsiveSizer(
+      builder: (v1, v2, v3) => MaterialApp(
+        key: ValueKey(MyShared.getCurrentLanguage()),
+        debugShowCheckedModeBanner: false,
+        // ignore: deprecated_member_use
+        useInheritedMediaQuery: true,
 
-          key: ValueKey(MyShared.getCurrentLanguage()),
-          debugShowCheckedModeBanner: false,
-          // ignore: deprecated_member_use
-          useInheritedMediaQuery: true,
-
-          locale: Locale(MyShared.getCurrentLanguage()),
-          supportedLocales: S.delegate.supportedLocales,
-          localizationsDelegates: const [
-            GlobalMaterialLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-          ],
-          title: 'Flutter Demo',
-          theme: ThemeData(
-            useMaterial3: true,
-            brightness: Brightness.light,
-            /* light theme settings */
-          ),
-          darkTheme: ThemeData(
-            brightness: Brightness.dark,
-            /* dark theme settings */
-          ),
-          themeMode:ThemeMode.light ,
-
-          home:  MyShared.getString(key: MySharedKeys.apiToken).isEmpty ? LoginScreen() : const MainScreen(),
-          builder: EasyLoading.init(),
-
-        );
-
-    },);
-
-
-
+        locale: Locale(MyShared.getCurrentLanguage()),
+        supportedLocales: S.delegate.supportedLocales,
+        localizationsDelegates: const [
+          GlobalMaterialLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+        ],
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          useMaterial3: true,
+          brightness: Brightness.light,
+          /* light theme settings */
+        ),
+        darkTheme: ThemeData(
+          brightness: Brightness.dark,
+          /* dark theme settings */
+        ),
+        themeMode: ThemeMode.light,
+        home: MyShared.getString(key: MySharedKeys.apiToken).isEmpty
+            ? LoginScreen()
+            : const MainScreen(),
+        builder: EasyLoading.init(),
+      ),
+    );
   }
 }
-

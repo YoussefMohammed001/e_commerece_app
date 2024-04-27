@@ -23,7 +23,7 @@ class HomeCategoriesWidget extends StatelessWidget {
           categories = state.categories;
           safePrint("success===>>$categories");
           return Container(
-            height: 14.h,
+            height: 10.h,
             child: ListView.builder(
               padding: const EdgeInsets.all(0),
               scrollDirection: Axis.horizontal,
@@ -40,19 +40,21 @@ class HomeCategoriesWidget extends StatelessWidget {
                           category: categories[index].name,
                         ));
                   },
-                  child: Padding(
+                  child: Container(
                     padding: EdgeInsets.all(8.sp),
+                    margin: EdgeInsets.all(10.sp),
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         AppImage(
                           imageUrl: categories[index].imageUrl,
-                          height: 10.h,
+                          height: 5.h,
                           topLeftRadius: 13.sp,
                           topRightRadius: 13.sp,
                           bottomLeftRadius: 13.sp,
                           bottomRightRadius: 13.sp,
-                          width: 20.w,
-
+                          width: 10.w,
+                    
                         ),
                         Text(
                           categories[index].name,

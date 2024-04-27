@@ -2,6 +2,7 @@ import 'package:e_commerece_app/core/services/services_locator.dart';
 import 'package:e_commerece_app/core/styles/colors.dart';
 import 'package:e_commerece_app/core/widgets/app_image.dart';
 import 'package:e_commerece_app/features/saved_items/presentation/manager/favourite_bloc.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -43,7 +44,6 @@ class ProductItem extends StatelessWidget {
           onTap: onItemTap,
           child: Container(
             width: 30.w,
-            padding: EdgeInsets.all(10.sp),
             decoration: BoxDecoration(
               border: Border.all(color: Colors.grey.shade300),
               borderRadius: BorderRadius.circular(10.sp),
@@ -56,10 +56,34 @@ class ProductItem extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      AppImage(
-                        height: 30.h,
-                        width: 30.w,
-                        imageUrl: productImage,
+                      Container(
+                        color: Colors.red,
+                        child: Stack(
+                          alignment: AlignmentDirectional.topEnd,
+                          children: [
+                            AppImage(
+                              height: 20.h,
+
+                              imageUrl: productImage, width: 35.w,
+                            ),
+                            Container(
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(18.sp)
+                              ),
+                              child: IconButton(
+                                onPressed: onFavTap,
+                                icon: Icon(
+                                  isInFav
+                                      ? Icons.favorite
+                                      : Icons
+                                      .favorite_border_outlined,
+                                  color: AppColors.primary,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),
@@ -102,16 +126,7 @@ class ProductItem extends StatelessWidget {
                                         fontWeight: FontWeight.bold),
                                   ),
 
-                                  IconButton(
-                                    onPressed: onFavTap,
-                                    icon: Icon(
-                                      isInFav
-                                          ? Icons.favorite
-                                          : Icons
-                                          .favorite_border_outlined,
-                                      color: AppColors.primary,
-                                    ),
-                                  )
+
 
                                 ],
                               ),

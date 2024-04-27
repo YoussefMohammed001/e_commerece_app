@@ -8,9 +8,10 @@ class AppTextFormField extends StatefulWidget {
    required this.keyboardType,
    this.validators, required this.controller,
    required this.prefixIcon, required this.isPass,
-    this.isEnabled = true});
+    this.isEnabled = true, required this.label});
   final TextEditingController controller;
   final String labelText;
+  final String label;
   final TextInputAction textInputAction;
   final  TextInputType keyboardType;
   final FormFieldValidator<String>? validators;
@@ -26,55 +27,68 @@ class _AppTextFormFieldState extends State<AppTextFormField> {
   bool obscureText = false;
   @override
   Widget build(BuildContext context) {
-    return  Container(
-      height: 6.h,
-      child: TextFormField(
-        enabled: widget.isEnabled,
-        obscureText: obscureText,
-        validator: widget.validators,
-        controller: widget.controller,
-        textInputAction: widget.textInputAction ,
-        keyboardType: widget.keyboardType,
-        decoration: InputDecoration(
-          focusColor: AppColors.primary,
-          fillColor: Colors.grey[100],
-            filled: true,
-            labelText: widget.labelText,
-          labelStyle: const TextStyle(color:  AppColors.primary),
-          prefixIcon: Icon(widget.prefixIcon,color: AppColors.primary,),
-          border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(15.sp),
-              borderSide:  BorderSide(color: Colors.grey.shade400),
+    return  Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
 
+      children: [
+         Text(widget.label,style: const TextStyle(
+          color: AppColors.dark,
+          fontWeight: FontWeight.w500,
+        ),),
+        SizedBox(height: 1.h,),
+        TextFormField(
+          enabled: widget.isEnabled,
+          obscureText: obscureText,
+          validator: widget.validators,
+          controller: widget.controller,
+          textInputAction: widget.textInputAction ,
+          keyboardType: widget.keyboardType,
+          decoration: InputDecoration(
+            focusedErrorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12.sp),
+              borderSide:   const BorderSide(color: AppColors.error),
+        
             ),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(15.sp),
-              borderSide:  BorderSide(color: Colors.grey.shade400),
-
-            ),
-            errorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(15.sp),
-              borderSide:  BorderSide(color: Colors.red.shade400),
-
-            ),
-              suffixIcon: Visibility(
-              visible:  widget.isPass == true,
-              child: IconButton(onPressed: () {
-                obscureText = !obscureText;
-                setState(() {
-
-                });
-
-              }, icon:  Icon(obscureText == true ? Icons.visibility_off_outlined : Icons.visibility_outlined,color: AppColors.primary,),),
-            ),
-            focusedBorder:  OutlineInputBorder(
-                borderRadius: BorderRadius.circular(15.sp),
-                borderSide: const BorderSide(color: AppColors.primary),
-
-            ),
+            errorStyle: const TextStyle(color:AppColors.error),
+            contentPadding: EdgeInsets.symmetric(horizontal: 15.sp),
+            focusColor: AppColors.primary,
+            fillColor: Colors.grey[100],
+              hintText: widget.labelText,
+            hintStyle: const TextStyle(color:  AppColors.grey),
+            border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12.sp),
+                borderSide:  BorderSide(color: Colors.grey.shade400),
+        
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12.sp),
+                borderSide:  BorderSide(color: Colors.grey.shade400),
+        
+              ),
+              errorBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12.sp),
+                borderSide:  const BorderSide(color: AppColors.error),
+        
+              ),
+                suffixIcon: Visibility(
+                visible:  widget.isPass == true,
+                child: IconButton(onPressed: () {
+                  obscureText = !obscureText;
+                  setState(() {
+        
+                  });
+        
+                }, icon:  Icon(obscureText == true ? Icons.visibility_off_outlined : Icons.visibility_outlined,color: AppColors.primary,),),
+              ),
+              focusedBorder:  OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12.sp),
+                  borderSide: const BorderSide(color: AppColors.primary),
+        
+              ),
+          ),
+        
         ),
-
-      ),
+      ],
     );
   }
 }

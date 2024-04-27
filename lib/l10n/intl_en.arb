@@ -1,5 +1,15 @@
 {
-  "home": "Home"
-
-
+  "home": "Home",
+  "cart": "Cart",
+  "hot products": "Hot Products",
+  "email": "Email",
+  "pass": "Password",
+  "phone": "Phone",
+  "repass": "Re-Password",
+  "login": "Login",
+  "register": "Register",
+  "forgetPass": "Forget password",
+  "fav": "Favourites",
+  "profile": "Profile",
+  "search": "Search"
 }

@@ -100,12 +100,12 @@ class RegisterScreen extends StatelessWidget {
                                     return null;
               
                                   },
-                                  labelText: 'Name',
+                                  labelText: 'Ahmed Mohamed',
                                   textInputAction: TextInputAction.next,
                                   keyboardType: TextInputType.name,
                                   controller: nameController,
                                   prefixIcon: Icons.person_outline,
-                                  isPass: false,
+                                  isPass: false, label: 'UserName',
                                 ),
                                 SizedBox(
                                   height: 2.h,
@@ -117,12 +117,12 @@ class RegisterScreen extends StatelessWidget {
                                     }
                                     return null;
                                   },
-                                  labelText: 'Email',
+                                  labelText: 'example@email.com',
                                   textInputAction: TextInputAction.next,
                                   keyboardType: TextInputType.emailAddress,
                                   controller: emailController,
                                   prefixIcon: Icons.email_outlined,
-                                  isPass: false,
+                                  isPass: false, label: "Email",
                                 ),
                                 SizedBox(
                                   height: 2.h,
@@ -137,12 +137,12 @@ class RegisterScreen extends StatelessWidget {
                                     }
                                     return null;
                                   },
-                                  labelText: 'Phone',
+                                  labelText: '+201211920545',
                                   textInputAction: TextInputAction.next,
                                   keyboardType: TextInputType.number,
                                   controller: phoneController,
                                   prefixIcon: Icons.phone_outlined,
-                                  isPass: false,
+                                  isPass: false, label: 'Mobile Number',
                                 ),
                                 SizedBox(
                                   height: 2.h,
@@ -162,7 +162,7 @@ class RegisterScreen extends StatelessWidget {
                                   keyboardType: TextInputType.visiblePassword,
                                   controller: passController,
                                   prefixIcon: Icons.lock_outline,
-                                  isPass: true,
+                                  isPass: true, label: 'Password',
                                 ),
                                 SizedBox(
                                   height: 2.h,
@@ -185,7 +185,7 @@ class RegisterScreen extends StatelessWidget {
                                   keyboardType: TextInputType.visiblePassword,
                                   controller: confirmPassController,
                                   prefixIcon: Icons.lock_outline,
-                                  isPass: true,
+                                  isPass: true, label: 'Re-Password',
                                 ),
                                 state.requestState == RequestState.loading
                                     ? Container(
