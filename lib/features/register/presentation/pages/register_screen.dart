@@ -109,7 +109,7 @@ class RegisterScreen extends StatelessWidget {
                                   isPass: false,
                                 ),
                                 SizedBox(
-                                  height: 4.h,
+                                  height: 3.h,
                                 ),
                                 AppTextFormField(
                                   validators: (value) {
@@ -126,7 +126,7 @@ class RegisterScreen extends StatelessWidget {
                                   isPass: false,
                                 ),
                                 SizedBox(
-                                  height:4.h,
+                                  height:3.h,
                                 ),
                                 AppTextFormField(
                                   validators: (value) {
@@ -146,7 +146,7 @@ class RegisterScreen extends StatelessWidget {
                                   isPass: false,
                                 ),
                                 SizedBox(
-                                  height: 4.h,
+                                  height: 3.h,
                                 ),
                                 AppTextFormField(
                                   validators: (value) {
@@ -166,7 +166,7 @@ class RegisterScreen extends StatelessWidget {
                                   isPass: true,
                                 ),
                                 SizedBox(
-                                  height: 4.h,
+                                  height: 3.h,
                                 ),
                                 AppTextFormField(
                                   validators: (value) {
@@ -216,7 +216,7 @@ class RegisterScreen extends StatelessWidget {
                                   label: "Sign Up",
                                   bgColor: AppColors.primary,
                                 ),
-                                SizedBox(height: 10.h,),
+                                SizedBox(height: 13.h,),
 
                                 Divider(height: 1.h,color: AppColors.grey,thickness: 0.1.h,),
                                 SizedBox(height: 1.h,),
@@ -225,7 +225,7 @@ class RegisterScreen extends StatelessWidget {
                                   children: [
                                     Text(
                                       "Already have account?",
-                                      style: TextStyle(fontSize: 16.sp),
+                                      style: TextStyle(fontSize: 16.sp,color: AppColors.grey),
                                     ),
                                     InkWell(
                                       onTap: () {
