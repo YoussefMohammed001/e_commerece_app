@@ -61,7 +61,7 @@ class RegisterScreen extends StatelessWidget {
             return SafeArea(
               child: Scaffold(
                 body: Padding(
-                  padding:  EdgeInsets.symmetric(horizontal: 17.sp,vertical:4.h),
+                  padding:  EdgeInsets.symmetric(horizontal: 17.sp),
 
                   child: SingleChildScrollView(
                     child: Column(
@@ -69,8 +69,9 @@ class RegisterScreen extends StatelessWidget {
                       children: [
 
                         SizedBox(
-                          height: 2.h,
+                          height: 10.h,
                         ),
+
                         Text("Create Account",
                           style: TextStyle(
                             color: AppColors.dark,
@@ -89,7 +90,7 @@ class RegisterScreen extends StatelessWidget {
                         Form(
                           key: _formKey,
                           child: Padding(
-                            padding: EdgeInsets.all(0.sp),
+                            padding: EdgeInsets.all(13.sp),
                             child: Column(
                               children: [
                                 AppTextFormField(
@@ -216,7 +217,7 @@ class RegisterScreen extends StatelessWidget {
                                   label: "Sign Up",
                                   bgColor: AppColors.primary,
                                 ),
-                                SizedBox(height: 13.h,),
+                                SizedBox(height: 10.h,),
 
                                 Divider(height: 1.h,color: AppColors.grey,thickness: 0.1.h,),
                                 SizedBox(height: 1.h,),
