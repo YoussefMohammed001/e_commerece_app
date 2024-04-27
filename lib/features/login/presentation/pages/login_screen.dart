@@ -49,29 +49,30 @@ class LoginScreen extends StatelessWidget {
                 child: SafeArea(
                   child: Scaffold(
                     body: Padding(
-                      padding:  EdgeInsets.symmetric(horizontal: 17.sp,vertical: 13.sp),
+                      padding:  EdgeInsets.symmetric(horizontal: 17.sp),
                       child: SingleChildScrollView(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text("Welcome Back",
+                            SizedBox(
+                              height: 10.h,
+                            ),
+
+                            Text("Lets Sign you in",
                             style: TextStyle(
-                              color: AppColors.primary,
-                              fontSize: 25.sp,
+                              color: AppColors.dark,
+                              fontSize: 22.sp,
                               fontWeight: FontWeight.bold,
+                            ),
+                            ),
+                            Text("Welcome back, \nYou have been missed",
+                            style: TextStyle(
+                              color: AppColors.grey,
+                              fontSize: 20.sp,
 
                             ),
                             ),
-                            SizedBox(height: 3.h,),
-                            Text("Login now to see our new products",
-                            style: TextStyle(
-                              color: AppColors.primary,
-                              fontSize: 21.sp,
-                              fontWeight: FontWeight.bold,
-
-                            ),
-                            ),
-                            SizedBox(height: 14.h,),
+                            SizedBox(height: 5.h,),
                             Form(
                               key: _formKey,
                               child: Padding(
@@ -110,15 +111,14 @@ class LoginScreen extends StatelessWidget {
                                       isPass: true,
                                     ),
                                     SizedBox(
-                                      height: 2.h,
+                                      height: 1.h,
                                     ),
                                     Container(
                                       alignment: AlignmentDirectional.centerEnd,
                                       child: Text(
-                                        "Forget Password",
-                                        style: TextStyle(fontSize: 16.sp,
-                                        color: AppColors.primary,
-                                          fontWeight: FontWeight.bold
+                                        "Forget Password?",
+                                        style: TextStyle(fontSize: 15.sp,
+                                        color: AppColors.grey,
                                         ),
                                       ),
                                     ),
@@ -127,14 +127,13 @@ class LoginScreen extends StatelessWidget {
                                     ),
                                     state.requestState == RequestState.loading
                                         ? Container(
-                                        margin: EdgeInsets.symmetric(vertical: 14.sp),
-                                        padding:
-                                        EdgeInsets.symmetric(vertical: 15.sp),
+                                        padding: EdgeInsets.symmetric(horizontal: 5.sp,vertical: 13.sp),
+                                        margin: EdgeInsets.symmetric(vertical: 20.sp),
                                         child: const CircularProgressIndicator(
                                           color: AppColors.primary,
                                         ))
                                         : AppButton(
-                                      borderRadius: BorderRadius.circular(18.sp),
+                                      borderRadius: BorderRadius.circular(14.sp),
                                       margin: EdgeInsets.symmetric(vertical: 14.sp),
                                       onPressed: () {
                                       if(_formKey.currentState!.validate()){
@@ -145,16 +144,19 @@ class LoginScreen extends StatelessWidget {
 
                                       }
                                       },
-                                      label: "Login",
+                                      label: "Sign In",
                                       bgColor: AppColors.primary,
                                     ),
-                                    SizedBox(height: 16.h,),
+                                    SizedBox(height: 31.h,),
+                                    Divider(height: 1.h,color: AppColors.grey,thickness: 0.1.h,),
+                                    SizedBox(height: 1.h,),
+
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.center,
                                       children: [
                                         Text(
                                           "Don't have account?",
-                                          style: TextStyle(fontSize: 16.sp),
+                                          style: TextStyle(fontSize: 16.sp,color: AppColors.grey),
                                         ),
                                         InkWell(
                                           onTap: () {
