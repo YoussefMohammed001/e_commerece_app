@@ -218,7 +218,7 @@ class RegisterScreen extends StatelessWidget {
                                 ),
                                 SizedBox(height: 10.h,),
 
-                                Divider(height: 2.h,color: AppColors.grey,),
+                                Divider(height: 1.h,color: AppColors.grey,thickness: 0.1.h,),
                                 SizedBox(height: 1.h,),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
