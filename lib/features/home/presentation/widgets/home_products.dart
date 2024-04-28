@@ -32,9 +32,20 @@ class _HomeProductsState extends State<HomeProducts> {
        return Column(
          crossAxisAlignment: CrossAxisAlignment.start,
          children: [
+           Padding(
+             padding:  EdgeInsets.symmetric(horizontal: 12.sp),
+             child: Text("Hot Products",
+               style: TextStyle(
+                 color: AppColors.dark,
+                 fontWeight: FontWeight.w500,
+                 fontSize: 18.sp,
+               ),
+             ),
+           ),
            SizedBox(
              child: GridView.builder(
                shrinkWrap: true,
+
                physics: const NeverScrollableScrollPhysics(),
                gridDelegate:
                const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),

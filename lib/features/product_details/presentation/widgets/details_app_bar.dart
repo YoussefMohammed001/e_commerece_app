@@ -27,12 +27,6 @@ double dimension = 5;
 
 
 
-
-
-
-
-
-
 @override
   void initState() {
     super.initState();
@@ -64,7 +58,6 @@ double dimension = 5;
               )),
         ),
         AnimatedContainer(
-
           duration: const Duration(milliseconds: 500),
           height:dimension.h,
           width: dimension.h,

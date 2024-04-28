@@ -139,110 +139,221 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                     SliverToBoxAdapter(
                       child:
                       Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Padding(
-                            padding: EdgeInsets.all(8.sp),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.all(8.sp),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Expanded(
-                                      child: Text(
-                                        state.productDetailsEntities!.name,
-                                        style: TextStyle(
-                                          color: AppColors.primary,
-                                          fontSize: 17.sp,
-                                          fontWeight: FontWeight.bold,
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Expanded(
+                                          child: Text(
+                                            state.productDetailsEntities!.name,
+                                            style: TextStyle(
+                                              color: AppColors.primary,
+                                              fontSize: 17.sp,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
                                         ),
-                                      ),
-                                    ),
 
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: 2.h,
-                                ),
-                                Row(
-                                  children: [
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: 2.h,
+                                    ),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          state.productDetailsEntities!.price
+                                              .toString(),
+                                          style: TextStyle(
+                                            color: AppColors.primary,
+                                            fontSize: 18.sp,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: 3.w,
+                                        ),
+                                        Visibility(
+                                          visible: state.productDetailsEntities!.price
+                                                  .toString() !=
+                                              state.productDetailsEntities!.oldPrice
+                                                  .toString(),
+                                          child: Row(
+                                            children: [
+                                              Text(
+                                                state.productDetailsEntities!.oldPrice
+                                                    .toString(),
+                                                style: TextStyle(
+                                                    color: Colors.grey[400],
+                                                    fontSize: 15.sp,
+                                                    fontWeight: FontWeight.bold,
+                                                    decoration:
+                                                        TextDecoration.lineThrough),
+                                              ),
+                                              Container(
+                                                  margin: EdgeInsets.all(9.sp),
+                                                  padding: EdgeInsets.all(10.sp),
+                                                  decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(10.sp),
+                                                      color: AppColors.primary
+                                                          .withOpacity(0.5)),
+                                                  child: Text(
+                                                    "${state.productDetailsEntities!.discount}%",
+                                                    style:
+                                                        const TextStyle(color: Colors.white),
+                                                  )),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: 2.h,
+                                    ),
                                     Text(
-                                      state.productDetailsEntities!.price
-                                          .toString(),
+                                      "Description",
                                       style: TextStyle(
                                         color: AppColors.primary,
-                                        fontSize: 18.sp,
+                                        fontSize: 17.sp,
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
-                                    SizedBox(
-                                      width: 3.w,
-                                    ),
-                                    Visibility(
-                                      visible: state.productDetailsEntities!.price
-                                              .toString() !=
-                                          state.productDetailsEntities!.oldPrice
-                                              .toString(),
-                                      child: Row(
-                                        children: [
-                                          Text(
-                                            state.productDetailsEntities!.oldPrice
-                                                .toString(),
-                                            style: TextStyle(
-                                                color: Colors.grey[400],
-                                                fontSize: 15.sp,
-                                                fontWeight: FontWeight.bold,
-                                                decoration:
-                                                    TextDecoration.lineThrough),
-                                          ),
-                                          Container(
-                                              margin: EdgeInsets.all(9.sp),
-                                              padding: EdgeInsets.all(10.sp),
-                                              decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(10.sp),
-                                                  color: AppColors.primary
-                                                      .withOpacity(0.5)),
-                                              child: Text(
-                                                "${state.productDetailsEntities!.discount}%",
-                                                style:
-                                                    const TextStyle(color: Colors.white),
-                                              )),
-                                        ],
-                                      ),
-                                    ),
+                                    ReadMoreText(
+                                      "${state.productDetailsEntities!.description}",
+                                      colorClickableText: AppColors.primary,
+                                      trimCollapsedText: ' Show more',
+                                      trimExpandedText: ' Show less',
+                                      moreStyle: const TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.bold,
+                                          color: AppColors.primary),
+                                      lessStyle: const TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.bold,
+                                          color: AppColors.primary),
+                                    )
                                   ],
                                 ),
-                                SizedBox(
-                                  height: 2.h,
-                                ),
-                                Text(
-                                  "Description",
-                                  style: TextStyle(
-                                    color: AppColors.primary,
-                                    fontSize: 17.sp,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                ReadMoreText(
-                                  "${state.productDetailsEntities!.description}",
-                                  colorClickableText: AppColors.primary,
-                                  trimCollapsedText: ' Show more',
-                                  trimExpandedText: ' Show less',
-                                  moreStyle: const TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: AppColors.primary),
-                                  lessStyle: const TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: AppColors.primary),
-                                )
-                              ],
-                            ),
-                          ),
+                              ),
 
+                            ],
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.all(8.sp),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Expanded(
+                                          child: Text(
+                                            state.productDetailsEntities!.name,
+                                            style: TextStyle(
+                                              color: AppColors.primary,
+                                              fontSize: 17.sp,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ),
+
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: 2.h,
+                                    ),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          state.productDetailsEntities!.price
+                                              .toString(),
+                                          style: TextStyle(
+                                            color: AppColors.primary,
+                                            fontSize: 18.sp,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: 3.w,
+                                        ),
+                                        Visibility(
+                                          visible: state.productDetailsEntities!.price
+                                                  .toString() !=
+                                              state.productDetailsEntities!.oldPrice
+                                                  .toString(),
+                                          child: Row(
+                                            children: [
+                                              Text(
+                                                state.productDetailsEntities!.oldPrice
+                                                    .toString(),
+                                                style: TextStyle(
+                                                    color: Colors.grey[400],
+                                                    fontSize: 15.sp,
+                                                    fontWeight: FontWeight.bold,
+                                                    decoration:
+                                                        TextDecoration.lineThrough),
+                                              ),
+                                              Container(
+                                                  margin: EdgeInsets.all(9.sp),
+                                                  padding: EdgeInsets.all(10.sp),
+                                                  decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(10.sp),
+                                                      color: AppColors.primary
+                                                          .withOpacity(0.5)),
+                                                  child: Text(
+                                                    "${state.productDetailsEntities!.discount}%",
+                                                    style:
+                                                        const TextStyle(color: Colors.white),
+                                                  )),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: 2.h,
+                                    ),
+                                    Text(
+                                      "Description",
+                                      style: TextStyle(
+                                        color: AppColors.primary,
+                                        fontSize: 17.sp,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    ReadMoreText(
+                                      "${state.productDetailsEntities!.description}",
+                                      colorClickableText: AppColors.primary,
+                                      trimCollapsedText: ' Show more',
+                                      trimExpandedText: ' Show less',
+                                      moreStyle: const TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.bold,
+                                          color: AppColors.primary),
+                                      lessStyle: const TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.bold,
+                                          color: AppColors.primary),
+                                    )
+                                  ],
+                                ),
+                              ),
+
+                            ],
+                          ),
                         ],
                       )
                       ,

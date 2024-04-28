@@ -34,7 +34,7 @@ class HomeBanner extends StatelessWidget {
             itemCount:banners.length,
             itemBuilder: (BuildContext context, int index, int realIndex) {
               return Container(
-                margin: EdgeInsets.symmetric(horizontal:20.sp,vertical: 25.sp),
+                margin: EdgeInsets.symmetric(horizontal:20.sp,vertical: 15.sp),
                 child: AppImage(
                   bottomLeftRadius: 18.sp,
                     bottomRightRadius: 18.sp,
@@ -42,7 +42,7 @@ class HomeBanner extends StatelessWidget {
                     topRightRadius: 18.sp,
                     imageUrl: banners[index].imageUrl,
                     width: double.infinity,
-                    height: 20.h),
+                    height: 18.h),
               );
             },
           );

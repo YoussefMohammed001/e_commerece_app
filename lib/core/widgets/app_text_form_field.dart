@@ -1,4 +1,5 @@
 import 'package:e_commerece_app/core/styles/colors.dart';
+import 'package:e_commerece_app/core/utils/svg.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -8,7 +9,7 @@ class AppTextFormField extends StatefulWidget {
    required this.keyboardType,
    this.validators, required this.controller,
    required this.prefixIcon, required this.isPass,
-    this.isEnabled = true,});
+    this.isEnabled = true,  this.search = false,});
   final TextEditingController controller;
   final String labelText;
   final TextInputAction textInputAction;
@@ -16,6 +17,7 @@ class AppTextFormField extends StatefulWidget {
   final FormFieldValidator<String>? validators;
   final IconData prefixIcon;
   final bool isPass;
+  final bool search;
 final bool isEnabled;
 
  @override
@@ -38,6 +40,10 @@ class _AppTextFormFieldState extends State<AppTextFormField> {
           textInputAction: widget.textInputAction ,
           keyboardType: widget.keyboardType,
           decoration: InputDecoration(
+            prefixIcon:  widget.search ?  const AppSVG(
+              assetName: "search",
+              boxFit: BoxFit.none,
+            ) : null,
             focusedErrorBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12.sp),
               borderSide:   const BorderSide(color: AppColors.error),

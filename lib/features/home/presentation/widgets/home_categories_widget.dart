@@ -22,53 +22,68 @@ class HomeCategoriesWidget extends StatelessWidget {
         if (state.categoriesRequestState == RequestState.success) {
           categories = state.categories;
           safePrint("success===>>$categories");
-          return Container(
-            height: 10.h,
-            child: ListView.builder(
-              padding: const EdgeInsets.all(0),
-              scrollDirection: Axis.horizontal,
-              itemCount: categories.length,
-              itemBuilder: (context, index) {
-                return InkWell(
-                  onTap: () {
-
-                    // Navigator.push(context, MaterialPageRoute(builder: (context) => Screen(),))
-                    push(
-                        context,
-                        CategoriesProductsScreen(
-                          id: categories[index].id.toString(),
-                          category: categories[index].name,
-                        ));
-                  },
-                  child: Container(
-                    padding: EdgeInsets.all(8.sp),
-                    margin: EdgeInsets.all(10.sp),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        AppImage(
-                          imageUrl: categories[index].imageUrl,
-                          height: 5.h,
-                          topLeftRadius: 13.sp,
-                          topRightRadius: 13.sp,
-                          bottomLeftRadius: 13.sp,
-                          bottomRightRadius: 13.sp,
-                          width: 10.w,
-                    
-                        ),
-                        Text(
-                          categories[index].name,
-                          style: TextStyle(
-                              color: AppColors.primary,
-                              fontSize: 15.sp,
-                              fontWeight: FontWeight.bold),
-                        )
-                      ],
-                    ),
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding:  EdgeInsets.symmetric(horizontal: 12.sp),
+                child: Text("Categories",
+                  style: TextStyle(
+                    color: AppColors.dark,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 18.sp,
                   ),
-                );
-              },
-            ),
+                ),
+              ),
+              Container(
+                height: 10.h,
+                child: ListView.builder(
+                  padding: const EdgeInsets.all(0),
+                  scrollDirection: Axis.horizontal,
+                  itemCount: categories.length,
+                  itemBuilder: (context, index) {
+                    return InkWell(
+                      onTap: () {
+
+                        // Navigator.push(context, MaterialPageRoute(builder: (context) => Screen(),))
+                        push(
+                            context,
+                            CategoriesProductsScreen(
+                              id: categories[index].id.toString(),
+                              category: categories[index].name,
+                            ));
+                      },
+                      child: Container(
+                        padding: EdgeInsets.all(8.sp),
+                        margin: EdgeInsets.all(10.sp),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            AppImage(
+                              imageUrl: categories[index].imageUrl,
+                              height: 5.h,
+                              topLeftRadius: 13.sp,
+                              topRightRadius: 13.sp,
+                              bottomLeftRadius: 13.sp,
+                              bottomRightRadius: 13.sp,
+                              width: 10.w,
+
+                            ),
+                            Text(
+                              categories[index].name,
+                              style: TextStyle(
+                                  color: AppColors.grey,
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.w400),
+                            )
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ],
           );
         } else if (state.categoriesRequestState == RequestState.loading) {
           safePrint("fail");

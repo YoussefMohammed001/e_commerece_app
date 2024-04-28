@@ -1,9 +1,9 @@
 import 'package:e_commerece_app/core/styles/colors.dart';
 import 'package:e_commerece_app/core/utils/navigators.dart';
-import 'package:e_commerece_app/core/widgets/app_text_form_field.dart';
-import 'package:e_commerece_app/features/search/presentation/pages/search_screen.dart';
+import 'package:e_commerece_app/core/utils/svg.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class HomeAppBar extends StatelessWidget {
@@ -18,20 +18,47 @@ class HomeAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap:() {
-       push(context, const SearchScreen());
       },
-      child: Row(
+      child: Column(
         children: [
-          Expanded(child: Text("")),
-          Container(
-            padding: EdgeInsets.symmetric(vertical: 12.sp,
-            horizontal: 11.sp
-            ),
-            decoration: BoxDecoration(
-              color: AppColors.primary,
-              borderRadius: BorderRadius.circular(12.sp)
-            ),
-            child: Icon(Icons.search,color: Colors.white,),
+          Row(
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text("Delivery Address",
+                    style: TextStyle(
+                      color: AppColors.grey,
+                      fontSize: 15.sp
+                    ),
+                    ),
+                    Row(
+                      children: [
+                        Text("Cairo, Egypt",
+                        style: TextStyle(
+                          color: AppColors.dark,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 16.sp,
+                        ),
+                        ),
+                        Icon(Icons.keyboard_arrow_down_outlined)
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.symmetric(vertical: 12.sp,
+                horizontal: 11.sp
+                ),
+                // decoration: BoxDecoration(
+                //   color: AppColors.primary,
+                //   borderRadius: BorderRadius.circular(12.sp)
+                // ),
+                child: AppSVG(assetName: "cart"),
+              ),
+            ],
           ),
         ],
       ),

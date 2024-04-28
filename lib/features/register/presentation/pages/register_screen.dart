@@ -60,6 +60,7 @@ class RegisterScreen extends StatelessWidget {
           builder: (context, state) {
             return SafeArea(
               child: Scaffold(
+
                 body: Padding(
                   padding:  EdgeInsets.symmetric(horizontal: 17.sp),
 
