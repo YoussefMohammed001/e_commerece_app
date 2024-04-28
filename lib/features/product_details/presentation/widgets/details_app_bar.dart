@@ -32,7 +32,7 @@ double dimension = 5;
     super.initState();
     timer =  Timer.periodic(const Duration(milliseconds: 800), (timer) {
       setState(() {
-        dimension = dimension == 5 ? 6 : 5;
+        dimension = dimension == 5 ? 5.4 : 5;
 
       });
     });
@@ -58,7 +58,7 @@ double dimension = 5;
               )),
         ),
         AnimatedContainer(
-          duration: const Duration(milliseconds: 500),
+          duration: const Duration(milliseconds: 800),
           height:dimension.h,
           width: dimension.h,
           child: CircleAvatar(

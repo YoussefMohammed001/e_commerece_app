@@ -35,7 +35,7 @@ class AppImage extends StatelessWidget {
       child: CachedNetworkImage(
 
 
-        fit: BoxFit.fill,
+        fit: BoxFit.scaleDown,
         width: width,
         height: height,
         imageUrl: imageUrl,

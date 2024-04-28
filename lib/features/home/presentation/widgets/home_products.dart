@@ -12,8 +12,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class HomeProducts extends StatefulWidget {
-   const HomeProducts({super.key});
-
+  const HomeProducts({super.key});
 
   @override
   State<HomeProducts> createState() => _HomeProductsState();
@@ -23,65 +22,73 @@ class _HomeProductsState extends State<HomeProducts> {
   List<ProductDetailsEntities> products = [];
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<HomeBloc,HomeState>(builder: (context, state) {
-     if(state.productsRequestState == RequestState.loading){
-       return Center(child: CircularProgressIndicator());
-
-     }  else if(state.productsRequestState == RequestState.success){
-       products= state.products;
-       return Column(
-         crossAxisAlignment: CrossAxisAlignment.start,
-         children: [
-           Padding(
-             padding:  EdgeInsets.symmetric(horizontal: 12.sp),
-             child: Text("Hot Products",
-               style: TextStyle(
-                 color: AppColors.dark,
-                 fontWeight: FontWeight.w500,
-                 fontSize: 18.sp,
-               ),
-             ),
-           ),
-           SizedBox(
-             child: GridView.builder(
-               shrinkWrap: true,
-
-               physics: const NeverScrollableScrollPhysics(),
-               gridDelegate:
-               const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-               itemBuilder: (context, index) {
-                 return Hero(
-                   tag: products[index].image.toString(),
-                   child: ProductItem(
-                     productName: products[index].name,
-                     productImage: products[index].image.toString(),
-                     productPrice: products[index].price.toString(),
-                     productOldPrice: products[index].oldPrice.toString(),
-                     productDiscount: products[index].discount.toString(),
-                     onItemTap: () {
-                       push(context, ProductDetailsScreen(id: products[index].id.toInt(), image: products[index].image.toString(),));
-
-                     },
-                     onFavTap: () {
-                       FavouriteBloc(sl()).add(EditFavEvent(state.products[index].id.toString()));
-                       state.products[index].inFavorites = !state.products[index].inFavorites;
-                       setState(() {
-                       });
-
-                     },
-                     isInFav: products[index].inFavorites, id: products[index].id.toInt(), index: index,
-                   ),
-                 );
-               },
-               itemCount: products.length,
-             ),
-           ),
-         ],
-       );
-     } else{
-       return SizedBox();
-     }
-    },);
-
+    return BlocBuilder<HomeBloc, HomeState>(
+      builder: (context, state) {
+        if (state.productsRequestState == RequestState.loading) {
+          return Center(child: CircularProgressIndicator());
+        } else if (state.productsRequestState == RequestState.success) {
+          products = state.products;
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 12.sp),
+                child: Text(
+                  "Hot Products",
+                  style: TextStyle(
+                    color: AppColors.dark,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 18.sp,
+                  ),
+                ),
+              ),
+              SizedBox(
+                child: GridView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                  childAspectRatio: 0.7,
+                    mainAxisExtent: 58.sp,
+                    crossAxisSpacing: 0.3,
+                    mainAxisSpacing: 0.3,
+                  ),
+                  itemBuilder: (context, index) {
+                    return ProductItem(
+                      productName: products[index].name,
+                      productImage: products[index].image.toString(),
+                      productPrice: products[index].price.toString(),
+                      productOldPrice: products[index].oldPrice.toString(),
+                      productDiscount: products[index].discount.toString(),
+                      onItemTap: () {
+                        push(
+                            context,
+                            ProductDetailsScreen(
+                              id: products[index].id.toInt(),
+                              image: products[index].image.toString(),
+                            ));
+                      },
+                      onFavTap: () {
+                        FavouriteBloc(sl()).add(
+                            EditFavEvent(state.products[index].id.toString()));
+                        state.products[index].inFavorites =
+                            !state.products[index].inFavorites;
+                        setState(() {});
+                      },
+                      isInFav: products[index].inFavorites,
+                      id: products[index].id.toInt(),
+                      index: index,
+                    );
+                  },
+                  itemCount: products.length,
+                ),
+              ),
+            ],
+          );
+        } else {
+          return SizedBox();
+        }
+      },
+    );
   }
 }

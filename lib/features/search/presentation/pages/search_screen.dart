@@ -8,6 +8,7 @@ import 'package:e_commerece_app/features/saved_items/presentation/manager/favour
 import 'package:e_commerece_app/features/search/presentation/manager/search_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class SearchScreen extends StatefulWidget {
 
@@ -68,8 +69,12 @@ class _SearchScreenState extends State<SearchScreen> {
           shrinkWrap: true,
           gridDelegate:
 
-          const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2),
+           SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            childAspectRatio: 0.7,
+            mainAxisExtent: 58.sp,
+            crossAxisSpacing: 0.3,
+            mainAxisSpacing: 0.3,          ),
           itemBuilder: (context, index) {
             return ProductItem(
               productName: state.productDetailsEntities[index].name,

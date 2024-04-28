@@ -33,7 +33,6 @@ class HomeScreen extends StatelessWidget {
               leadingWidth: 0,
               toolbarHeight: 3.h,
               pinned: true,
-
               flexibleSpace:  FlexibleSpaceBar(
                 background: Container(
                   margin: EdgeInsets.symmetric(horizontal: 15.sp,
