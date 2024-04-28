@@ -2,11 +2,12 @@ import 'package:e_commerece_app/core/services/services_locator.dart';
 import 'package:e_commerece_app/core/styles/colors.dart';
 import 'package:e_commerece_app/core/utils/navigators.dart';
 import 'package:e_commerece_app/core/utils/request_state.dart';
-import 'package:e_commerece_app/core/widgets/product_item.dart';
+import 'package:e_commerece_app/core/widgets/app_image.dart';
 import 'package:e_commerece_app/features/product_details/presentation/pages/product_details.dart';
-import 'package:e_commerece_app/features/saved_items/presentation/manager/favourite_bloc.dart';
 import 'package:e_commerece_app/features/search/presentation/manager/search_bloc.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -65,49 +66,58 @@ class _SearchScreenState extends State<SearchScreen> {
       return const Expanded(child: Center(child: CircularProgressIndicator()));
     }else {
       return Expanded(
-        child: GridView.builder(
-          shrinkWrap: true,
-          gridDelegate:
+        child: ListView.builder(
+            itemCount: state.productDetailsEntities.length,
+            itemBuilder: (context, index) =>
+                Padding(
+                  padding:  EdgeInsets.symmetric(vertical: 15.sp,horizontal: 20.sp),
+                  child: InkWell(
+                    onTap: () {
+                      push(context,
+                          ProductDetailsScreen(
+                            id: state.productDetailsEntities[index].id
+                                .toInt(),));
 
-           SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            childAspectRatio: 0.7,
-            mainAxisExtent: 58.sp,
-            crossAxisSpacing: 0.3,
-            mainAxisSpacing: 0.3,          ),
-          itemBuilder: (context, index) {
-            return ProductItem(
-              productName: state.productDetailsEntities[index].name,
-              productImage: state.productDetailsEntities[index].image
-                  .toString(),
-              productPrice: state.productDetailsEntities[index].price
-                  .toString(),
-              productOldPrice: state.productDetailsEntities[index]
-                  .oldPrice.toString(),
-              productDiscount: state.productDetailsEntities[index]
-                  .discount.toString(),
-              onItemTap: () {
-                push(context,
-                    ProductDetailsScreen(
-                      id: state.productDetailsEntities[index].id
-                          .toInt(),));
-              },
-              onFavTap: () {
-                FavouriteBloc(sl()).add(
-                    EditFavEvent(state.productDetailsEntities[index]
-                        .id.toString()));
-                state.productDetailsEntities[index].inFavorites =
-                !state.productDetailsEntities[index].inFavorites;
-                setState(() {});
-              },
-              isInFav: state.productDetailsEntities[index]
-                  .inFavorites,
-              id: state.productDetailsEntities[index].id.toInt(),
-              index: index,
-            );
-          },
-          itemCount: state.productDetailsEntities.length,
-        ),
+                    },
+                    child: Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Expanded(
+                              child: AppImage(
+                                imageUrl: state.productDetailsEntities[index].image
+                                    .toString(),
+                                width: double.infinity.w,
+                                height: 6.h,
+                                topLeftRadius: 16.sp,
+                                topRightRadius: 16.sp,
+                              ),
+                              flex: 1,
+                            ),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(state.productDetailsEntities[index].name,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16.sp),maxLines: 1,overflow: TextOverflow.ellipsis,),
+                                  Text(state.productDetailsEntities[index].description,style: TextStyle(fontSize: 14.sp),overflow: TextOverflow.ellipsis,maxLines: 1,),
+                                ],
+                              ),
+                              flex: 3,
+
+                            ),
+
+                          ],
+                        ),
+                        SizedBox(height: 1.h,),
+                        Divider(thickness: 5.sp,color: AppColors.primary,)
+
+                      ],
+                    ),
+                  ),
+                )),
       );
     }
               },
