@@ -1,5 +1,4 @@
 import 'package:e_commerece_app/core/services/services_locator.dart';
-import 'package:e_commerece_app/core/styles/colors.dart';
 import 'package:e_commerece_app/core/utils/navigators.dart';
 import 'package:e_commerece_app/core/widgets/app_text_form_field.dart';
 import 'package:e_commerece_app/features/home/presentation/manager/home_bloc.dart';
@@ -52,7 +51,7 @@ class HomeScreen extends StatelessWidget {
                 preferredSize:  Size.fromHeight(6.h),
                 child: InkWell(
                   onTap: () {
-                    push(context, SearchScreen());
+                    push(context, const SearchScreen());
 
                   },
                   child: Container(

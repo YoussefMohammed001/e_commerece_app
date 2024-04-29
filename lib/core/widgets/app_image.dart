@@ -8,6 +8,7 @@ class AppImage extends StatelessWidget {
     required this.imageUrl,
     required this.width,
     required this.height,
+    this.fit =BoxFit.scaleDown,
     this.topLeftRadius = 0,
     this.topRightRadius = 0,
     this.bottomLeftRadius = 0,
@@ -21,6 +22,7 @@ class AppImage extends StatelessWidget {
   final double topRightRadius;
   final double bottomLeftRadius;
   final double bottomRightRadius;
+  final BoxFit fit;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +37,7 @@ class AppImage extends StatelessWidget {
       child: CachedNetworkImage(
 
 
-        fit: BoxFit.scaleDown,
+        fit: fit,
         width: width,
         height: height,
         imageUrl: imageUrl,

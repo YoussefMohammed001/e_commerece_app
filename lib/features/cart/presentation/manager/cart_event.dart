@@ -6,7 +6,7 @@ abstract class BaseCartEvent {}
 class PostCartEvent extends BaseCartEvent{
   final CartDataRequest carRequestData;
 
-  PostCartEvent(this.carRequestData);
+  PostCartEvent({required this.carRequestData});
 }
 class GetCartEvent extends BaseCartEvent{}
 class PutCartEvent extends BaseCartEvent{

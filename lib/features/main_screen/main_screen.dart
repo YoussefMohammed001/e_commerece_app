@@ -63,8 +63,8 @@ class _MainScreenState extends State<MainScreen> {
             icon: const AppSVG( assetName: 'home',)
         ),
          const BottomNavigationBarItem(
-          label:"Cart",
-            icon: AppSVG( assetName: 'cart',)
+          label:"History",
+            icon: AppSVG( assetName: 'history',)
         ),
           const BottomNavigationBarItem(
           label:"Profile",

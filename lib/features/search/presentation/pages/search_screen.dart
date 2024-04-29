@@ -30,7 +30,7 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => bloc..add(SearchEvent(title: ' ')),
+      create: (context) => bloc,
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: AppColors.primary,
@@ -62,20 +62,12 @@ class _SearchScreenState extends State<SearchScreen> {
                         ),
                       ),
                       border: const UnderlineInputBorder()),
-                  onChanged: (value) async {
-                    setState(() async {
-                      lastEnteredText = value;
-                      bloc.add(SearchEvent(title: value));
-                    });
-                  },
-                  onFieldSubmitted: (value) {
-                    setState(() async {
-                      changeSearchIcon = true;
+                  onFieldSubmitted: (value) async {
+                    changeSearchIcon = true;
+                    await MyShared.addStringToList(
+                        key: MySharedKeys.searchList, value: value);
+                    setState(() {});
 
-                      await MyShared.addStringToList(
-                          key: MySharedKeys.searchList, value: value);
-                      setState(() {});
-                    });
                   },
                 ),
               ),

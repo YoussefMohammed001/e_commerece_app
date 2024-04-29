@@ -26,9 +26,9 @@ class CartItem extends StatelessWidget {
           padding: EdgeInsets.all(10.sp),
           decoration: BoxDecoration(
             color: Colors.white,
-            border: Border.all(
-              color:AppColors.primary.withOpacity(0.3),
-            ),
+            // border: Border.all(
+            //   color:AppColors.primary.withOpacity(0.3),
+            // ),
             borderRadius: BorderRadius.circular(15.sp),
           ),
           child: InkWell(
@@ -54,6 +54,7 @@ class CartItem extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(name),
+
                         Row(
                           children: [
                             Column(
@@ -61,14 +62,16 @@ class CartItem extends StatelessWidget {
 
                               children: [
 
-                                Text(price
-                                    .toString(),
+                                SizedBox(
+                                  height:1.h,
+                                ),
+                                Text("${price} EGP",
                                   style: const TextStyle(
-                                      color: AppColors.primary,
+                                      color: AppColors.dark,
                                       fontWeight: FontWeight.bold),
                                 ),
                                 SizedBox(
-                                  width: 2.w,
+                                  height: 1.h,
                                 ),
                                 Visibility(
                                   visible:  oldPrice
@@ -92,7 +95,7 @@ class CartItem extends StatelessWidget {
                                           padding: EdgeInsets.all(8.sp),
                                           decoration: BoxDecoration(
                                               color:
-                                              AppColors.primary.withOpacity(.5),
+                                              AppColors.primary.withOpacity(.3),
                                               borderRadius:
                                               BorderRadius.circular(10.sp)),
                                           child: Text(
@@ -112,20 +115,21 @@ class CartItem extends StatelessWidget {
                               mainAxisAlignment:
                               MainAxisAlignment.spaceBetween,
                               children: [
-                                IconButton(onPressed: delete, icon: const Icon(Icons.delete),color: Colors.red,),
                                 InkWell(
                                   onTap: inc,
                                   child: Container(
                                       padding: EdgeInsets.all(8.sp),
                                       decoration: BoxDecoration(
-                                        color: AppColors.primary
-                                            .withOpacity(0.5),
+                                        border: Border.all(
+color: AppColors.grey
+                                        ),
                                         borderRadius:
-                                        BorderRadius.circular(13.sp),
+                                        BorderRadius.circular(100.sp),
                                       ),
-                                      child: const Icon(
+                                      child:   Icon(
                                         Icons.add,
-                                        color: Colors.white,
+                                        color: AppColors.grey,
+                                        size: 18.sp,
                                       )),
                                 ),
                                 SizedBox(
@@ -133,27 +137,52 @@ class CartItem extends StatelessWidget {
                                 ),
                                 Text(quantity
                                     .toString()),
-                                SizedBox(
-                                  width: 2.w,
-                                ),
                                 Visibility(
                                   visible: minusVisible,
-                                  child: InkWell(
-                                    onTap: dec,
-                                    child: Container(
-                                        padding: EdgeInsets.all(8.sp),
-                                        decoration: BoxDecoration(
-                                          color: AppColors.primary
-                                              .withOpacity(0.5),
-                                          borderRadius:
-                                          BorderRadius.circular(13.sp),
-                                        ),
-                                        child: const Icon(
-                                          Icons.remove,
-                                          color: Colors.white,
-                                        )),
+                                  child: Row(
+                                    children: [
+                                      SizedBox(
+                                        width: 2.w,
+                                      ),
+                                      InkWell(
+                                        onTap: dec,
+                                        child:  Container(
+                                            padding: EdgeInsets.all(8.sp),
+                                            decoration: BoxDecoration(
+                                              border: Border.all(
+                                                  color: AppColors.grey
+                                              ),
+                                              borderRadius:
+                                              BorderRadius.circular(100.sp),
+                                            ),
+                                            child:   Icon(
+                                              Icons.remove,
+                                              size: 18.sp,
+                                              color: AppColors.grey,
+                                            )),
+                                      ),
+                                    ],
                                   ),
                                 ),
+                                SizedBox(width: 2.w,),
+                                InkWell(
+                                  onTap: delete,
+                                  child:  Container(
+                                      padding: EdgeInsets.all(8.sp),
+                                      decoration: BoxDecoration(
+                                        border: Border.all(
+                                            color: AppColors.grey
+                                        ),
+                                        borderRadius:
+                                        BorderRadius.circular(100.sp),
+                                      ),
+                                      child:   Icon(
+                                        size: 18.sp,
+                                        Icons.delete_outline_outlined,
+                                        color: AppColors.grey,
+                                      )),
+                                ),
+
                               ],
                             )
                           ],
