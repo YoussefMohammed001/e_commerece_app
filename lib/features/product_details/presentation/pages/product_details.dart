@@ -132,24 +132,24 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                         borderRadius: BorderRadius.circular(12.sp),
                       ),
                     ),
-                    Expanded(
-                      child: AppButton(onPressed: () async {
-                        if(  state.productDetailsEntities!
-                            .inCart == true){
-                          /// push to check out
-                        } else{
-                       addTtoCart(id: state.productDetailsEntities!.id.toInt()).then((value) {
-                         push(context, CartScreen());
-                       });
-                        }
-                      }, label: "Buy Now",
-                      bgColor: Colors.grey[300],
-                        textColor: AppColors.dark,
-                        margin: EdgeInsets.all(10.sp),
-                        padding: EdgeInsets.symmetric(horizontal: 1.sp,vertical: 10.sp),
-                        borderRadius: BorderRadius.circular(12.sp),
-                      ),
-                    ),
+                    // Expanded(
+                    //   child: AppButton(onPressed: () async {
+                    //     if(  state.productDetailsEntities!
+                    //         .inCart == true){
+                    //       /// push to check out
+                    //     } else{
+                    //    addTtoCart(id: state.productDetailsEntities!.id.toInt()).then((value) {
+                    //      push(context, CartScreen());
+                    //    });
+                    //     }
+                    //   }, label: "Buy Now",
+                    //   bgColor: Colors.grey[300],
+                    //     textColor: AppColors.dark,
+                    //     margin: EdgeInsets.all(10.sp),
+                    //     padding: EdgeInsets.symmetric(horizontal: 1.sp,vertical: 10.sp),
+                    //     borderRadius: BorderRadius.circular(12.sp),
+                    //   ),
+                    // ),
                   ],
                 ),
                 backgroundColor: Colors.white,

@@ -24,6 +24,7 @@ class HomeScreen extends StatelessWidget {
               ..add(HomeBannersEvent())
               ..add(HomeProductsEvent()),
           ),
+
         ],
         child: CustomScrollView(
           slivers: [
@@ -44,7 +45,8 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              expandedHeight: 13.h,
+              expandedHeight: 15.h,
+
               foregroundColor: Colors.white,
               surfaceTintColor: Colors.white,
               bottom: PreferredSize(

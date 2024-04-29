@@ -133,9 +133,9 @@ class ProductItem extends StatelessWidget {
                           label: "Add to cart",
                           bgColor: AppColors.primary,
                           margin: EdgeInsets.symmetric(
-                              horizontal: 13.sp, vertical: 10.sp),
+                              horizontal: 12.sp, vertical: 7.sp),
                           padding: EdgeInsets.symmetric(
-                              vertical: 10.sp, horizontal: 9.sp),
+                              vertical: 5.sp, horizontal: 3.sp),
                         ),
                       ],
                     ),

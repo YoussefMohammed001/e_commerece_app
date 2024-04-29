@@ -16,11 +16,11 @@ class HomeAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap:() {
-      },
+    return Container(
+      margin: EdgeInsets.all(1.sp),
       child: Column(
         children: [
+          SizedBox(height: 1.h,),
           Row(
             children: [
               Expanded(
@@ -60,6 +60,7 @@ class HomeAppBar extends StatelessWidget {
               ),
             ],
           ),
+          SizedBox(height: 2.h,),
         ],
       ),
     );

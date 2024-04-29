@@ -36,7 +36,7 @@ class HomeCategoriesWidget extends StatelessWidget {
                 ),
               ),
               Container(
-                height: 10.h,
+                height: 13.h,
                 child: ListView.builder(
                   padding: const EdgeInsets.all(0),
                   scrollDirection: Axis.horizontal,
@@ -54,28 +54,37 @@ class HomeCategoriesWidget extends StatelessWidget {
                             ));
                       },
                       child: Container(
-                        padding: EdgeInsets.all(8.sp),
                         margin: EdgeInsets.all(10.sp),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             AppImage(
+                              fit: BoxFit.fill,
                               imageUrl: categories[index].imageUrl,
-                              height: 5.h,
+                              height: 8.h,
                               topLeftRadius: 13.sp,
                               topRightRadius: 13.sp,
                               bottomLeftRadius: 13.sp,
                               bottomRightRadius: 13.sp,
-                              width: 10.w,
+                              width: 16.w,
 
                             ),
-                            Text(
-                              categories[index].name,
-                              style: TextStyle(
-                                  color: AppColors.grey,
-                                  fontSize: 14.sp,
-                                  fontWeight: FontWeight.w400),
-                            )
+                            Container(
+                              decoration: BoxDecoration(
+                                color: AppColors.grey.withOpacity(0.1),
+                                borderRadius: BorderRadius.circular(14.sp),
+                              ),
+                              padding: EdgeInsets.all(9.sp),
+
+                              child: Text(
+                                categories[index].name,
+                                style: TextStyle(
+                                    color: AppColors.grey,
+                                    fontSize: 14.sp,
+                                    fontWeight: FontWeight.w400),
+                              ),
+                            ),
+
                           ],
                         ),
                       ),
