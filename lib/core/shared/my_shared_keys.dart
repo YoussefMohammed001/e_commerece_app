@@ -22,4 +22,5 @@ enum MySharedKeys {
   gender,
   dateOfBirth,
   userImage, cartId, theme,
+  searchList
 }
