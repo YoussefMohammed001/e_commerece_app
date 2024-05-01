@@ -1,9 +1,6 @@
 import 'package:e_commerece_app/core/styles/colors.dart';
-import 'package:e_commerece_app/core/utils/navigators.dart';
 import 'package:e_commerece_app/core/utils/svg.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class HomeAppBar extends StatelessWidget {
@@ -27,22 +24,35 @@ class HomeAppBar extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Delivery Address",
-                    style: TextStyle(
-                      color: AppColors.grey,
-                      fontSize: 15.sp
-                    ),
-                    ),
                     Row(
                       children: [
-                        Text("Cairo, Egypt",
-                        style: TextStyle(
-                          color: AppColors.dark,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 16.sp,
+                        AppSVG(assetName: "shop",
+                        height: 3.h,
+                          width: 1.5.w,
                         ),
+                        SizedBox(width: 2.w,),
+                        Column(
+                          children: [
+                            Text("Delivery Address",
+                            style: TextStyle(
+                              color: AppColors.grey,
+                              fontSize: 15.sp
+                            ),
+                            ),
+                            Row(
+                              children: [
+                                Text("Cairo, Egypt",
+                                style: TextStyle(
+                                  color: AppColors.dark,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 16.sp,
+                                ),
+                                ),
+                                const Icon(Icons.keyboard_arrow_down_outlined)
+                              ],
+                            ),
+                          ],
                         ),
-                        Icon(Icons.keyboard_arrow_down_outlined)
                       ],
                     ),
                   ],
@@ -56,7 +66,7 @@ class HomeAppBar extends StatelessWidget {
                 //   color: AppColors.primary,
                 //   borderRadius: BorderRadius.circular(12.sp)
                 // ),
-                child: AppSVG(assetName: "cart"),
+                child: const AppSVG(assetName: "cart"),
               ),
             ],
           ),

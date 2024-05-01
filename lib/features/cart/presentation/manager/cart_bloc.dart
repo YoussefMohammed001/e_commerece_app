@@ -14,7 +14,6 @@ class CartBloc extends Bloc<BaseCartEvent, CartState> {
     on<GetCartEvent>((event, emit) async {
       emit(state.copyWith(
         getCartRequestState: RequestState.loading,
-
       ));
       final result = await cartUseCase.getCart();
       result.fold((left) {
@@ -22,7 +21,8 @@ class CartBloc extends Bloc<BaseCartEvent, CartState> {
 
         emit(state.copyWith(
         getCartRequestState: RequestState.failure,));
-      }, (right) {
+      },
+              (right) {
         emit(state.copyWith(
             getCartRequestState: RequestState.success,
             getCartDataEntities: right
@@ -30,6 +30,7 @@ class CartBloc extends Bloc<BaseCartEvent, CartState> {
         safePrint("=========> right: ${right.total}");
 
       });
+
 
     });
 on<PostCartEvent>((event, emit) async {

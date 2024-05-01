@@ -2,7 +2,7 @@ import 'package:e_commerece_app/core/styles/colors.dart';
 import 'package:e_commerece_app/core/utils/navigators.dart';
 import 'package:e_commerece_app/core/utils/svg.dart';
 import 'package:e_commerece_app/core/widgets/app_button.dart';
-import 'package:e_commerece_app/features/profile/presentation/widgets/Manage%20Addresses%20Widget/manage_addresses_widget.dart';
+import 'package:e_commerece_app/features/address/presentation/widgets/manage_addresses_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -53,6 +53,9 @@ class _ChangingAddressesBottomSheetWidgetState extends State<ChangingAddressesBo
         Gap(4.h),
         AppButton(onPressed: () {
 index ++;
+setState(() {
+
+});
         }, label: 'Continue',margin: EdgeInsets.symmetric(vertical: 1.sp),bgColor: Colors.green,textColor: Colors.white,),
         Gap(1.h),
 

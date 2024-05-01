@@ -4,7 +4,7 @@ import 'package:e_commerece_app/core/shared/my_shared_keys.dart';
 import 'package:e_commerece_app/core/styles/colors.dart';
 import 'package:e_commerece_app/core/utils/navigators.dart';
 import 'package:e_commerece_app/core/utils/svg.dart';
-import 'package:e_commerece_app/features/profile/presentation/pages/manage_addresses_screen.dart';
+import 'package:e_commerece_app/features/address/presentation/pages/manage_addresses_screen.dart';
 import 'package:e_commerece_app/features/profile/presentation/widgets/profile_navigator_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -90,7 +90,7 @@ class ProfileScreen extends StatelessWidget {
                   ProfileNavigatorWidget(
                     titleDetector: 'Manage Addresses',
                     pushTo: () {
-                      push(context, const ManageAddressesScreen());
+                      push(context,  ManageAddressesScreen());
                     },
                     svgName: 'location',
                   ),

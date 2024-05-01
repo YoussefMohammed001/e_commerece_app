@@ -7,9 +7,7 @@ import 'package:e_commerece_app/core/utils/request_state.dart';
 import 'package:e_commerece_app/core/widgets/app_image.dart';
 import 'package:e_commerece_app/features/product_details/presentation/pages/product_details.dart';
 import 'package:e_commerece_app/features/search/presentation/manager/search_bloc.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -52,7 +50,7 @@ class _SearchScreenState extends State<SearchScreen> {
                     hintStyle: const TextStyle(color: Colors.white),
                     prefixIcon: InkWell(
                       onTap: () {
-                        if(changeSearchIcon == true){
+                        if (changeSearchIcon == true) {
                           pop(context);
                         }
                       },
@@ -70,12 +68,9 @@ class _SearchScreenState extends State<SearchScreen> {
                   await MyShared.addStringToList(
                       key: MySharedKeys.searchList, value: value);
                   setState(() {});
-
-
                 },
               ),
             ),
-
             BlocBuilder<SearchBloc, SearchState>(
               builder: (context, state) {
                 if (controller.text.isEmpty && myList.isNotEmpty) {
@@ -101,16 +96,16 @@ class _SearchScreenState extends State<SearchScreen> {
                                 thickness: 3.sp,
                                 color: AppColors.grey,
                               ),
-
                             ],
                           ),
                         ),
                         Expanded(
                           child: ListView.builder(
-                            shrinkWrap:true,
+                            shrinkWrap: true,
                             itemBuilder: (context, index) {
                               return Padding(
-                                padding:  EdgeInsets.symmetric(horizontal:12.sp),
+                                padding:
+                                    EdgeInsets.symmetric(horizontal: 12.sp),
                                 child: Column(
                                   children: [
                                     Row(
@@ -134,8 +129,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                         InkWell(
                                             onTap: () {
                                               MyShared.removeStringFromList(
-                                                  key: MySharedKeys
-                                                      .searchList,
+                                                  key: MySharedKeys.searchList,
                                                   value: myList[index]);
                                               setState(() {
                                                 myList.removeAt(index);
@@ -203,38 +197,39 @@ class _SearchScreenState extends State<SearchScreen> {
                     ),
                   );
                 }
-                if (bloc.state.requestState == RequestState.success && state.productDetailsEntities.isNotEmpty){
-                  return   Expanded(
+                if (bloc.state.requestState == RequestState.success &&
+                    state.productDetailsEntities.isNotEmpty) {
+                  return Expanded(
                     child: Column(
-
                       children: [
                         Padding(
-                          padding:  EdgeInsets.only(
+                          padding: EdgeInsets.only(
                             top: 14.sp,
                             bottom: 7.sp,
                             left: 13.sp,
-                          right:  13.sp,
-
+                            right: 13.sp,
                           ),
                           child: Column(
                             children: [
                               Row(
                                 children: [
-                                Expanded(
-                                  child: Text("Results",style: TextStyle(
-                                    fontWeight: FontWeight.w500,
-
-                                  ),),
-                                ),
-                                Text("("),
-                                Text("${state.productDetailsEntities.length}",
-                                style: TextStyle(
-                                  color: AppColors.primary
-                                ),
-                                ),
-                                  Text(")"),
-
-                                ],),
+                                  const Expanded(
+                                    child: Text(
+                                      "Results",
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                  ),
+                                  const Text("("),
+                                  Text(
+                                    "${state.productDetailsEntities.length}",
+                                    style: const TextStyle(
+                                        color: AppColors.primary),
+                                  ),
+                                  const Text(")"),
+                                ],
+                              ),
                               Divider(
                                 thickness: 3.sp,
                                 color: AppColors.grey,
@@ -244,97 +239,91 @@ class _SearchScreenState extends State<SearchScreen> {
                         ),
                         Expanded(
                           child: ListView.builder(
-                            shrinkWrap: true,
-                              itemCount:
-                              state.productDetailsEntities.length,
+                              shrinkWrap: true,
+                              itemCount: state.productDetailsEntities.length,
                               itemBuilder: (context, index) => InkWell(
-                                onTap: () {
-                                  push(
-                                      context,
-                                      ProductDetailsScreen(
-                                        id: state
-                                            .productDetailsEntities[
-                                        index]
-                                            .id
-                                            .toInt(),
-                                      ));
-                                },
-                                child: Column(
-                                  children: [
-                                    Row(
-                                      mainAxisAlignment:
-                                      MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                    onTap: () {
+                                      push(
+                                          context,
+                                          ProductDetailsScreen(
+                                            id: state
+                                                .productDetailsEntities[index]
+                                                .id
+                                                .toInt(),
+                                          ));
+                                    },
+                                    child: Column(
                                       children: [
-                                        Expanded(
-                                          flex: 1,
-                                          child: AppImage(
-                                            imageUrl: state
-                                                .productDetailsEntities[
-                                            index]
-                                                .image
-                                                .toString(),
-                                            width: double.infinity.w,
-                                            height: 6.h,
-                                            topLeftRadius: 16.sp,
-                                            topRightRadius: 16.sp,
-                                          ),
-                                        ),
-                                        Expanded(
-                                          flex: 3,
-                                          child: Column(
-                                            crossAxisAlignment:
-                                            CrossAxisAlignment
-                                                .start,
-                                            mainAxisAlignment:
-                                            MainAxisAlignment
-                                                .center,
-                                            children: [
-                                              Text(
-                                                state
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Expanded(
+                                              flex: 1,
+                                              child: AppImage(
+                                                imageUrl: state
                                                     .productDetailsEntities[
-                                                index]
-                                                    .name,
-                                                style: TextStyle(
-                                                    fontWeight:
-                                                    FontWeight
-                                                        .bold,
-                                                    fontSize: 16.sp),
-                                                maxLines: 1,
-                                                overflow: TextOverflow
-                                                    .ellipsis,
+                                                        index]
+                                                    .image
+                                                    .toString(),
+                                                width: double.infinity.w,
+                                                height: 6.h,
+                                                topLeftRadius: 16.sp,
+                                                topRightRadius: 16.sp,
                                               ),
-                                              Text(
-                                                state
-                                                    .productDetailsEntities[
-                                                index]
-                                                    .description,
-                                                style: TextStyle(
-                                                    fontSize: 14.sp),
-                                                overflow: TextOverflow
-                                                    .ellipsis,
-                                                maxLines: 1,
+                                            ),
+                                            Expanded(
+                                              flex: 3,
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Text(
+                                                    state
+                                                        .productDetailsEntities[
+                                                            index]
+                                                        .name,
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontSize: 16.sp),
+                                                    maxLines: 1,
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                  ),
+                                                  Text(
+                                                    state
+                                                        .productDetailsEntities[
+                                                            index]
+                                                        .description,
+                                                    style: TextStyle(
+                                                        fontSize: 14.sp),
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                    maxLines: 1,
+                                                  ),
+                                                ],
                                               ),
-                                            ],
-                                          ),
+                                            ),
+                                          ],
                                         ),
+                                        Divider(
+                                          thickness: 3.sp,
+                                          color: AppColors.grey,
+                                        )
                                       ],
                                     ),
-                                    Divider(
-                                      thickness: 3.sp,
-                                      color: AppColors.grey,
-                                    )
-                                  ],
-                                ),
-                              )),
+                                  )),
                         ),
                       ],
                     ),
                   );
-                }
-            else{
-              return SizedBox();
+                } else {
+                  return const SizedBox();
                 }
               },
             )

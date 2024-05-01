@@ -1,4 +1,8 @@
 
+import 'package:e_commerece_app/features/address/data/data_sources/address_api.dart';
+import 'package:e_commerece_app/features/address/data/repositories/address_repo.dart';
+import 'package:e_commerece_app/features/address/domain/repositories/base_address_repo.dart';
+import 'package:e_commerece_app/features/address/domain/use_cases/address_use_case.dart';
 import 'package:e_commerece_app/features/cart/data/data_sources/cart_api.dart';
 import 'package:e_commerece_app/features/cart/data/repositories/cart_repo.dart';
 import 'package:e_commerece_app/features/cart/domain/repositories/base_cart_repo.dart';
@@ -60,6 +64,7 @@ sl.registerLazySingleton(() => FavUseCase(sl()));
 sl.registerLazySingleton(() => UpdateProfileUseCase(sl()));
 sl.registerLazySingleton(() => SearchUseCase(sl()));
 sl.registerLazySingleton(() => CartUseCase(sl()));
+sl.registerLazySingleton(() => AddressUseCase(sl()));
 
 
     ///Repository
@@ -73,6 +78,7 @@ sl.registerLazySingleton<BaseFavRepo>(() => FavRepo(sl()));
 sl.registerLazySingleton<BaseProfileRepo>(() => ProfileRepo(sl()));
 sl.registerLazySingleton<BaseSearchRepo>(() => SearchRepo(sl()));
 sl.registerLazySingleton<BaseCartRepo>(() => CartRepo(sl()));
+sl.registerLazySingleton<BaseAddressRepo>(() => AddressRepo(sl()));
 
 
     ///Data SOURCE
@@ -86,6 +92,7 @@ sl.registerLazySingleton<BaseFavApi>(() => FavDataSource());
 sl.registerLazySingleton<BaseProfileApi>(() => UpdateProfileApi());
 sl.registerLazySingleton<BaseSearchApi>(() => SearchApi());
 sl.registerLazySingleton<BaseCartApi>(() => CartApi());
+sl.registerLazySingleton<BaseAddressApi>(() => AddressApi());
 
 
 

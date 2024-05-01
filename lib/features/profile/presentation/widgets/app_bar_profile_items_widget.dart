@@ -7,11 +7,12 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 
 
 class AppBarProfileItemsWidget extends StatelessWidget {
-  const AppBarProfileItemsWidget({super.key, required this.title, required this.rightIcon, required this.liftIcon});
+  const AppBarProfileItemsWidget({super.key, required this.title, required this.rightIcon, required this.liftIcon, required this.onAdd});
 
   final String title;
   final String rightIcon;
   final String liftIcon;
+  final VoidCallback onAdd;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -29,7 +30,9 @@ class AppBarProfileItemsWidget extends StatelessWidget {
                   fontSize: 19.sp),
             )),
         const Spacer(),
-        AppSVG(assetName: rightIcon,width: 22.sp,height: 22.sp,),
+        InkWell(
+          onTap: onAdd,
+            child: AppSVG(assetName: rightIcon,width: 22.sp,height: 22.sp,)),
 
       ],
     );
