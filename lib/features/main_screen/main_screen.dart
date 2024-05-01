@@ -17,8 +17,6 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   MainCubit cubit = MainCubit();
-
-
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -27,12 +25,10 @@ class _MainScreenState extends State<MainScreen> {
         builder: (context, state) {
           safePrint("Main");
           return Container(
-            color: AppColors.primary,
+            color: Colors.transparent,
             child: SafeArea(
-
               child: Scaffold(
-
-                //floating action button position to center
+                backgroundColor: AppColors.bg,
                 bottomNavigationBar: bottomNavBar(),
                 body: cubit.screens[cubit.index],
               ),

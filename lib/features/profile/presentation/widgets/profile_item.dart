@@ -13,22 +13,20 @@ final VoidCallback onPress;
     return     InkWell(
       onTap: onPress,
       child: Container(
-        margin: EdgeInsets.all(12.sp),
-        padding: EdgeInsets.all(18.sp),
+        margin: EdgeInsets.symmetric(horizontal: 12.sp,vertical: 14.sp),
+        padding: EdgeInsets.symmetric(horizontal: 16.sp,vertical: 16.sp),
         decoration: BoxDecoration(
           color: AppColors.primary.withOpacity(0.1),
           borderRadius: BorderRadius.circular(15.sp),
         ),
         child: Row(
           children: [
-            Icon(icon,color: AppColors.primary,),
-            SizedBox(width: 3.w,),
-            Text(text,style:const TextStyle(fontWeight: FontWeight.bold,color: AppColors.primary),),
+            Text(text,style: TextStyle(fontWeight: FontWeight.bold,color: AppColors.dark,fontSize: 16.sp),),
             Spacer(),
             Container(
               padding: EdgeInsets.all(8.sp),
                 decoration: BoxDecoration(
-                  color: AppColors.primary.withOpacity(0.3),
+                  color: AppColors.primary.withOpacity(0.2),
                   borderRadius: BorderRadius.circular(30.sp),
                 ),
                 child: Icon(Icons.navigate_next_rounded,color: AppColors.primary,)),
