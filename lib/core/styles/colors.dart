@@ -7,5 +7,6 @@ class AppColors{
   static const Color error = Color(0xffD65B5B);
   static const Color waring = Color(0xffF79008);
   static const Color success = Color(0xff12B76A);
+  static const Color bg = Color(0xfff4f5f4);
 
 }

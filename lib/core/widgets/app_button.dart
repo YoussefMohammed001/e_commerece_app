@@ -1,3 +1,4 @@
+import 'package:e_commerece_app/core/styles/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -31,7 +32,7 @@ class AppButton extends StatelessWidget {
         style: ButtonStyle(
           backgroundColor: MaterialStatePropertyAll(bgColor),
           shape: MaterialStateProperty.all<OutlinedBorder>(
-            RoundedRectangleBorder(
+            RoundedRectangleBorder(side: const BorderSide(color: AppColors.success),
               borderRadius: borderRadius ?? BorderRadius.circular(20.sp),
             ),
           ),
@@ -44,7 +45,7 @@ class AppButton extends StatelessWidget {
             style: TextStyle(
               color: textColor,
               fontWeight: FontWeight.w400,
-              fontSize: 18.sp,
+              fontSize: 16.sp,
             ),
           ),
         ),
