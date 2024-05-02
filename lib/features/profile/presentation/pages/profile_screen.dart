@@ -87,6 +87,7 @@ class ProfileScreen extends StatelessWidget {
               ),
               child: Column(
                 children: [
+
                   ProfileNavigatorWidget(
                     titleDetector: 'Manage Addresses',
                     pushTo: () {
