@@ -38,9 +38,9 @@ class AddressBloc extends Bloc<BaseAddressEvent, AddressState> {
 
     on<PostAddressEvent>((event, emit) async {
       emit(state.copyWith(
-        updateRequestState: RequestState.initial,
         addToAddressRequestState: RequestState.loading,
         deleteRequestState: RequestState.initial,
+        updateRequestState: RequestState.initial,
 
       ));
       final result = await addressUseCase.addAddress(addressRequest: event.addressRequest);

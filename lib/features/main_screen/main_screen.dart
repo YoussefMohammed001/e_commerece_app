@@ -56,15 +56,15 @@ class _MainScreenState extends State<MainScreen> {
       items:   <BottomNavigationBarItem>[
         BottomNavigationBarItem(
           label:S().home,
-            icon: const AppSVG( assetName: 'home',)
+            icon:  AppSVG( assetName: cubit.index == 0 ? 'home': 'home_select',)
         ),
          const BottomNavigationBarItem(
           label:"History",
             icon: AppSVG( assetName: 'history',)
         ),
-          const BottomNavigationBarItem(
+           BottomNavigationBarItem(
           label:"Profile",
-            icon: AppSVG( assetName: 'profile',)
+            icon: AppSVG( assetName:  cubit.index == 0 ? 'profile': 'profile_select',)
         ),
     ],
     );
