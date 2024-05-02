@@ -1,27 +1,20 @@
 import 'package:e_commerece_app/core/services/services_locator.dart';
-import 'package:e_commerece_app/core/shared/my_shared.dart';
-import 'package:e_commerece_app/core/shared/my_shared_keys.dart';
 import 'package:e_commerece_app/core/styles/colors.dart';
 import 'package:e_commerece_app/core/utils/easy_loading.dart';
 import 'package:e_commerece_app/core/utils/request_state.dart';
+import 'package:e_commerece_app/core/utils/safe_print.dart';
 import 'package:e_commerece_app/features/address/data/models/address_request.dart';
 import 'package:e_commerece_app/features/address/presentation/manager/address_bloc.dart';
 import 'package:e_commerece_app/features/address/presentation/manager/address_state.dart';
-import 'package:e_commerece_app/features/address/presentation/widgets/manage_addresses_widget.dart';
+import 'package:e_commerece_app/features/address/presentation/widgets/address_list.dart';
 import 'package:e_commerece_app/features/profile/presentation/widgets/app_bar_profile_items_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-class ManageAddressesScreen extends StatefulWidget {
-  const ManageAddressesScreen({super.key});
-
-  @override
-  State<ManageAddressesScreen> createState() => _ManageAddressesScreenState();
-}
-
-class _ManageAddressesScreenState extends State<ManageAddressesScreen> {
+class ManageAddressesScreen extends StatelessWidget {
+   ManageAddressesScreen({super.key});
   final cubit = AddressBloc(sl());
 
   @override
@@ -33,12 +26,43 @@ class _ManageAddressesScreenState extends State<ManageAddressesScreen> {
           if (state.addToAddressRequestState == RequestState.loading) {
             showLoading();
           }
-          if (state.addToAddressRequestState == RequestState.success) {
+
+           if (state.addToAddressRequestState == RequestState.success) {
             showSuccess("Address Added!");
+            safePrint("add success");
+            // state.copyWith(
+            //     addToAddressRequestState: RequestState.initial
+            // );
           }
-          if (state.addToAddressRequestState == RequestState.failure) {
-            showError("");
+           if (state.addToAddressRequestState == RequestState.failure) {
+             showError("add error");
           }
+
+           if (state.deleteRequestState == RequestState.loading) {
+            showLoading();
+          }
+           if (state.deleteRequestState == RequestState.success) {
+            showSuccess("Address Deleted!");
+
+          }
+           if (state.deleteRequestState == RequestState.failure) {
+             showError("delete error");
+          }
+
+
+           if (state.updateRequestState == RequestState.loading) {
+            showLoading();
+          }
+           if (state.updateRequestState == RequestState.success) {
+            showSuccess("Address Updated!");
+
+          }
+           if (state.updateRequestState == RequestState.failure) {
+            showError("Updated error");
+
+          }
+
+
         },
         child: SafeArea(
           child: Scaffold(
@@ -54,7 +78,7 @@ class _ManageAddressesScreenState extends State<ManageAddressesScreen> {
                     onAdd: () async {
                       cubit.add(PostAddressEvent(
                           addressRequest: AddressRequest(
-                              name: 'salah Mohamed jjj',
+                              name: ' Mohamed jjj',
                               city: 'as',
                               region: 'asa',
                               details: 'future',
@@ -62,55 +86,10 @@ class _ManageAddressesScreenState extends State<ManageAddressesScreen> {
                               latitude: "3213",
                               longitude: "2323",
                               id: 0)));
-                      // cubit..add(GetAddressEvent());
-                    },
+                      },
                   ),
                   Gap(3.h),
-                  BlocBuilder<AddressBloc, AddressState>(
-                    builder: (context, state) {
-                      if (state.getAddressRequestState ==
-                          RequestState.loading) {
-                        return const Expanded(
-                            child: Center(child: CircularProgressIndicator()));
-                      }
-                      if (state.getAddressRequestState ==
-                          RequestState.success) {
-                        return Expanded(
-                          child: ListView.builder(
-                            itemCount:
-                                state.getAddressDataEntities!.reversed.length,
-                            itemBuilder: (context, index) =>
-                                ManageAddressesWidget(
-                              markLocation:
-                                  state.getAddressDataEntities![index].name,
-                              visibility:MyShared.getString(key: MySharedKeys.addressId) == state.getAddressDataEntities![index].id.toString() ?true  : false,
-                              name: "${state.getAddressDataEntities![index].details},"
-                                      " ${state.getAddressDataEntities![index].region},"
-                                      " ${state.getAddressDataEntities![index].city}",
-                              note: state.getAddressDataEntities![index].notes,
-                              onItemSelected: () {
-                                MyShared.putString(key: MySharedKeys.addressId,
-
-                                    value: state.getAddressDataEntities![index].id.toString());
-
-                                state.getAddressDataEntities!.fold(true,
-                                    (previousValue, element) {
-                                  element.selected = false;
-                                  setState(() {});
-                                  return element.selected;
-                                });
-                                state.getAddressDataEntities![index].selected =
-                                    true;
-                                setState(() {});
-                              },
-                            ),
-                          ),
-                        );
-                      } else {
-                        return const SizedBox();
-                      }
-                    },
-                  ),
+                 AddressList(bloc: cubit,),
                 ],
               ),
             ),

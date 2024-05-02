@@ -11,12 +11,13 @@ class GetAddressEvent extends BaseAddressEvent{
 
 }
 class PutAddressEvent extends BaseAddressEvent{
-final String  id;
-
-PutAddressEvent({required this.id});
+  final AddressRequest addressRequest;
+  final int  index;
+  PutAddressEvent({required this.index, required this.addressRequest});
 }
 class DeleteAddressEvent extends BaseAddressEvent{
   final String  id;
+  final int  index;
 
-  DeleteAddressEvent({required this.id});
+  DeleteAddressEvent( {required this.index,required this.id});
 }

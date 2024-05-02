@@ -1,4 +1,6 @@
 import 'package:bloc/bloc.dart';
+import 'package:e_commerece_app/core/shared/my_shared.dart';
+import 'package:e_commerece_app/core/shared/my_shared_keys.dart';
 import 'package:e_commerece_app/core/utils/request_state.dart';
 import 'package:e_commerece_app/core/utils/safe_print.dart';
 import 'package:e_commerece_app/features/address/data/models/address_request.dart';
@@ -26,7 +28,7 @@ class AddressBloc extends Bloc<BaseAddressEvent, AddressState> {
                 getAddressRequestState: RequestState.success,
                 getAddressDataEntities: right
             ));
-            safePrint("=========> right: ${right}");
+            safePrint("=========> right: $right");
 
           });
 
@@ -36,7 +38,10 @@ class AddressBloc extends Bloc<BaseAddressEvent, AddressState> {
 
     on<PostAddressEvent>((event, emit) async {
       emit(state.copyWith(
-          addToAddressRequestState: RequestState.loading
+        updateRequestState: RequestState.initial,
+        addToAddressRequestState: RequestState.loading,
+        deleteRequestState: RequestState.initial,
+
       ));
       final result = await addressUseCase.addAddress(addressRequest: event.addressRequest);
       result.fold((left) {
@@ -45,13 +50,90 @@ class AddressBloc extends Bloc<BaseAddressEvent, AddressState> {
           addToAddressRequestState: RequestState.failure,));
       },
               (right) {
-                safePrint("=========> right: ${right}");
+
+                safePrint("=========> right: $right");
                 safePrint("=========> right: ${right.region}");
                 state.getAddressDataEntities!.add(right);
 
             emit(state.copyWith(
                 addToAddressRequestState: RequestState.success,
-              getAddressDataEntities: state.getAddressDataEntities
+                getAddressDataEntities: state.getAddressDataEntities
+            ));
+
+              });
+
+
+    });
+
+    on<PutAddressEvent>((event, emit) async {
+      emit(state.copyWith(
+          addToAddressRequestState: RequestState.initial,
+        deleteRequestState: RequestState.initial,
+        updateRequestState: RequestState.loading,
+      ));
+
+      final result = await addressUseCase.putAddress(addressRequest: event.addressRequest);
+      result.fold((left) {
+        safePrint("=========> left: $left");
+        emit(state.copyWith(
+          updateRequestState: RequestState.failure,
+
+        ));
+      },
+
+              (right) {
+
+        safePrint("update==========================> $right");
+        emit(state.copyWith(
+                updateRequestState: RequestState.success,
+            ));
+
+        state.getAddressDataEntities![event.index].name
+        = right.name;
+
+ state.getAddressDataEntities![event.index].city
+        = right.city;
+ state.getAddressDataEntities![event.index].region
+        = right.region;
+ state.getAddressDataEntities![event.index].details
+        = right.details;
+ state.getAddressDataEntities![event.index].notes
+        = right.notes;
+ state.getAddressDataEntities![event.index].latitude
+        = right.latitude;
+ state.getAddressDataEntities![event.index].longitude
+        = right.longitude;
+
+              });
+
+
+    });
+
+
+
+
+
+    on<DeleteAddressEvent>((event, emit) async {
+      emit(state.copyWith(
+        updateRequestState: RequestState.initial,
+        addToAddressRequestState: RequestState.initial,
+          deleteRequestState: RequestState.loading,
+
+
+      ));
+      final result = await addressUseCase.deleteAddress(id: event.id);
+      result.fold((left) {
+        safePrint("=========> left: $left");
+        emit(state.copyWith(
+          deleteRequestState: RequestState.failure,));
+      },
+              (right) {
+
+        safePrint(right);
+        state.getAddressDataEntities!.removeAt(event.index);
+        emit(state.copyWith(
+                deleteRequestState: RequestState.success,
+              deleteMessage: state.deleteMessage
             ));
 
               });

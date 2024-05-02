@@ -1,11 +1,12 @@
 import 'package:e_commerece_app/core/styles/colors.dart';
 import 'package:e_commerece_app/core/utils/svg.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class MarkManageAddressesWidget extends StatelessWidget {
-  const MarkManageAddressesWidget({super.key, required this.markLocation, required this.visibility});
-
+  const MarkManageAddressesWidget({super.key, required this.markLocation, required this.visibility, required this.onDelete});
+final VoidCallback onDelete;
   final String markLocation;
   final bool visibility;
   @override
@@ -44,10 +45,13 @@ class MarkManageAddressesWidget extends StatelessWidget {
        )
        : SizedBox(width: 2.w,),
         SizedBox(width: 3.w,),
-        AppSVG(
-          assetName: 'delete',
-          width: 22.sp,
-          height: 22.sp,
+        GestureDetector(
+          onTap: onDelete,
+          child: AppSVG(
+            assetName: 'delete',
+            width: 22.sp,
+            height: 22.sp,
+          ),
         ),
       ],
     );

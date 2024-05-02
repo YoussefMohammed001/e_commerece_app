@@ -28,20 +28,29 @@ final result = await baseAddressApi.addAddressApi(addressRequest: addressRequest
 try{
   return Right(result);
 } catch (e){
-  return Left("${e.toString()}");
+  return Left(e.toString());
 }
   }
 
   @override
-  Future<Either<String, String>> deleteAddress({required String id}) {
-    // TODO: implement deleteAddress
-    throw UnimplementedError();
+  Future<Either<String, String>> deleteAddress({required String id}) async {
+    final result = await baseAddressApi.deleteAddressApi(id:id );
+    try{
+      return Right(result);
+    } catch (e){
+      return Left(e.toString());
+    }
+
   }
 
   @override
-  Future<Either<String, AddressEntities>> putAddress({required AddressRequest addressRequest}) {
-    // TODO: implement putAddress
-    throw UnimplementedError();
+  Future<Either<String, AddressEntities>> putAddress({required AddressRequest addressRequest}) async {
+    final result = await baseAddressApi.updateAddressApi(addressRequest: addressRequest);
+    try{
+      return Right(result);
+    } catch (e){
+      return Left(e.toString());
+    }
   }
 
 

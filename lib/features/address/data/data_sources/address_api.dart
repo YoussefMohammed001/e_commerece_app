@@ -7,7 +7,7 @@ abstract class BaseAddressApi{
   Future<List<AddressModel>> getAddressApi();
   Future<AddressModel> addAddressApi({required AddressRequest addressRequest});
   Future<AddressModel> updateAddressApi({required AddressRequest addressRequest});
-  Future<AddressModel> deleteAddressApi({required String id});
+  Future<String> deleteAddressApi({required String id});
 
 }
 
@@ -40,13 +40,13 @@ class AddressApi extends BaseAddressApi{
   }
 
   @override
-  Future<AddressModel> deleteAddressApi({required String id}) async {
+  Future<String> deleteAddressApi({required String id}) async {
 
-    final response = await AppDio.delete(endPoint: "${EndPoints.address}/${id}"
+    final response = await AppDio.delete(endPoint: "${EndPoints.address}/$id"
 
     );
     if(response!.data['status'] == true){
-      return AddressModel.fromJson(response.data['data']['data']);
+      return response.data['message'];
     } else{
       return response.data['message'];
     }
@@ -59,7 +59,7 @@ class AddressApi extends BaseAddressApi{
         data: addressRequest.toJson()
     );
     if(response!.data['status'] == true){
-      return AddressModel.fromJson(response.data['data']['data']);
+      return AddressModel.fromJson(response.data['data']);
     } else{
       return response.data['message'];
     }

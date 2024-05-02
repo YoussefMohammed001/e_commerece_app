@@ -6,28 +6,27 @@ import 'package:e_commerece_app/features/address/presentation/widgets/save_addre
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-
 class ManageAddressesWidget extends StatelessWidget {
    ManageAddressesWidget(
       {super.key,
       required this.markLocation,
       required this.visibility,
       required this.name,
-      required this.note, required this.onItemSelected,
+      required this.note, required this.onItemSelected, required this.onDelete, required this.onChange,
   });
+   final VoidCallback onDelete;
 
   final String markLocation;
   final String name;
   final String note;
   final bool visibility;
   final VoidCallback onItemSelected;
+  final VoidCallback onChange;
 
   List<Widget> bottomSheetWidgets = [
      ChangingAddressesBottomSheetWidget(index: index,),
       SaveAddressChangingWidget(onChanged: (value) => itsTrue = !itsTrue,value: itsTrue,),
   ];
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +45,7 @@ class ManageAddressesWidget extends StatelessWidget {
             children: [
               MarkManageAddressesWidget(
                 markLocation: markLocation,
-                visibility: visibility,
+                visibility: visibility, onDelete: onDelete,
               ),
               Gap(1.h),
               Divider(
@@ -74,25 +73,25 @@ class ManageAddressesWidget extends StatelessWidget {
                   overflow: TextOverflow.ellipsis),
               Gap(1.h),
               AppButton(
-                onPressed: () {
-                  showModalBottomSheet(
-                    backgroundColor: Colors.white,
-                    context: context,
-                    builder: (BuildContext context) {
-                      return Container(
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(17.sp)),
-                        width: double.infinity,
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(
-                              vertical: 13.sp, horizontal: 17.sp),
-                          child: bottomSheetWidgets[1]
-                        ),
-                      );
-                    },
-                  );
-                },
+                onPressed: onChange,
+                  // showModalBottomSheet(
+                  //   backgroundColor: Colors.white,
+                  //   context: context,
+                  //   builder: (BuildContext context) {
+                  //     return Container(
+                  //       decoration: BoxDecoration(
+                  //           color: Colors.white,
+                  //           borderRadius: BorderRadius.circular(17.sp)),
+                  //       width: double.infinity,
+                  //       child: Padding(
+                  //         padding: EdgeInsets.symmetric(
+                  //             vertical: 13.sp, horizontal: 17.sp),
+                  //         child: bottomSheetWidgets[1]
+                  //       ),
+                  //     );
+                  //   },
+                  // );
+
                 label: 'Change Address',
                 bgColor: Colors.white,
                 textColor: AppColors.success,
@@ -103,5 +102,6 @@ class ManageAddressesWidget extends StatelessWidget {
     );
   }
 }
+
 bool itsTrue = false;
 int index = 0;
