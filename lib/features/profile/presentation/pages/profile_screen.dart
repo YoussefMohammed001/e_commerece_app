@@ -4,6 +4,7 @@ import 'package:e_commerece_app/core/shared/my_shared_keys.dart';
 import 'package:e_commerece_app/core/styles/colors.dart';
 import 'package:e_commerece_app/core/utils/navigators.dart';
 import 'package:e_commerece_app/core/utils/svg.dart';
+import 'package:e_commerece_app/features/Account%20&%20Security/Presentation/Screen/account_&_security.dart';
 import 'package:e_commerece_app/features/address/presentation/pages/manage_addresses_screen.dart';
 import 'package:e_commerece_app/features/profile/presentation/widgets/profile_navigator_widget.dart';
 import 'package:flutter/material.dart';
@@ -104,7 +105,9 @@ class ProfileScreen extends StatelessWidget {
                   Gap(3.h),
                   ProfileNavigatorWidget(
                     titleDetector: 'Account & Security',
-                    pushTo: () {},
+                    pushTo: () {
+                      push(context, const AccountAndSecurity());
+                    },
                     svgName: 'security',
                   ),
                 ],
