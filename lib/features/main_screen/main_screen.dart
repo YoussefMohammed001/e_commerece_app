@@ -22,6 +22,7 @@ class _MainScreenState extends State<MainScreen> {
     return BlocProvider(
       create: (context) => cubit,
       child: BlocBuilder<MainCubit, MainState>(
+
         builder: (context, state) {
           safePrint("Main");
           return Container(
