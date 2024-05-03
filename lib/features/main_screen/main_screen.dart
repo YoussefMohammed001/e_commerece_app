@@ -65,7 +65,7 @@ class _MainScreenState extends State<MainScreen> {
         ),
            BottomNavigationBarItem(
           label:"Profile",
-            icon: AppSVG( assetName:  cubit.index == 0 ? 'profile': 'profile_select',)
+            icon: AppSVG( assetName:  cubit.index == 2 ? 'profile_select': 'profile',)
         ),
     ],
     );

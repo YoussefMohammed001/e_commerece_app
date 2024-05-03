@@ -1,5 +1,8 @@
 import 'package:e_commerece_app/core/styles/colors.dart';
+import 'package:e_commerece_app/core/utils/navigators.dart';
+import 'package:e_commerece_app/core/utils/safe_print.dart';
 import 'package:e_commerece_app/features/Account%20&%20Security/Presentation/Widget/account_&_security_items.dart';
+import 'package:e_commerece_app/features/change_password/presentation/pages/change_pass_screen.dart';
 import 'package:e_commerece_app/features/profile/presentation/widgets/app_bar_profile_items_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -13,9 +16,9 @@ class AccountAndSecurity extends StatefulWidget {
 }
 
 class _AccountAndSecurityState extends State<AccountAndSecurity> {
+  bool changeSwitch = false;
   @override
   Widget build(BuildContext context) {
-    bool changeSwitch = false;
     return SafeArea(
         child: Scaffold(
       backgroundColor: AppColors.bg,
@@ -43,10 +46,16 @@ class _AccountAndSecurityState extends State<AccountAndSecurity> {
                 const Spacer(),
                 Switch(
                   activeColor: AppColors.success,
-                  value: changeSwitch, onChanged: (value) {
-                  value = !changeSwitch;
-                  setState(() {});
-                },)
+
+                  onChanged: (value) {
+                 setState(() {
+                   changeSwitch = value;
+                   safePrint(changeSwitch);
+                   safePrint(value);
+                 });
+                }, value: changeSwitch,
+
+                )
               ],
             ),
             Gap(3.h),
@@ -54,7 +63,9 @@ class _AccountAndSecurityState extends State<AccountAndSecurity> {
               mainTitle: 'Change password',
               titleDescription:
                    '',
-              pushClick: () {}, checkVisibility: false,
+              pushClick: () {
+                push(context, ChangePassScreen());
+              }, checkVisibility: false,
             ),
             Gap(3.h),
             AccountAndSecurityItem(

@@ -15,6 +15,10 @@ import 'package:e_commerece_app/features/category_products/data/data_sources/cat
 import 'package:e_commerece_app/features/category_products/data/repositories/category_products_repo.dart';
 import 'package:e_commerece_app/features/category_products/domain/repositories/base_category_products_repository.dart';
 import 'package:e_commerece_app/features/category_products/domain/use_cases/category_products_usecase.dart';
+import 'package:e_commerece_app/features/change_password/data/data_sources/change_pass_data_source.dart';
+import 'package:e_commerece_app/features/change_password/data/repositories/change_pass_repo.dart';
+import 'package:e_commerece_app/features/change_password/domain/repositories/change_pass_base_repo.dart';
+import 'package:e_commerece_app/features/change_password/domain/use_cases/change_pass_use_case.dart';
 import 'package:e_commerece_app/features/home/data/data_sources/home_api.dart';
 import 'package:e_commerece_app/features/home/data/repositories/home_repository.dart';
 import 'package:e_commerece_app/features/home/domain/repositories/base_home_repository.dart';
@@ -65,6 +69,7 @@ sl.registerLazySingleton(() => UpdateProfileUseCase(sl()));
 sl.registerLazySingleton(() => SearchUseCase(sl()));
 sl.registerLazySingleton(() => CartUseCase(sl()));
 sl.registerLazySingleton(() => AddressUseCase(sl()));
+sl.registerLazySingleton(() => ChangePassUseCase(sl()));
 
 
     ///Repository
@@ -79,6 +84,7 @@ sl.registerLazySingleton<BaseProfileRepo>(() => ProfileRepo(sl()));
 sl.registerLazySingleton<BaseSearchRepo>(() => SearchRepo(sl()));
 sl.registerLazySingleton<BaseCartRepo>(() => CartRepo(sl()));
 sl.registerLazySingleton<BaseAddressRepo>(() => AddressRepo(sl()));
+sl.registerLazySingleton<ChangePassBaseRepo>(() => ChangePassRepo(sl()));
 
 
     ///Data SOURCE
@@ -93,6 +99,7 @@ sl.registerLazySingleton<BaseProfileApi>(() => UpdateProfileApi());
 sl.registerLazySingleton<BaseSearchApi>(() => SearchApi());
 sl.registerLazySingleton<BaseCartApi>(() => CartApi());
 sl.registerLazySingleton<BaseAddressApi>(() => AddressApi());
+sl.registerLazySingleton<BaseChangePassDataSource>(() => ChangePassDataSource());
 
 
 

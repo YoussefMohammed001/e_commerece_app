@@ -47,7 +47,8 @@ class ManageAddressesWidget extends StatelessWidget {
             children: [
               MarkManageAddressesWidget(
                 markLocation: markLocation,
-                visibility: visibility, onDelete: onDelete,
+                visibility: visibility,
+                onDelete: onDelete,
               ),
               Gap(1.h),
               Divider(

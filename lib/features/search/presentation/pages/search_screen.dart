@@ -180,8 +180,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   return const Expanded(
                       child: Center(child: CircularProgressIndicator()));
                 }
-                if (bloc.state.requestState == RequestState.success &&
-                    state.productDetailsEntities.isEmpty) {
+                if (bloc.state.requestState == RequestState.success && state.productDetailsEntities.isEmpty) {
                   return Expanded(
                     child: Center(
                       child: Padding(
@@ -197,8 +196,7 @@ class _SearchScreenState extends State<SearchScreen> {
                     ),
                   );
                 }
-                if (bloc.state.requestState == RequestState.success &&
-                    state.productDetailsEntities.isNotEmpty) {
+                if (bloc.state.requestState == RequestState.success && state.productDetailsEntities.isNotEmpty) {
                   return Expanded(
                     child: Column(
                       children: [
@@ -322,7 +320,8 @@ class _SearchScreenState extends State<SearchScreen> {
                       ],
                     ),
                   );
-                } else {
+                }
+                else {
                   return const SizedBox();
                 }
               },

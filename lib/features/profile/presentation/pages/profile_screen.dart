@@ -6,7 +6,9 @@ import 'package:e_commerece_app/core/utils/navigators.dart';
 import 'package:e_commerece_app/core/utils/svg.dart';
 import 'package:e_commerece_app/features/Account%20&%20Security/Presentation/Screen/account_&_security.dart';
 import 'package:e_commerece_app/features/address/presentation/pages/manage_addresses_screen.dart';
+import 'package:e_commerece_app/features/faqs/view/screens/faqs_screen.dart';
 import 'package:e_commerece_app/features/profile/presentation/widgets/profile_navigator_widget.dart';
+import 'package:e_commerece_app/features/terms_and_conditions/view/screens/terms_and_conditions_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -135,6 +137,15 @@ class ProfileScreen extends StatelessWidget {
                   ),
                   Gap(3.h),
                   ProfileNavigatorWidget(
+                    titleDetector: 'FAQS',
+                    pushTo: () {
+                      push(context, FAQsScreen());
+                    },
+
+                    svgName: 'faq',
+                  ),
+                  Gap(3.h),
+                  ProfileNavigatorWidget(
                     titleDetector: 'Help & Support',
                     pushTo: () {},
                     svgName: 'help',
@@ -142,7 +153,9 @@ class ProfileScreen extends StatelessWidget {
                   Gap(3.h),
                   ProfileNavigatorWidget(
                     titleDetector: 'Terms & Conditions',
-                    pushTo: () {},
+                    pushTo: () {
+                      push(context, TermsAndConditionsScreen());
+                    },
                     svgName: 'terms',
                   ),
                   Gap(3.h),
@@ -154,14 +167,7 @@ class ProfileScreen extends StatelessWidget {
                     iconColor: AppColors.error,
                     svgColor: AppColors.error,
                   ),
-                  Gap(3.h),
-                  ProfileNavigatorWidget(
-                      titleDetector: 'Delete Account',
-                      pushTo: () {},
-                      titleColor: AppColors.error,
-                      svgName: 'delete',
-                      iconColor: AppColors.error,
-                      svgColor: AppColors.error),
+
                 ],
               ),
             ),

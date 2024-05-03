@@ -18,7 +18,10 @@ class ProfileNavigatorWidget extends StatelessWidget {
       onTap: pushTo ,
       child: Row(
         children: [
-          AppSVG(assetName: svgName,color: svgColor,),
+          AppSVG(assetName: svgName,color: svgColor,
+          width: 6.w,
+            height: 3.h,
+          ),
           SizedBox(
             width: 5.w,
           ),

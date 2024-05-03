@@ -13,5 +13,7 @@ class EndPoints{
   static const String search = 'products/search';
   static const String address = 'addresses';
   static const String orders = 'orders';
+  static const String faqs = 'faqs';
+  static const String termsAndConditions = 'settings';
 
 }

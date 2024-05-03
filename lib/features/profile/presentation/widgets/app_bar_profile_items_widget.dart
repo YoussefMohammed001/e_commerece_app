@@ -8,12 +8,12 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 
 
 class AppBarProfileItemsWidget extends StatelessWidget {
-  const AppBarProfileItemsWidget({super.key, required this.title, required this.rightIcon, required this.liftIcon, required this.onAdd, this.iconVisibility = true});
+  const AppBarProfileItemsWidget({super.key, required this.title, required this.rightIcon, required this.liftIcon,  this.onAdd, this.iconVisibility = true});
 
   final String title;
   final String rightIcon;
   final String liftIcon;
-  final VoidCallback onAdd;
+  final VoidCallback? onAdd;
   final bool iconVisibility;
   @override
   Widget build(BuildContext context) {
