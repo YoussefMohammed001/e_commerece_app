@@ -1,22 +1,16 @@
 import 'dart:async';
-
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:e_commerece_app/core/services/services_locator.dart';
 import 'package:e_commerece_app/core/styles/colors.dart';
-import 'package:e_commerece_app/core/utils/navigators.dart';
 import 'package:e_commerece_app/core/utils/request_state.dart';
 import 'package:e_commerece_app/core/widgets/app_button.dart';
 import 'package:e_commerece_app/core/widgets/app_image.dart';
 import 'package:e_commerece_app/features/cart/data/models/cart_data_request.dart';
 import 'package:e_commerece_app/features/cart/presentation/manager/cart_bloc.dart';
-import 'package:e_commerece_app/features/cart/presentation/pages/cart_screen.dart';
-import 'package:e_commerece_app/features/main_screen/main_screen.dart';
 import 'package:e_commerece_app/features/product_details/presentation/manager/product_details_bloc.dart';
 import 'package:e_commerece_app/features/product_details/presentation/widgets/details_app_bar.dart';
 import 'package:e_commerece_app/features/saved_items/presentation/manager/favourite_bloc.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:readmore/readmore.dart';
@@ -296,8 +290,12 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                                               fontWeight: FontWeight.w500,
                                                             ),
                                                           ),
+                                                          Divider(
+                                                             color: AppColors.grey.withOpacity(0.3),
+                                                          ),
+                                                          SizedBox(height: 1.h,),
                                                           ReadMoreText(
-                                                            "${state.productDetailsEntities!.description}",
+                                                            state.productDetailsEntities!.description,
                                                             colorClickableText: AppColors.primary,
                                                             trimCollapsedText: ' Show more',
                                                             trimExpandedText: ' Show less',
