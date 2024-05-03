@@ -9,7 +9,6 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 class AppCongrats extends StatefulWidget {
   const AppCongrats({super.key, required this.title,required this.icon,});
 final String title;
-
 final String icon;
 
 

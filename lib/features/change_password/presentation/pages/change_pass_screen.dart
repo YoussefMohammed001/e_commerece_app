@@ -3,9 +3,11 @@ import 'package:e_commerece_app/core/shared/my_shared.dart';
 import 'package:e_commerece_app/core/shared/my_shared_keys.dart';
 import 'package:e_commerece_app/core/styles/colors.dart';
 import 'package:e_commerece_app/core/utils/easy_loading.dart';
+import 'package:e_commerece_app/core/utils/navigators.dart';
 import 'package:e_commerece_app/core/utils/request_state.dart';
 import 'package:e_commerece_app/core/utils/safe_print.dart';
 import 'package:e_commerece_app/core/widgets/app_button.dart';
+import 'package:e_commerece_app/core/widgets/app_congrats.dart';
 import 'package:e_commerece_app/core/widgets/app_text_form_field.dart';
 import 'package:e_commerece_app/features/change_password/presentation/manager/change_pass_bloc.dart';
 import 'package:e_commerece_app/features/profile/presentation/widgets/app_bar_profile_items_widget.dart';
@@ -38,7 +40,8 @@ class _ChangePassScreenState extends State<ChangePassScreen> {
             showLoading();
           }
           if (state.requestState == RequestState.success) {
-            showSuccess(state.message);
+            hideLoading();
+            pushReplacement(context, const AppCongrats(title: "Password Changed Successfully", icon: "shield.png"));
           }
         },
         child: Form(
