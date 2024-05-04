@@ -3,7 +3,6 @@ import 'package:e_commerece_app/core/styles/colors.dart';
 import 'package:e_commerece_app/core/utils/navigators.dart';
 import 'package:e_commerece_app/core/utils/request_state.dart';
 import 'package:e_commerece_app/core/utils/safe_print.dart';
-import 'package:e_commerece_app/core/widgets/app_button.dart';
 import 'package:e_commerece_app/features/cart/data/models/cart_data_request.dart';
 import 'package:e_commerece_app/features/cart/presentation/manager/cart_bloc.dart';
 import 'package:e_commerece_app/features/cart/presentation/widgets/cart_address.dart';
@@ -11,11 +10,9 @@ import 'package:e_commerece_app/features/cart/presentation/widgets/cart_app_bar.
 import 'package:e_commerece_app/features/cart/presentation/widgets/cart_product_item.dart';
 import 'package:e_commerece_app/features/cart/presentation/widgets/empty_cart.dart';
 import 'package:e_commerece_app/features/cart/presentation/widgets/order_summary.dart';
-import 'package:e_commerece_app/features/orders/presentation/pages/confirm_order_screen.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:e_commerece_app/features/confirm_order/presentation/pages/confirmOrder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:responsive_sizer/responsive_sizer.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({super.key});
@@ -64,8 +61,8 @@ class _CartScreenState extends State<CartScreen> {
                 body: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    CartAppBar(),
-                    CartAddress(),
+                    const CartAppBar(),
+                    const CartAddress(),
                     Expanded(
                       child: ListView.builder(
                         itemCount:
@@ -149,12 +146,20 @@ class _CartScreenState extends State<CartScreen> {
                                   : false);
                         },
                       ),
-
                     ),
-
-
                     OrderSummary(
-                      totalPrice: state.getCartDataEntities!.total.toInt(), quantity: state.getCartDataEntities!.cartItemsList.fold(0, (previousValue, element) => element.quantity + previousValue) ,
+
+                      totalPrice: state.getCartDataEntities!.total.toInt(),
+                      quantity: state.getCartDataEntities!.cartItemsList.fold(
+                          0,
+                          (previousValue, element) =>
+                              element.quantity + previousValue),
+                      pressCheckOut: () {
+                        push(
+                            context,
+                            CheckOutScreen(getCartDataEntities: state.getCartDataEntities!, totalQuantity: '', totalPrice: '',
+                            ));
+                      },
                     )
                   ],
                 ),
@@ -162,7 +167,7 @@ class _CartScreenState extends State<CartScreen> {
             );
           } else if (state.getCartRequestState == RequestState.success &&
               state.getCartDataEntities!.cartItemsList.isEmpty) {
-            return EmptyCart();
+            return const EmptyCart();
           } else {
             return const Center(
                 child: CircularProgressIndicator(

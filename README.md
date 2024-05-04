@@ -1,9 +1,7 @@
 ///////////
-1 address cycle
+1 address cycle(complete UI)
 2 orders cycle
 3 update profile
 4 notifications
-5 add complain
-6 terms and conditions
-7 faqs
+5 payment methods 
 ///////////

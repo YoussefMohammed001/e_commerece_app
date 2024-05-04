@@ -1,6 +1,6 @@
 import 'package:e_commerece_app/core/styles/colors.dart';
 import 'package:e_commerece_app/features/profile/presentation/widgets/app_bar_profile_items_widget.dart';
-import 'package:e_commerece_app/features/terms_and_conditions/terms_and_conditions_cubit.dart';
+import 'package:e_commerece_app/features/terms_and_conditions/manager/terms_and_conditions_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';

@@ -1,14 +1,13 @@
 import 'package:e_commerece_app/core/styles/colors.dart';
-import 'package:e_commerece_app/core/utils/navigators.dart';
 import 'package:e_commerece_app/core/widgets/app_button.dart';
-import 'package:e_commerece_app/features/orders/presentation/pages/confirm_order_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class OrderSummary extends StatelessWidget {
-  const OrderSummary({super.key, required this.totalPrice, required this.quantity});
+  const OrderSummary({super.key, required this.totalPrice, required this.quantity, required this.pressCheckOut});
 final int totalPrice;
 final int quantity;
+final VoidCallback pressCheckOut;
   @override
   Widget build(BuildContext context) {
     return   Container(
@@ -88,9 +87,7 @@ final int quantity;
               borderRadius: BorderRadius.circular(14.sp),
               padding: EdgeInsets.all(12.sp),
               margin: EdgeInsets.all(15.sp),
-              onPressed: () {
-                push(context, const ConfirmOrderScreen());
-              },
+              onPressed: pressCheckOut,
               label: "Check Out"),
         ],
       ),

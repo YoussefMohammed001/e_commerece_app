@@ -102,7 +102,8 @@ class ProfileScreen extends StatelessWidget {
                   Gap(3.h),
                   ProfileNavigatorWidget(
                     titleDetector: 'Payment Methods',
-                    pushTo: () {},
+                    pushTo: () {
+                    },
                     svgName: 'paymentCard',
                   ),
                   Gap(3.h),
