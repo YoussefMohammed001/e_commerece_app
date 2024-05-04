@@ -5,8 +5,8 @@ class ChangePassUseCase{
   ChangePassBaseRepo changePassBaseRepo;
   ChangePassUseCase(this.changePassBaseRepo);
 
-  Future<Either<String,String>> executeChangePass({required String pass}) async {
-    return await changePassBaseRepo.changePass(pass: pass);
+  Future<Either<String,String>> executeChangePass({required String cPass, required String pass}) async {
+    return await changePassBaseRepo.changePass(pass: pass, cPass: cPass);
   }
 
 

@@ -24,20 +24,17 @@ class LoginBloc extends Bloc<BaseLoginEvent, LoginState> {
     final result = await loginUseCase.execute(email: event.email, password: event.password);
 
     result.fold((left) {
-
       emit(state.copyWith(
         message: left,
         requestState: RequestState.failure,
        ));
     },
-            (right) {
-
+            (right) async {
       emit(state.copyWith(
         requestState: RequestState.success,
         loginEntities: right,
 
       ));
-
       final loginLocal = LoginLocal();
       loginLocal.loginCash(
           name: right.name,

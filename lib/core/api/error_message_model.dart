@@ -13,7 +13,6 @@ const  ErrorMessageModel({
 
   factory ErrorMessageModel.fromJson(Map<String,dynamic> json){
     return ErrorMessageModel(
-
         statusMessage: json['message'],
         success: json['status'],
     );

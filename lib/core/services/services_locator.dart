@@ -1,4 +1,8 @@
 
+import 'package:e_commerece_app/features/add_complaint/data/data_sources/add_complaint_data_source.dart';
+import 'package:e_commerece_app/features/add_complaint/data/repositories/add_complaint_Repo.dart';
+import 'package:e_commerece_app/features/add_complaint/domain/repositories/base_add_complaint_repo.dart';
+import 'package:e_commerece_app/features/add_complaint/domain/use_cases/add_complaint_use_case.dart';
 import 'package:e_commerece_app/features/address/data/data_sources/address_api.dart';
 import 'package:e_commerece_app/features/address/data/repositories/address_repo.dart';
 import 'package:e_commerece_app/features/address/domain/repositories/base_address_repo.dart';
@@ -70,6 +74,7 @@ sl.registerLazySingleton(() => SearchUseCase(sl()));
 sl.registerLazySingleton(() => CartUseCase(sl()));
 sl.registerLazySingleton(() => AddressUseCase(sl()));
 sl.registerLazySingleton(() => ChangePassUseCase(sl()));
+sl.registerLazySingleton(() => AddComplaintUseCase(sl()));
 
 
     ///Repository
@@ -85,6 +90,7 @@ sl.registerLazySingleton<BaseSearchRepo>(() => SearchRepo(sl()));
 sl.registerLazySingleton<BaseCartRepo>(() => CartRepo(sl()));
 sl.registerLazySingleton<BaseAddressRepo>(() => AddressRepo(sl()));
 sl.registerLazySingleton<ChangePassBaseRepo>(() => ChangePassRepo(sl()));
+sl.registerLazySingleton<BaseAddComplaintRepo>(() => AddComplaintRepo(sl()));
 
 
     ///Data SOURCE
@@ -100,6 +106,7 @@ sl.registerLazySingleton<BaseSearchApi>(() => SearchApi());
 sl.registerLazySingleton<BaseCartApi>(() => CartApi());
 sl.registerLazySingleton<BaseAddressApi>(() => AddressApi());
 sl.registerLazySingleton<BaseChangePassDataSource>(() => ChangePassDataSource());
+sl.registerLazySingleton<BaseAddComplaintDataSource>(() => AddComplaintDataSource());
 
 
 

@@ -9,7 +9,7 @@ class AppTextFormField extends StatefulWidget {
    required this.keyboardType,
    this.validators, required this.controller,
    required this.prefixIcon, required this.isPass,
-    this.isEnabled = true,  this.search = false,});
+    this.isEnabled = true,  this.search = false,  this.minLines = 1,  this.maxLines = 1,});
   final TextEditingController controller;
   final String labelText;
   final TextInputAction textInputAction;
@@ -19,6 +19,8 @@ class AppTextFormField extends StatefulWidget {
   final bool isPass;
   final bool search;
 final bool isEnabled;
+final int minLines;
+final int maxLines;
 
  @override
   State<AppTextFormField> createState() => _AppTextFormFieldState();
@@ -33,6 +35,8 @@ class _AppTextFormFieldState extends State<AppTextFormField> {
 
       children: [
         TextFormField(
+          minLines: widget.minLines,
+          maxLines: widget.maxLines,
           enabled: widget.isEnabled,
           obscureText: obscureText,
           validator: widget.validators,

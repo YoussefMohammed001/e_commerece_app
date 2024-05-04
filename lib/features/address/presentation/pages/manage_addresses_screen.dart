@@ -74,7 +74,7 @@ class ManageAddressesScreen extends StatelessWidget {
                   AppBarProfileItemsWidget(
                     title: 'Manage Addresses',
                     rightIcon: 'add',
-                    liftIcon: 'arrow',
+                    leftIcon: 'arrow',
                     onAdd: () async {
                       cubit.add(PostAddressEvent(
                           addressRequest: AddressRequest(

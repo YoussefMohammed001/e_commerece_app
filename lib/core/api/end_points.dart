@@ -15,5 +15,7 @@ class EndPoints{
   static const String orders = 'orders';
   static const String faqs = 'faqs';
   static const String termsAndConditions = 'settings';
+  static const String changePass = 'change-password';
+  static const String addComplaint = 'complaints';
 
 }

@@ -1,42 +1,39 @@
 import 'package:e_commerece_app/core/styles/colors.dart';
 import 'package:e_commerece_app/core/utils/navigators.dart';
 import 'package:e_commerece_app/core/utils/svg.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 
 class AppBarProfileItemsWidget extends StatelessWidget {
-  const AppBarProfileItemsWidget({super.key, required this.title, required this.rightIcon, required this.liftIcon,  this.onAdd, this.iconVisibility = true});
+  const AppBarProfileItemsWidget({super.key, required this.title,  this.rightIcon, required this.leftIcon,  this.onAdd, this.iconVisibility = true});
 
   final String title;
-  final String rightIcon;
-  final String liftIcon;
+  final String? rightIcon;
+  final String leftIcon;
   final VoidCallback? onAdd;
   final bool iconVisibility;
+
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
         GestureDetector(
             onTap: () => pop(context),
-            child: AppSVG(assetName: liftIcon,width: 22.sp,height: 22.sp,)),
-        const Spacer(),
-        Center(
-            child: Text(
-              title,
-              style: TextStyle(
-                  color: AppColors.dark,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 19.sp),
-            )),
-        const Spacer(),
-        InkWell(
+            child: AppSVG(assetName: leftIcon,width: 22.sp,height: 22.sp,)),
+        Expanded(
+          child: Center(
+              child: Text(
+                title,
+                style: TextStyle(
+                    color: AppColors.dark,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 19.sp),
+              )),
+        ),
+        iconVisibility ?       InkWell(
           onTap: onAdd,
-            child: Visibility(
-                visible: iconVisibility,
-                child: AppSVG(assetName: rightIcon,width: 22.sp,height: 22.sp,))),
+            child: AppSVG(assetName: rightIcon!,width: 22.sp,height: 22.sp,)) : const SizedBox(),
 
       ],
     );

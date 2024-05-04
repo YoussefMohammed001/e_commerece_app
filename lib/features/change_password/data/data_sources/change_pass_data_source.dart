@@ -1,28 +1,25 @@
 import 'package:e_commerece_app/core/api/end_points.dart';
 import 'package:e_commerece_app/core/api/my_dio.dart';
-import 'package:e_commerece_app/core/shared/my_shared.dart';
-import 'package:e_commerece_app/core/shared/my_shared_keys.dart';
+import 'package:e_commerece_app/core/utils/safe_print.dart';
 
 abstract class BaseChangePassDataSource{
-  Future<String> changePassApi({required String pass});
+  Future<String> changePassApi({required String cPass, required String pass});
 }
 
 
 class ChangePassDataSource extends BaseChangePassDataSource{
   @override
-  Future<String> changePassApi({required String pass}) async {
-    final response = await AppDio.put(endPoint: EndPoints.updateProfile,
+  Future<String> changePassApi({required String cPass, required String pass}) async {
+    final response = await AppDio.put(endPoint: EndPoints.changePass,
         data: {
-          "name": MyShared.getString(key: MySharedKeys.username),
-          "phone": MyShared.getString(key: MySharedKeys.phone),
-          "email": MyShared.getString(key: MySharedKeys.email),
-          "password": pass,
+        "current_password" : cPass,
+          "new_password": pass,
 
         }
     );
-    print(response);
+    safePrint(response);
     if(response!.data['status'] == true){
-      return "Password Changed Successfully";
+      return response.data['message'];
     }
     else {
       return response.data['message'];

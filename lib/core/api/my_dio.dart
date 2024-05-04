@@ -12,7 +12,6 @@ class AppDio {
   static void init() {
 
     BaseOptions baseOptions = BaseOptions(
-
         baseUrl: EndPoints.baseUrl,
         followRedirects: false,
         // will not throw errors

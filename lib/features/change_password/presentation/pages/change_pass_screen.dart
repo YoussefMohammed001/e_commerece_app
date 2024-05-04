@@ -1,11 +1,8 @@
 import 'package:e_commerece_app/core/services/services_locator.dart';
-import 'package:e_commerece_app/core/shared/my_shared.dart';
-import 'package:e_commerece_app/core/shared/my_shared_keys.dart';
 import 'package:e_commerece_app/core/styles/colors.dart';
 import 'package:e_commerece_app/core/utils/easy_loading.dart';
 import 'package:e_commerece_app/core/utils/navigators.dart';
 import 'package:e_commerece_app/core/utils/request_state.dart';
-import 'package:e_commerece_app/core/utils/safe_print.dart';
 import 'package:e_commerece_app/core/widgets/app_button.dart';
 import 'package:e_commerece_app/core/widgets/app_congrats.dart';
 import 'package:e_commerece_app/core/widgets/app_text_form_field.dart';
@@ -16,7 +13,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class ChangePassScreen extends StatefulWidget {
-  ChangePassScreen({super.key});
+  const ChangePassScreen({super.key});
 
   @override
   State<ChangePassScreen> createState() => _ChangePassScreenState();
@@ -26,8 +23,11 @@ class _ChangePassScreenState extends State<ChangePassScreen> {
   final bloc = ChangePassBloc(sl());
 
   final _formKey = GlobalKey<FormState>();
+
   TextEditingController currentPass = TextEditingController();
+
   TextEditingController newPass = TextEditingController();
+
   TextEditingController confirmPass = TextEditingController();
 
   @override
@@ -41,7 +41,12 @@ class _ChangePassScreenState extends State<ChangePassScreen> {
           }
           if (state.requestState == RequestState.success) {
             hideLoading();
-            pushReplacement(context, const AppCongrats(title: "Password Changed Successfully", icon: "shield.png"));
+            pushReplacement(
+                context,
+                 AppCongrats(
+                  title: state.message,
+                  icon: "shield.png",
+                ));
           }
         },
         child: Form(
@@ -55,12 +60,10 @@ class _ChangePassScreenState extends State<ChangePassScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    AppBarProfileItemsWidget(
+                    const AppBarProfileItemsWidget(
                       title: 'Change Password',
-                      rightIcon: 'add',
-                      liftIcon: 'arrow',
+                      leftIcon: 'arrow',
                       iconVisibility: false,
-                      onAdd: () {},
                     ),
                     SizedBox(
                       height: 3.h,
@@ -140,30 +143,15 @@ class _ChangePassScreenState extends State<ChangePassScreen> {
                     AppButton(
                         borderRadius: BorderRadius.circular(14.sp),
                         margin: EdgeInsets.symmetric(
-                          vertical: 12.sp,
+                          vertical: 13.sp,
                         ),
                         bgColor: AppColors.primary,
                         onPressed: () {
-                          MyShared.putString(
-                              key: MySharedKeys.userPassword,
-                              value: "1234567");
-
-                          safePrint(MyShared.getString(
-                              key: MySharedKeys.userPassword));
                           if (_formKey.currentState!.validate()) {
 
-                            if (currentPass.text ==
-                                MyShared.getString(
-                                    key: MySharedKeys.userPassword)) {
                               bloc.add(EventChangePass(
-                                pass: newPass.text,
+                                pass: newPass.text, cPass: currentPass.text,
                               ));
-                            } else {
-                              showLoading();
-                              Future.delayed(const Duration(seconds: 3)).then(
-                                  (value) =>
-                                      showError("Current Password Incorrect"));
-                            }
                           }
                         },
                         label: 'Change Password'),

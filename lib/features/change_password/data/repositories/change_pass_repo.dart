@@ -8,8 +8,8 @@ class ChangePassRepo extends ChangePassBaseRepo{
   ChangePassRepo(this.baseChangePassDataSource);
 
   @override
-  Future<Either<String, String>> changePass({required String pass}) async {
-    final result = await baseChangePassDataSource.changePassApi(pass: pass);
+  Future<Either<String, String>> changePass({required String cPass, required String pass}) async {
+    final result = await baseChangePassDataSource.changePassApi(pass: pass, cPass: cPass);
     try{
       return Right(result);
     } catch (e){

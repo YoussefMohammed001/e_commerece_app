@@ -7,11 +7,10 @@ import 'package:e_commerece_app/core/utils/safe_print.dart';
 import 'package:flutter/material.dart';
 
 Future<void> main() async {
-  MyShared.putString(key: MySharedKeys.userPassword, value: "1234567");
   WidgetsFlutterBinding.ensureInitialized();
   AppDio.init();
   await MyShared.init();
   ServicesLocator().init();
-  safePrint("token================>${MyShared.getString(key: MySharedKeys.apiToken)}");
+  safePrint("token===============================>  ${MyShared.getString(key: MySharedKeys.apiToken)}");
   runApp(const MyApp());
 }

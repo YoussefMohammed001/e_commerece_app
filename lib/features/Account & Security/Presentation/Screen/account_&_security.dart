@@ -29,7 +29,7 @@ class _AccountAndSecurityState extends State<AccountAndSecurity> {
             AppBarProfileItemsWidget(
               title: 'Account & Security',
               rightIcon: 'add',
-              liftIcon: 'arrow',iconVisibility: false,
+              leftIcon: 'arrow',iconVisibility: false,
               onAdd: ()  {},
             ),
             Gap(3.h),

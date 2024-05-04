@@ -27,7 +27,7 @@ class TermsAndConditionsScreen extends StatelessWidget {
                 child: const AppBarProfileItemsWidget(
                   title: 'Terms and Conditions',
                   rightIcon: 'add',
-                  liftIcon: 'arrow',
+                  leftIcon: 'arrow',
                   iconVisibility: false,
                 ),
               ),
@@ -50,7 +50,7 @@ class TermsAndConditionsScreen extends StatelessWidget {
                           SizedBox(
                             height: 1.h,
                           ),
-                          Text(cubit.termsAndConditionsModel!.about ?? "",
+                          Text(cubit.termsAndConditionsModel!.about,
                             style: const TextStyle(
                               color: AppColors.grey,
                               fontWeight: FontWeight.w400,
@@ -71,7 +71,7 @@ class TermsAndConditionsScreen extends StatelessWidget {
                           SizedBox(
                             height: 1.h,
                           ),
-                          Text(cubit.termsAndConditionsModel!.terms ?? "",
+                          Text(cubit.termsAndConditionsModel!.terms,
                             style: const TextStyle(
                               color: AppColors.grey,
                               fontWeight: FontWeight.w400,

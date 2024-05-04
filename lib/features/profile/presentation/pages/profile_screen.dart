@@ -5,6 +5,7 @@ import 'package:e_commerece_app/core/styles/colors.dart';
 import 'package:e_commerece_app/core/utils/navigators.dart';
 import 'package:e_commerece_app/core/utils/svg.dart';
 import 'package:e_commerece_app/features/Account%20&%20Security/Presentation/Screen/account_&_security.dart';
+import 'package:e_commerece_app/features/add_complaint/presentation/pages/add_complaint_screen.dart';
 import 'package:e_commerece_app/features/address/presentation/pages/manage_addresses_screen.dart';
 import 'package:e_commerece_app/features/faqs/view/screens/faqs_screen.dart';
 import 'package:e_commerece_app/features/profile/presentation/widgets/profile_navigator_widget.dart';
@@ -146,8 +147,10 @@ class ProfileScreen extends StatelessWidget {
                   ),
                   Gap(3.h),
                   ProfileNavigatorWidget(
-                    titleDetector: 'Help & Support',
-                    pushTo: () {},
+                    titleDetector: 'Send Complaint',
+                    pushTo: () {
+                      push(context, AddComplaintScreen());
+                    },
                     svgName: 'help',
                   ),
                   Gap(3.h),
@@ -176,4 +179,6 @@ class ProfileScreen extends StatelessWidget {
       ),
     );
   }
+
+
 }
