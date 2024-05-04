@@ -63,6 +63,10 @@ class _MainScreenState extends State<MainScreen> {
           label:"History",
             icon: AppSVG( assetName: 'history',)
         ),
+        const BottomNavigationBarItem(
+          label:"History",
+            icon: AppSVG( assetName: 'history',)
+        ),
            BottomNavigationBarItem(
           label:"Profile",
             icon: AppSVG( assetName:  cubit.index == 2 ? 'profile_select': 'profile',)

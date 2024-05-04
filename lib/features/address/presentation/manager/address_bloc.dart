@@ -4,7 +4,6 @@ import 'package:e_commerece_app/core/shared/my_shared_keys.dart';
 import 'package:e_commerece_app/core/utils/request_state.dart';
 import 'package:e_commerece_app/core/utils/safe_print.dart';
 import 'package:e_commerece_app/features/address/data/models/address_request.dart';
-import 'package:e_commerece_app/features/address/domain/entities/address_entities.dart';
 import 'package:e_commerece_app/features/address/domain/use_cases/address_use_case.dart';
 import 'package:e_commerece_app/features/address/presentation/manager/address_state.dart';
 part 'address_event.dart';
@@ -128,7 +127,6 @@ class AddressBloc extends Bloc<BaseAddressEvent, AddressState> {
           deleteRequestState: RequestState.failure,));
       },
               (right) {
-
         safePrint(right);
         state.getAddressDataEntities!.removeAt(event.index);
         emit(state.copyWith(

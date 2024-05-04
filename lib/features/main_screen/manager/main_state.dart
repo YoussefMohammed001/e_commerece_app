@@ -7,6 +7,7 @@ class MainInitial extends MainState {}
 
 class BackHomeState extends MainState {}
 
-class SwitchToAppointmentScreen extends MainState{}
+class SwitchToFavScreen extends MainState{}
+class SwitchToCartScreen extends MainState{}
 class SwitchToProfileScreen extends MainState{}
 

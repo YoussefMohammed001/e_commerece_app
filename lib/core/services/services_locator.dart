@@ -23,6 +23,10 @@ import 'package:e_commerece_app/features/change_password/data/data_sources/chang
 import 'package:e_commerece_app/features/change_password/data/repositories/change_pass_repo.dart';
 import 'package:e_commerece_app/features/change_password/domain/repositories/change_pass_base_repo.dart';
 import 'package:e_commerece_app/features/change_password/domain/use_cases/change_pass_use_case.dart';
+import 'package:e_commerece_app/features/confirm_order/data/data_sources/add_order_data_source.dart';
+import 'package:e_commerece_app/features/confirm_order/data/repositories/add_order_repo.dart';
+import 'package:e_commerece_app/features/confirm_order/domain/repositories/add_order_base_repo.dart';
+import 'package:e_commerece_app/features/confirm_order/domain/use_cases/add_order_use_case.dart';
 import 'package:e_commerece_app/features/home/data/data_sources/home_api.dart';
 import 'package:e_commerece_app/features/home/data/repositories/home_repository.dart';
 import 'package:e_commerece_app/features/home/domain/repositories/base_home_repository.dart';
@@ -75,6 +79,7 @@ sl.registerLazySingleton(() => CartUseCase(sl()));
 sl.registerLazySingleton(() => AddressUseCase(sl()));
 sl.registerLazySingleton(() => ChangePassUseCase(sl()));
 sl.registerLazySingleton(() => AddComplaintUseCase(sl()));
+sl.registerLazySingleton(() => AddOrderUseCase(sl()));
 
 
     ///Repository
@@ -91,6 +96,7 @@ sl.registerLazySingleton<BaseCartRepo>(() => CartRepo(sl()));
 sl.registerLazySingleton<BaseAddressRepo>(() => AddressRepo(sl()));
 sl.registerLazySingleton<ChangePassBaseRepo>(() => ChangePassRepo(sl()));
 sl.registerLazySingleton<BaseAddComplaintRepo>(() => AddComplaintRepo(sl()));
+sl.registerLazySingleton<AddOrderBaseRepo>(() => AddOrderRepo(sl()));
 
 
     ///Data SOURCE
@@ -107,6 +113,7 @@ sl.registerLazySingleton<BaseCartApi>(() => CartApi());
 sl.registerLazySingleton<BaseAddressApi>(() => AddressApi());
 sl.registerLazySingleton<BaseChangePassDataSource>(() => ChangePassDataSource());
 sl.registerLazySingleton<BaseAddComplaintDataSource>(() => AddComplaintDataSource());
+sl.registerLazySingleton<AddOrderBaseDataSource>(() => AddOrderDataSource());
 
 
 

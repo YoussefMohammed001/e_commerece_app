@@ -4,10 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class PricingDetailsWidget extends StatelessWidget {
-  const PricingDetailsWidget({super.key, required this.totalQuantity, required this.subTotal, required this.total,});
+  const PricingDetailsWidget({super.key, required this.totalQuantity, required this.subTotal, required this.total, required this.onPress,});
   final String totalQuantity;
   final String subTotal;
   final String total;
+  final VoidCallback onPress;
   @override
   Widget build(BuildContext context) {
     return  Column(
@@ -101,8 +102,7 @@ class PricingDetailsWidget extends StatelessWidget {
           height: 1.h,
         ),
         AppButton(
-          onPressed: () {
-          },
+          onPressed: onPress,
           borderRadius: BorderRadius.circular(13.sp),
           bgColor: AppColors.primary,
           margin: EdgeInsets.symmetric(

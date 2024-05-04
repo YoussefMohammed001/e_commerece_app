@@ -157,7 +157,7 @@ class _CartScreenState extends State<CartScreen> {
                       pressCheckOut: () {
                         push(
                             context,
-                            CheckOutScreen(getCartDataEntities: state.getCartDataEntities!, totalQuantity: '', totalPrice: '',
+                            CheckOutScreen(getCartDataEntities: state.getCartDataEntities!,
                             ));
                       },
                     )

@@ -13,5 +13,5 @@ enum MySharedKeys {
   addressId,
   addressDetails,
   addressName,
-  addressNote,
+  addressNote, paymentMethod,
 }
