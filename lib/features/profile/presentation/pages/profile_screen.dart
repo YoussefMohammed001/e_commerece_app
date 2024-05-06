@@ -5,6 +5,7 @@ import 'package:e_commerece_app/core/styles/colors.dart';
 import 'package:e_commerece_app/core/utils/navigators.dart';
 import 'package:e_commerece_app/core/utils/svg.dart';
 import 'package:e_commerece_app/features/Account%20&%20Security/Presentation/Screen/account_&_security.dart';
+import 'package:e_commerece_app/features/App%20Appearance/presentation/pages/app_appearance.dart';
 import 'package:e_commerece_app/features/add_complaint/presentation/pages/add_complaint_screen.dart';
 import 'package:e_commerece_app/features/address/presentation/pages/manage_addresses_screen.dart';
 import 'package:e_commerece_app/features/faqs/view/screens/faqs_screen.dart';
@@ -140,20 +141,28 @@ class ProfileScreen extends StatelessWidget {
                   ),
                   Gap(3.h),
                   ProfileNavigatorWidget(
+                    titleDetector: 'App Appearance',
+                    pushTo: () {
+                      push(context,  AppAppearance());
+                    },
+
+                    svgName: 'eye',
+                  ),   Gap(3.h),
+                  ProfileNavigatorWidget(
                     titleDetector: 'FAQS',
                     pushTo: () {
                       push(context, FAQsScreen());
                     },
 
-                    svgName: 'faq',
+                    svgName: 'help',
                   ),
                   Gap(3.h),
                   ProfileNavigatorWidget(
                     titleDetector: 'Send Complaint',
                     pushTo: () {
-                      push(context, AddComplaintScreen());
+                      push(context, const AddComplaintScreen());
                     },
-                    svgName: 'help',
+                    svgName: 'complaint',
                   ),
                   Gap(3.h),
                   ProfileNavigatorWidget(
