@@ -44,17 +44,17 @@ class TermsAndConditionsScreen extends StatelessWidget {
                             style: TextStyle(
                               color: AppColors.dark,
                               fontSize: 18.sp,
-                              fontWeight: FontWeight.w500,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
                           SizedBox(
                             height: 1.h,
                           ),
                           Text(cubit.termsAndConditionsModel!.about,
-                            style: const TextStyle(
+                            style:  TextStyle(
                               color: AppColors.grey,
-                              fontWeight: FontWeight.w400,
-
+                              fontSize: 15.sp,
+                              fontWeight: FontWeight.w700,
                             ),
                           ),
                           SizedBox(
@@ -65,17 +65,17 @@ class TermsAndConditionsScreen extends StatelessWidget {
                             style: TextStyle(
                               color: AppColors.dark,
                               fontSize: 18.sp,
-                              fontWeight: FontWeight.w500,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
                           SizedBox(
                             height: 1.h,
                           ),
                           Text(cubit.termsAndConditionsModel!.terms,
-                            style: const TextStyle(
+                            style:  TextStyle(
                               color: AppColors.grey,
-                              fontWeight: FontWeight.w400,
-
+                              fontSize: 15.sp,
+                              fontWeight: FontWeight.w700,
                             ),
                           ),
                         ],

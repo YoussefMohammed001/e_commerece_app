@@ -56,13 +56,12 @@ class _AddComplaintScreenState extends State<AddComplaintScreen> {
               body: SingleChildScrollView(
                 child: SingleChildScrollView(
                   child: Padding(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: 15.sp, vertical: 15.sp),
+                    padding: EdgeInsets.symmetric(horizontal: 15.sp, vertical: 15.sp),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const AppBarProfileItemsWidget(
-                          title: 'Add Complaint',
+                          title: 'Send Complaint',
                           leftIcon: 'arrow',
                           iconVisibility: false,
                         ),
@@ -72,19 +71,19 @@ class _AddComplaintScreenState extends State<AddComplaintScreen> {
                         Text(
                           "Add your complaint",
                           style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 17.sp,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18.sp,
                           ),
                         ),
                         SizedBox(
-                          height: 1.h,
+                          height: 0.5.h,
                         ),
                         Text(
                           "be free to send use your complaint and you will reply to you as soon aas possible",
                           style: TextStyle(
-                              fontWeight: FontWeight.w500,
+                              fontWeight: FontWeight.w400,
                               fontSize: 16.sp,
-                              color: AppColors.grey),
+                              color: AppColors.dark),
                         ),
                         SizedBox(
                           height: 3.h,

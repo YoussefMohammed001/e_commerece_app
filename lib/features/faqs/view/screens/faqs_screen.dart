@@ -50,15 +50,21 @@ class FAQsScreen extends StatelessWidget {
 
                                 title: Text(
                                   cubit.faqsList[index].q,
-                                  style: const TextStyle(
+                                  style:  TextStyle(
                                     color: AppColors.dark,
+                                    fontSize: 17.sp,
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
                                 children: [
                                   Padding(
-                                      padding:  EdgeInsets.all(10.sp),
-                                      child: Text(cubit.faqsList[index].ans))
+                                      padding:  EdgeInsets.symmetric(horizontal: 20.sp),
+                                      child: Text(cubit.faqsList[index].ans,                                  style:  TextStyle(
+                                        color: AppColors.grey,
+                                        fontSize: 16.sp,
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                      ))
                                 ],
                               ),
                               Divider(
