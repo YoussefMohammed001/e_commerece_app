@@ -37,6 +37,10 @@ import 'package:e_commerece_app/features/login/data/data_sources/login_remote_da
 import 'package:e_commerece_app/features/login/data/repositories/login_repository.dart';
 import 'package:e_commerece_app/features/login/domain/repositories/base_login_repository.dart';
 import 'package:e_commerece_app/features/login/domain/use_cases/login_use_case.dart';
+import 'package:e_commerece_app/features/orders/data/data_sources/orders_data_source.dart';
+import 'package:e_commerece_app/features/orders/data/repositories/order_repo.dart';
+import 'package:e_commerece_app/features/orders/domain/repositories/order_base_repo.dart';
+import 'package:e_commerece_app/features/orders/domain/use_cases/orders_use_case.dart';
 import 'package:e_commerece_app/features/product_details/data/data_sources/product_details_api.dart';
 import 'package:e_commerece_app/features/product_details/data/repositories/product_details_repo.dart';
 import 'package:e_commerece_app/features/product_details/domain/repositories/base_product_details_repository.dart';
@@ -80,6 +84,7 @@ sl.registerLazySingleton(() => AddressUseCase(sl()));
 sl.registerLazySingleton(() => ChangePassUseCase(sl()));
 sl.registerLazySingleton(() => AddComplaintUseCase(sl()));
 sl.registerLazySingleton(() => AddOrderUseCase(sl()));
+sl.registerLazySingleton(() => OrdersUseCase(sl()));
 
 
     ///Repository
@@ -97,7 +102,7 @@ sl.registerLazySingleton<BaseAddressRepo>(() => AddressRepo(sl()));
 sl.registerLazySingleton<ChangePassBaseRepo>(() => ChangePassRepo(sl()));
 sl.registerLazySingleton<BaseAddComplaintRepo>(() => AddComplaintRepo(sl()));
 sl.registerLazySingleton<AddOrderBaseRepo>(() => AddOrderRepo(sl()));
-
+sl.registerLazySingleton<OrderBaseRepo>(() => OrderRepo(sl()));
 
     ///Data SOURCE
 sl.registerLazySingleton<BaseCategoriesRemoteDataSource>(() => CategoriesRemoteDataSource());
@@ -114,9 +119,7 @@ sl.registerLazySingleton<BaseAddressApi>(() => AddressApi());
 sl.registerLazySingleton<BaseChangePassDataSource>(() => ChangePassDataSource());
 sl.registerLazySingleton<BaseAddComplaintDataSource>(() => AddComplaintDataSource());
 sl.registerLazySingleton<AddOrderBaseDataSource>(() => AddOrderDataSource());
-
-
-
+sl.registerLazySingleton<BaseOrdersApi>(() =>  OrdersApi());
 
 
 

@@ -3,7 +3,7 @@ import 'package:e_commerece_app/features/address/data/data_sources/address_api.d
 import 'package:e_commerece_app/features/address/data/models/address_request.dart';
 import 'package:e_commerece_app/features/address/domain/entities/address_entities.dart';
 import 'package:e_commerece_app/features/address/domain/repositories/base_address_repo.dart';
-import 'package:either_dart/src/either.dart';
+import 'package:either_dart/either.dart';
 
 class AddressRepo extends BaseAddressRepo{
   final BaseAddressApi baseAddressApi;

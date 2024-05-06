@@ -8,6 +8,7 @@ import 'package:e_commerece_app/features/Account%20&%20Security/Presentation/Scr
 import 'package:e_commerece_app/features/add_complaint/presentation/pages/add_complaint_screen.dart';
 import 'package:e_commerece_app/features/address/presentation/pages/manage_addresses_screen.dart';
 import 'package:e_commerece_app/features/faqs/view/screens/faqs_screen.dart';
+import 'package:e_commerece_app/features/orders/presentation/pages/orders.dart';
 import 'package:e_commerece_app/features/profile/presentation/widgets/profile_navigator_widget.dart';
 import 'package:e_commerece_app/features/terms_and_conditions/view/screens/terms_and_conditions_screen.dart';
 import 'package:flutter/material.dart';
@@ -165,7 +166,9 @@ class ProfileScreen extends StatelessWidget {
                   Gap(3.h),
                   ProfileNavigatorWidget(
                     titleDetector: 'Log Out',
-                    pushTo: () {},
+                    pushTo: () {
+                      push(context, OrdersScreen());
+                    },
                     titleColor: AppColors.error,
                     svgName: 'logout',
                     iconColor: AppColors.error,
