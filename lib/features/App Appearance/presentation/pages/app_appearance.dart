@@ -39,19 +39,7 @@ class _AppAppearanceState extends State<AppAppearance> {
             ),
             Gap(3.h),
             Consumer<ThemeProvider>(
-
               builder: (context, orientation, screenType) {
-                void handleThemeChange(int newTheme) {
-                  setState(() {
-                    selectedTheme = newTheme;
-                  });
-                }
-                void handleLanguageChange(int newLanguage) {
-                  setState(() {
-                    selectedLanguage = newLanguage;
-                  });
-                }
-
                 return GestureDetector(
                   onTap: () {
                     showModalBottomSheet(
@@ -115,6 +103,7 @@ class _AppAppearanceState extends State<AppAppearance> {
                                     onChanged: (value) {
                                     setState(() {
                                       selectedTheme = value!;
+                                      print(selectedTheme);
                                     });
                                     },
                                     title:  Text('System Defualt',style: TextStyle(fontSize: 17.sp,
@@ -164,8 +153,7 @@ class _AppAppearanceState extends State<AppAppearance> {
                       ),
                       const Spacer(),
                       Text(
-                        'Theme' ,
-
+                        selectedTheme == 0 ? 'Light' : selectedTheme == 1 ? 'Dark' : ' System' ,
                         style: TextStyle(
                             fontWeight: FontWeight.w400,
                             fontSize: 16.sp),
@@ -252,12 +240,12 @@ class _AppAppearanceState extends State<AppAppearance> {
                                   Expanded(
                                     child: AppButton(onPressed: () {
                                       pop(context);
-                                      if(selectedLanguage == 0){
-                                       return this.context.read<LanguageCubit>().changeLanguageToAR();
-
-                                      }   if(selectedLanguage == 1){
-                                        return   this.context.read<LanguageCubit>().changeLanguageToEn();
+                                      if (selectedLanguage == 0) {
+                                        cubit.changeLanguageToAR();
+                                      } else if (selectedLanguage == 1) {
+                                        cubit.changeLanguageToEn();
                                       }
+
 
                                     }, label: 'Ok',bgColor: AppColors.success,textColor: Colors.white,margin: EdgeInsets.symmetric(horizontal: 1.sp),),
                                   ),
