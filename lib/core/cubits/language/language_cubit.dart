@@ -18,7 +18,7 @@ class LanguageCubit extends Cubit<LanguageState> {
     emit(ChangeLanguageState());
   }
 
-  void changeLanguageToDe() async {
+  void changeLanguageToAR() async {
     await MyShared.putString(key: MySharedKeys.currentLanguage, value: "ar");
     emit(ChangeLanguageState());
   }
